@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 sealed public class SwipeDetection : MonoBehaviour
