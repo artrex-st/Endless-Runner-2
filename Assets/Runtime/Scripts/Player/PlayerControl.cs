@@ -10,7 +10,6 @@ sealed public class PlayerControl : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpDistanceZ = 5;
     [SerializeField] private float jumpHeightY = 2;
-
     [SerializeField] private float jumpLerpSpeed = 10;
 
     [Header("Roll")]
@@ -21,7 +20,7 @@ sealed public class PlayerControl : MonoBehaviour
     //others
     Vector3 initialPosition;
     private float targetPositionX;
-    public float ForwardSpeed; // TODO: move the controller to game Mode
+    public float ForwardSpeed {get; set;} // GameMode edit this
     public bool IsJumping { get; private set; }
     private float rollStartZ;
     public bool IsRolling { get; private set; }

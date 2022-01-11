@@ -7,8 +7,6 @@ sealed public class SwipeDetection : MonoBehaviour
     [SerializeField] private float minimumDistance = 0.2f;
     [SerializeField] private float maximumTime = 1f;
     [SerializeField, Range(0,1)] private float directionThreshold = 0.9f;
-    // [SerializeField] private GameObject trail; // TRAIL
-    // private Coroutine trailPosition; // TRAIL
     private Vector2 startPosition;
     private Vector2 endPosition;
     private float startTime;
