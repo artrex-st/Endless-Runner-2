@@ -44,7 +44,9 @@ sealed public class SwipeDetection : MonoBehaviour
     }
     private void DetectSwipe()
     {
-        if (Vector3.Distance(startPosition, endPosition) >= minimumDistance && (endTime - startTime) <= maximumTime)
+        if (Vector3.Distance(startPosition, endPosition) >= minimumDistance 
+            && (endTime - startTime) <= maximumTime
+            && playerControl.isActiveAndEnabled)
         {
             Vector3 direction = endPosition - startPosition;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;

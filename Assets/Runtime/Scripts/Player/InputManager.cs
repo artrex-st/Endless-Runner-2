@@ -11,10 +11,8 @@ sealed public class InputManager : MonoBehaviour
     public event SwipeAxis OnSwipeAxis;
     //
     private InputControls inputControls;
-    private Vector2 inputPlayerPosition;
-    public Vector2 InputPlayer => inputPlayerPosition;
-    
     [SerializeField]private Camera mainCamera;
+
     private void Awake()
     {
         inputControls = new InputControls(); // new Inputsystem
