@@ -12,6 +12,8 @@ public class AudioController : MonoBehaviour
     //volume range
     private const int minVolumeDb = -40;
     private const int maxVolumeDb = 0;
+    private const float defaultSliderDbValue = 0.85f;
+    private const float mutedDbValue = -80f;
     private void Start()
     {
         LoadAudioSettings();
@@ -35,7 +37,7 @@ public class AudioController : MonoBehaviour
     //
     private void SetMixerVolumeParameter(string key, float volumePercent)
     {
-        float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent) <= minVolumeDb ? -80 : Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
+        float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent) <= minVolumeDb ? mutedDbValue : Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
         mixerAudio.SetFloat(key, volume);
     }
     private float GetMixerVolumeParameter(string key)
@@ -44,7 +46,7 @@ public class AudioController : MonoBehaviour
         {
             return Mathf.InverseLerp(minVolumeDb,maxVolumeDb,value);
         }
-        return 0.85f;
+        return defaultSliderDbValue;
     }
     public void SaveAudioSettings()
     {
