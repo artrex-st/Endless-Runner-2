@@ -32,14 +32,14 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""id"": ""2b7d158c-09be-4d77-8612-949ad5b9f7a2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""PrimaryPosition"",
                     ""type"": ""PassThrough"",
                     ""id"": ""1a05b17b-d094-4a19-898c-d46c3666a273"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""ScaleVector2(x=5,y=5)"",
+                    ""processors"": """",
                     ""interactions"": """"
                 }
             ],
@@ -147,7 +147,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e17b0d05-7f63-4d20-a823-bd925a304fae"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",
@@ -159,7 +159,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""id"": ""04acb1f7-896c-4d02-8f91-d7da5897e600"",
                     ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=5,y=5)"",
                     ""groups"": """",
                     ""action"": ""PrimaryPosition"",
                     ""isComposite"": false,

@@ -9,39 +9,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Size.x
-      value: 1.0140643
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Size.y
-      value: 0.73607993
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Size.z
-      value: 0.7960099
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Center.x
-      value: 0.044884205
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Center.y
-      value: -0.61196005
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Center.z
-      value: 0.023013175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3993550304025950263, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Name
-      value: Obstacle_Jump_OneLane
+      value: Obstacle_Jump_OneLane_Right
       objectReference: {fileID: 0}
     - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8071472452907903754, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_RootOrder
@@ -89,11 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.data[0]
       value: 
-      objectReference: {fileID: 8104509965250040314, guid: 3784a0597cdfd9b4f895549ed66a35a2, type: 3}
+      objectReference: {fileID: 4780215896082298316, guid: f16cd5c7572141a4eb0c6dbee759ba1d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}

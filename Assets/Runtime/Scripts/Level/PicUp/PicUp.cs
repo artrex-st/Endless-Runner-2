@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PicUp : MonoBehaviour
@@ -13,6 +11,6 @@ public class PicUp : MonoBehaviour
     {
         AudioUtils.PlayAudioCue(AudioSource,picUpSound);
         visual.SetActive(false);
-        Destroy(gameObject,picUpSound.length);
+        Destroy(gameObject,picUpSound.length); //TODO: Object Pooling
     } 
 }

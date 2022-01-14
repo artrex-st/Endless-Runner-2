@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 sealed public class PlayerControl : MonoBehaviour
 {
+    [SerializeField] private PlayerAudioController playerAudioController;
     [SerializeField] private float horizontalSpeed = 15;
     [SerializeField] private float laneDistanceX = 4;
 
@@ -29,13 +28,14 @@ sealed public class PlayerControl : MonoBehaviour
     private float jumpStartZ;
     private float LeftLaneX => initialPosition.x - laneDistanceX;
     private float RightLaneX => initialPosition.x + laneDistanceX;
-    private bool CanJump => !IsJumping;
-    private bool CanRoll => !IsRolling;
+    private bool CanJump => !IsJumping && ForwardSpeed > 0;
+    private bool CanRoll => !IsRolling && ForwardSpeed > 0;
 
     void Awake()
     {
         initialPosition = transform.position;
         StopRoll();
+        StopJump();
     }
     void Update()
     {
@@ -97,7 +97,7 @@ sealed public class PlayerControl : MonoBehaviour
     }
      private void StartJump()
     {
-        //playerAudioController.PlayJumpSound();
+        playerAudioController.PlayJumpSound();
         IsJumping = true;
         jumpStartZ = transform.position.z;
         StopRoll();
@@ -140,7 +140,7 @@ sealed public class PlayerControl : MonoBehaviour
 
     private void StartRoll()
     {
-        //playerAudioController.PlayRollSound();
+        playerAudioController.PlayRollSound();
         rollStartZ = transform.position.z;
         IsRolling = true;
         regularCollider.enabled = false;
@@ -157,7 +157,7 @@ sealed public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
-        //playerAudioController.PlayDieSound();
+        playerAudioController.PlayDieSound();
         ForwardSpeed = 0;
         horizontalSpeed = 0;
         StopRoll();

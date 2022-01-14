@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -16,7 +14,10 @@ public class ObstacleDecoration : MonoBehaviour
         if (collisionAnimation != null)
         {
             collisionAnimation.Play();
-        }else
-        Debug.LogWarning($"{transform.name} there is no animation!");
+        }
+        else
+        {
+            Debug.LogWarning($"{transform.name} there is no animation!");
+        }
     }
 }

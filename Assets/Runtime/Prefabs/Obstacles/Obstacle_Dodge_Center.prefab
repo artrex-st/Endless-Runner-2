@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 698723583393309539, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Center.y
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3993550304025950263, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Name
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8071472452907903754, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_RootOrder
@@ -69,19 +69,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6955982502755044225, guid: fbba06b5ceef2c14c9e217eb7250ada7, type: 3}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6955982502755044225, guid: 5299e665dac18d143866773009b8ff8d, type: 3}
     - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: decorationOptions.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6955982502755044225, guid: 95688551d6eec2642b6e1a7ee9719ad7, type: 3}
+    - target: {fileID: 9010360676223952342, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
+      propertyPath: decorationOptions.Array.data[3]
+      value: 
+      objectReference: {fileID: 4780215896082298316, guid: f16cd5c7572141a4eb0c6dbee759ba1d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}

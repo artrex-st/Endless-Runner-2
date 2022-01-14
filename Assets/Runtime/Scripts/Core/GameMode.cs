@@ -7,7 +7,7 @@ public class GameMode : MonoBehaviour
     //Player
     [SerializeField] private PlayerControl player;
     [SerializeField] private PlayerAnimationController playerAnimationController;
-    //[SerializeField] private MusicController musicController;
+    [SerializeField] private MusicController musicController;
     [SerializeField] private SaveGame saveGame;
     [Header("Multipliers")]
     [SerializeField] private float initialSpeed;
@@ -24,7 +24,7 @@ public class GameMode : MonoBehaviour
     public int CherryPicUpCount => cherryPicUpCount;
     //Player END
     //Game Mode
-    [SerializeField, Range(0,5f)] float timerToStart;
+    [SerializeField, Range(0,9f)] float timerToStart;
     public float TimerToStart => timerToStart;
     private bool isDead = false;
     public bool IsDead => isDead;
@@ -65,7 +65,7 @@ public class GameMode : MonoBehaviour
     public void OnGameOver()
     {
         isDead = true;
-        //musicController.PlayDeathTrackMusic();
+        musicController.PlayDeathTrackMusic();
         if (saveGame.CurrentSave.highestScore < Score)
             saveGame.CurrentSave.highestScore = Score;
         saveGame.CurrentSave.totalCherry += CherryPicUpCount;
@@ -94,6 +94,7 @@ public class GameMode : MonoBehaviour
     {
         playerAnimationController.SetStartTriggerAnimation();
         isDead = false;
+        musicController.PlayMainTrackMusic();
     }
     private IEnumerator ReloadGameCoroutine()
     {
