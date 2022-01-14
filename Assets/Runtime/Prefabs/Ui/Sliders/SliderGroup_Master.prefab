@@ -125,8 +125,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4528612518154708530, guid: 950b5f9f5b02df34096102faec8301cc, type: 3}
       propertyPath: m_fontSize
-      value: 53.7
+      value: 52.45
       objectReference: {fileID: 0}
+    - target: {fileID: 4528612518154708530, guid: 950b5f9f5b02df34096102faec8301cc, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
+    - target: {fileID: 4528612518154708530, guid: 950b5f9f5b02df34096102faec8301cc, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6360588970910393389, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
     - target: {fileID: 4868792705438132074, guid: 950b5f9f5b02df34096102faec8301cc, type: 3}
       propertyPath: m_Name
       value: SliderGroup_Master

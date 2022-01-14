@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2589083733628963633, guid: b707ababe2844444b9a70cb551c016c4, type: 3}
       propertyPath: m_Name
-      value: ScoreText
+      value: MenuText_Score
       objectReference: {fileID: 0}
     - target: {fileID: 5143452507612018672, guid: b707ababe2844444b9a70cb551c016c4, type: 3}
       propertyPath: m_Pivot.x
@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5914030087331895106, guid: b707ababe2844444b9a70cb551c016c4, type: 3}
       propertyPath: m_fontSize
-      value: 56.4
+      value: 47.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b707ababe2844444b9a70cb551c016c4, type: 3}

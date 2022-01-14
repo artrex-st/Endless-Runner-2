@@ -19,8 +19,13 @@ public class MainHUD : MonoBehaviour
     private void Awake()
     {
         Init();
-        OpenMenu(Menu.START);
+        //OpenMenu(Menu.START);
         //buildVersionText.text = $"Version: {Application.version} \n In development!";
+    }
+    private void Start()
+    {
+        startUiOverlay.SetActive(true);
+        musicController.PlayStartMenuMusic();
     }
     public void QuitGame()
     {
@@ -66,32 +71,32 @@ public class MainHUD : MonoBehaviour
         lastMenu = _CallingMenu;
         _CallingMenu.SetActive(false);
     }
-    public void OpenMenu(Menu _Menu)
-    {
-        if (!IsInitialised)
-        {
-            Init();
-        }
-        switch (_Menu)
-        {
-            case Menu.MAIN:
-                mainUiOverlay.SetActive(true);
-                break;
-            case Menu.PAUSE:
-                pauseUiOverlay.SetActive(true);
-                break;
-            case Menu.START:
-                startUiOverlay.SetActive(true);
-                break;
-            case Menu.SETTINGS:
-                settingsOverlay.SetActive(true);
-                break;
-            default:
-                //CloseAllMenus();
-                break;
-        }
-        musicController.PlayStartMenuMusic();
-    }
+    // public void OpenMenu(Menu _Menu)
+    // {
+    //     if (!IsInitialised)
+    //     {
+    //         Init();
+    //     }
+    //     switch (_Menu)
+    //     {
+    //         case Menu.MAIN:
+    //             mainUiOverlay.SetActive(true);
+    //             break;
+    //         case Menu.PAUSE:
+    //             pauseUiOverlay.SetActive(true);
+    //             break;
+    //         case Menu.START:
+    //             startUiOverlay.SetActive(true);
+    //             break;
+    //         case Menu.SETTINGS:
+    //             settingsOverlay.SetActive(true);
+    //             break;
+    //         default:
+    //             //CloseAllMenus();
+    //             break;
+    //     }
+    //     musicController.PlayStartMenuMusic();
+    // }
     private void CloseAllMenus()
     {
         foreach(GameObject _MenuChild in transform)

@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuIconText_Distance
       objectReference: {fileID: 0}
+    - target: {fileID: 7439143995217653593, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
+      propertyPath: m_fontSize
+      value: 43.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439143995217653593, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
+    - target: {fileID: 7439143995217653593, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6360588970910393389, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
     - target: {fileID: 7494279879096704177, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_Pivot.x
       value: 0
