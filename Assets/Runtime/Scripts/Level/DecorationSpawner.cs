@@ -14,7 +14,6 @@ public class DecorationSpawner : MonoBehaviour
             CurrentDecoration = Instantiate(prefab, transform);
             CurrentDecoration.transform.localPosition = Vector3.zero;
             CurrentDecoration.transform.rotation = Quaternion.identity;
-            
         }
         else
         {

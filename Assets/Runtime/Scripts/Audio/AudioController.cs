@@ -10,7 +10,7 @@ public class AudioController : MonoBehaviour
     private const string musicVolume = "Music";
     private const string sfxVolume = "SFX";
     //volume range
-    private const int minVolumeDb = -60;
+    private const int minVolumeDb = -80;
     private const int maxVolumeDb = 0;
     private void Start()
     {
@@ -35,8 +35,9 @@ public class AudioController : MonoBehaviour
     //
     private void SetMixerVolumeParameter(string key, float volumePercent)
     {
-        float volume = Mathf.Lerp(minVolumeDb,maxVolumeDb, volumePercent);
-        mixerAudio.SetFloat(key, volume);
+        // float volume = Mathf.Lerp(minVolumeDb,maxVolumeDb, volumePercent);
+        // mixerAudio.SetFloat(key, volume);
+        mixerAudio.SetFloat(key, Mathf.Log10(volumePercent) * 20);
     }
     private float GetMixerVolumeParameter(string key)
     {
@@ -46,7 +47,6 @@ public class AudioController : MonoBehaviour
         }
         return 0.85f;
     }
-    // Save settings
     public void SaveAudioSettings()
     {
         gameSaver.SaveSettings(new AudioSettingsData
@@ -56,7 +56,6 @@ public class AudioController : MonoBehaviour
             sfxVolume = SfxVolume,
         });
     }
-    // Load Settings
     private void LoadAudioSettings()
     {
         gameSaver.LoadGame();

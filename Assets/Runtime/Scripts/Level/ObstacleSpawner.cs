@@ -15,7 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void OnDrawGizmos() // preview OBSTACLE
     {
-        Vector3 currentSpawnPosition = transform.localPosition + Vector3.up;
+        Vector3 currentSpawnPosition = transform.position + Vector3.up;
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(currentSpawnPosition, new Vector3(2,2,1));
     }

@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07229245, y: 2.4647527, z: 10.119551}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2292,8 +2292,8 @@ MonoBehaviour:
   - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
   rewardTrackPrefabs:
   - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
-  initialTrackCount: 6
-  minTracksInFrontOfPlayer: 6
+  initialTrackCount: 4
+  minTracksInFrontOfPlayer: 3
   minDistanceToConsiderInsideTrack: 4
   hardTrackChance: 0.2
   minTracksBeforeReward: 10
@@ -3407,6 +3407,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3989140291226959368, guid: 3e9cb0cbf7d35374c9f58608f24a04dd, type: 3}
   m_PrefabInstance: {fileID: 6871721320537496845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1952289264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2906292623624533233, guid: ffab96d0f7e7f2640a9fe0141dcdb37e, type: 3}
+  m_PrefabInstance: {fileID: 1804562735}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1969673350 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5143452507612018672, guid: b707ababe2844444b9a70cb551c016c4, type: 3}
@@ -4249,6 +4260,9 @@ MonoBehaviour:
   sliderMusic: {fileID: 9372459}
   sliderSFX: {fileID: 838187690}
   btnDeleteData: {fileID: 7728427}
+  btnTextLabel: {fileID: 1952289264}
+  textBeforeDelete: Delete Data?
+  textAfterDelete: Deleted!
 --- !u!114 &4823630601687225358
 MonoBehaviour:
   m_ObjectHideFlags: 0

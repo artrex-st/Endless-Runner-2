@@ -11,7 +11,12 @@ public class SettingOverlay : MonoBehaviour
     [SerializeField] private Slider sliderMaster;
     [SerializeField] private Slider sliderMusic;
     [SerializeField] private Slider sliderSFX;
+    
+    [Header("Delete Button")]
     [SerializeField] private Button btnDeleteData;
+    [SerializeField] private TextMeshProUGUI btnTextLabel;
+    [SerializeField] private string textBeforeDelete = "Delete Data?";
+    [SerializeField] private string textAfterDelete = "Deleted!";
 
     private void Awake()
     {
@@ -21,6 +26,7 @@ public class SettingOverlay : MonoBehaviour
     {
         UpdateUi();
         btnDeleteData.interactable = true;
+        btnTextLabel.text = textBeforeDelete;
     }
     private void OnDisable()
     {
@@ -44,6 +50,7 @@ public class SettingOverlay : MonoBehaviour
     {
         mainHUD.BtnMainHudSound();
         btnDeleteData.interactable = false;
+        btnTextLabel.text = textAfterDelete;
         saveGame.DeleteData();
     }
     public void BtnCloseSettings()
