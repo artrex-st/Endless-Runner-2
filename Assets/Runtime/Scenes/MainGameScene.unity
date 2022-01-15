@@ -646,7 +646,7 @@ MonoBehaviour:
   musicController: {fileID: 850383}
   saveGame: {fileID: 47490871}
   initialSpeed: 5
-  maxSpeed: 15
+  maxSpeed: 20
   timeToMaxSpeed: 300
   baseScoreMultiplier: 1.5
   timerToStart: 1.7
@@ -3420,6 +3420,49 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3989140291226959368, guid: 3e9cb0cbf7d35374c9f58608f24a04dd, type: 3}
   m_PrefabInstance: {fileID: 6871721320537496845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1935431021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935431023}
+  - component: {fileID: 1935431022}
+  m_Layer: 0
+  m_Name: Pooling System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1935431022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935431021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce082f8fc7d4a94ab27562b71f17fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1935431023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935431021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0.5, z: 108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1952289264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2906292623624533233, guid: ffab96d0f7e7f2640a9fe0141dcdb37e, type: 3}

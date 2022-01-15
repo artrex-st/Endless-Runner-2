@@ -7,11 +7,14 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        Obstacle prefab = obstaclePrefabOptions[Random.Range(0, obstaclePrefabOptions.Length)];
-        currentObstacle = Instantiate(prefab, transform);
-        currentObstacle.transform.localPosition = Vector3.zero;
-        currentObstacle.transform.rotation = Quaternion.identity;
-        currentObstacle.SpawnDecorations();
+        if (transform.childCount <= 0) // ToDo: Improve this with Object Pooling
+        {
+            Obstacle prefab = obstaclePrefabOptions[Random.Range(0, obstaclePrefabOptions.Length)];
+            currentObstacle = Instantiate(prefab, transform);
+            currentObstacle.transform.localPosition = Vector3.zero;
+            currentObstacle.transform.rotation = Quaternion.identity;
+            currentObstacle.SpawnDecorations();
+        }
     }
     private void OnDrawGizmos() // preview OBSTACLE
     {

@@ -11,10 +11,11 @@ public class MusicController : MonoBehaviour
     [Header("Components")]
     private AudioSource audioSource;
     private AudioSource AudioSource => audioSource == null ? audioSource = GetComponent<AudioSource>() : audioSource;
+    private const float defaultDelay = 0.1f;
     
     public void PlayStartMenuMusic()
     {
-        PlayMusic(startMenuMusic);
+        PlayMusic(startMenuMusic, defaultDelay);
     }
     public void PlayMainTrackMusic()
     {
@@ -24,10 +25,16 @@ public class MusicController : MonoBehaviour
     {
         PlayMusicOneTime(deathTrackMusic);
     }
+
     public void PlayMusic(AudioClip _Clip)
     {
         AudioUtils.PlayMusic(AudioSource,_Clip);
     }
+    public void PlayMusic(AudioClip _Clip, float delay)
+    {
+        AudioUtils.PlayMusic(AudioSource,_Clip, delay);
+    }
+
     public void PlayMusicOneTime(AudioClip _Clip)
     {
         AudioUtils.PlayMusicOneTime(AudioSource,_Clip);

@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba0be3300ca50e4fba2a77ff65752b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 4979722675324437248}
-  end: {fileID: 4979722675822920561}
+  startPoint: {fileID: 4979722675324437248}
+  endPoint: {fileID: 4979722675822920561}
   obstacleSpawners: []
   decorationSpawner: {fileID: 4979722674761345652}
   picUpSpawners:
@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8865626633245265921, guid: 5d9cd635bf3c2134c930c93377dbcf48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8865626633245265921, guid: 5d9cd635bf3c2134c930c93377dbcf48, type: 3}
       propertyPath: m_LocalPosition.y
@@ -956,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8865626633245265921, guid: 5d9cd635bf3c2134c930c93377dbcf48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8865626633245265921, guid: 5d9cd635bf3c2134c930c93377dbcf48, type: 3}
       propertyPath: m_LocalPosition.y

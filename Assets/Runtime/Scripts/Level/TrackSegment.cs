@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class TrackSegment : MonoBehaviour
 {
-    [SerializeField] private Transform start;
-    [SerializeField] private Transform end;
+    [SerializeField] private Transform startPoint;
+    [SerializeField] private Transform endPoint;
 
     [SerializeField] private ObstacleSpawner[] obstacleSpawners;
     [SerializeField] DecorationSpawner decorationSpawner;
@@ -11,11 +11,11 @@ public class TrackSegment : MonoBehaviour
     [SerializeField] private PickUpSpawner[] picUpSpawners;
     [SerializeField, Range(0,1f)] private float pickupSpawnChance;
     //end
-    public Transform Start => start;
-    public Transform End => end;
+    public Transform StartPoint => startPoint;
+    public Transform EndPoint => endPoint;
 
-    public float Length => Vector3.Distance(End.position, Start.position);
-    public float SqrLength => (End.position - Start.position).sqrMagnitude;
+    public float Length => Vector3.Distance(EndPoint.position, StartPoint.position);
+    public float SqrLength => (EndPoint.position - StartPoint.position).sqrMagnitude;
 
     public ObstacleSpawner[] ObstacleSpawners => obstacleSpawners;
     public PickUpSpawner[] PicUpSpawners => picUpSpawners;

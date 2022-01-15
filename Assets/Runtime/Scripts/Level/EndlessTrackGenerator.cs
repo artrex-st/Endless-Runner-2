@@ -28,6 +28,7 @@ public class EndlessTrackGenerator : MonoBehaviour
 
     private void Start()
     {
+        PoolingSystem.ClearDictionary();
         TrackSegment previousTrack = SpawnTrackSegment(firstTrackPrefab, null);
         SpawnTracks(initialTrackCount);
     }
@@ -53,7 +54,8 @@ public class EndlessTrackGenerator : MonoBehaviour
         //Despawn tracks behind player
         for (int i = 0; i < playerTrackIndex; i++)
         {
-            Destroy(currentSegments[i].gameObject); //TODO: Object Pooling
+            //Destroy(currentSegments[i].gameObject); //TODO: Create function to Disable all childs
+            PoolingSystem.ReturnGameObject(currentSegments[i].gameObject);
         }
         currentSegments.RemoveRange(0, playerTrackIndex);
     }
@@ -63,8 +65,8 @@ public class EndlessTrackGenerator : MonoBehaviour
         for (int i = 0; i < currentSegments.Count; i++)
         {
             var track = currentSegments[i];
-            if (player.transform.position.z >= track.Start.position.z + minDistanceToConsiderInsideTrack &&
-                player.transform.position.z <= track.End.position.z)
+            if (player.transform.position.z >= track.StartPoint.position.z + minDistanceToConsiderInsideTrack &&
+                player.transform.position.z <= track.EndPoint.position.z)
             {
                 return i;
             }
@@ -76,7 +78,7 @@ public class EndlessTrackGenerator : MonoBehaviour
         TrackSegment previousTrack = currentSegments.Count > 0 ? currentSegments[currentSegments.Count - 1] : null;
         for (int i = 0; i < trackCount; i++)
         {
-            var track = GetRandomTrack();
+            TrackSegment track = GetRandomTrack();
             previousTrack = SpawnTrackSegment(track, previousTrack);
         }
     }
@@ -95,11 +97,13 @@ public class EndlessTrackGenerator : MonoBehaviour
     }
     private TrackSegment SpawnTrackSegment(TrackSegment track, TrackSegment previousTrack)
     {
-        TrackSegment trackInstance = Instantiate(track, transform);
+        GameObject trackInstanceObj = PoolingSystem.GetObject(track.gameObject);    // TODO: OPTIMIZE THI!!!!
+        trackInstanceObj.transform.parent = this.transform;                         // TODO: OPTIMIZE THI!!!!
+        TrackSegment trackInstance = trackInstanceObj.GetComponent<TrackSegment>(); // TODO: OPTIMIZE THI!!!!
 
         if (previousTrack != null)
         {
-            trackInstance.transform.position = previousTrack.End.position + (trackInstance.transform.position - trackInstance.Start.position);
+            trackInstance.transform.position = previousTrack.EndPoint.position + (trackInstance.transform.position - trackInstance.StartPoint.position);
         }
         else
         {

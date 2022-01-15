@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4597585138065985839, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_Name
-      value: MenuIconText_ScrollPickedUp
+      value: MenuIconText_TotalPickedUps
       objectReference: {fileID: 0}
     - target: {fileID: 7439143995217653593, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_fontSize
-      value: 46.4
+      value: 46.05
       objectReference: {fileID: 0}
     - target: {fileID: 7494279879096704177, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_Pivot.x
@@ -49,11 +49,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7494279879096704177, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 7494279879096704177, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 7494279879096704177, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,7 +122,7 @@ PrefabInstance:
     - target: {fileID: 8480205257187309776, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bbd7b7f6dead14321839feeaba447958, type: 3}
+      objectReference: {fileID: 21300000, guid: 161b62044f01d41468f01c5510c23aff, type: 3}
     - target: {fileID: 8480205257187309776, guid: 3274f6ad83bd10448a897327d7286c56, type: 3}
       propertyPath: m_Color.b
       value: 1
