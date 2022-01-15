@@ -54,7 +54,6 @@ public class EndlessTrackGenerator : MonoBehaviour
         //Despawn tracks behind player
         for (int i = 0; i < playerTrackIndex; i++)
         {
-            //Destroy(currentSegments[i].gameObject); //TODO: Create function to Disable all childs
             PoolingSystem.ReturnGameObject(currentSegments[i].gameObject);
         }
         currentSegments.RemoveRange(0, playerTrackIndex);
@@ -97,9 +96,9 @@ public class EndlessTrackGenerator : MonoBehaviour
     }
     private TrackSegment SpawnTrackSegment(TrackSegment track, TrackSegment previousTrack)
     {
-        GameObject trackInstanceObj = PoolingSystem.GetObject(track.gameObject);    // TODO: OPTIMIZE THI!!!!
-        trackInstanceObj.transform.parent = this.transform;                         // TODO: OPTIMIZE THI!!!!
-        TrackSegment trackInstance = trackInstanceObj.GetComponent<TrackSegment>(); // TODO: OPTIMIZE THI!!!!
+        GameObject trackInstanceObj = PoolingSystem.GetObject(track.gameObject);    // TODO: OPTIMIZE THIS!!!!
+        trackInstanceObj.transform.parent = this.transform;                         // TODO: OPTIMIZE THIS!!!!
+        TrackSegment trackInstance = trackInstanceObj.GetComponent<TrackSegment>(); // TODO: OPTIMIZE THIS!!!!
 
         if (previousTrack != null)
         {
