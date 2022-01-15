@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     }
     public void LoadGame()
     {
-        Debug.Log($"Tá saindo da jaula o mostro!");
         loadScreen.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
         scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_GAME_SCREEN, LoadSceneMode.Additive));
