@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject loadBarObject;
     [SerializeField] private Slider loadBar;
     [SerializeField] private TextMeshProUGUI loadBarText;
+    
     private float totalSceneProgress;
-    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
+    [SerializeField] private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
     private void Awake()
     {
@@ -37,7 +38,13 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(GetSceneLoadProgress());
     }
-
+    public void ReloadScene(int sceneIndex)
+    {
+        loadScreen.SetActive(true);
+        scenesLoading.Add(SceneManager.UnloadSceneAsync(sceneIndex));
+        scenesLoading.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
+        StartCoroutine(GetSceneLoadProgress());
+    }
     private IEnumerator GetSceneLoadProgress()
     {
         for (int i = 0; i < scenesLoading.Count; i++)
@@ -55,6 +62,7 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
+        scenesLoading.Clear();
         loadScreen.SetActive(false);
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameMode : MonoBehaviour
 {
@@ -99,7 +98,7 @@ public class GameMode : MonoBehaviour
     private IEnumerator ReloadGameCoroutine()
     {
         yield return new WaitForSeconds(reloadGameDelay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.ReloadScene((int)SceneIndexes.MAIN_GAME_SCREEN);
     }
     public void AddPickUp()
     {
@@ -114,7 +113,6 @@ public class GameMode : MonoBehaviour
 #else
         Application.Quit();
 #endif
-        
     }
     public SaveGameData GetLoadedData()
     {
