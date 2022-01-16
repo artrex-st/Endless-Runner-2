@@ -14,11 +14,6 @@ public class AudioController : MonoBehaviour
     private const int maxVolumeDb = 0;
     private const float defaultSliderDbValue = 0.85f;
     private const float mutedDbValue = -80f;
-    private void Start()
-    {
-        LoadAudioSettings();
-    }
-    //
     public float MasterVolume
     {
         get => GetMixerVolumeParameter(masterVolume);
@@ -34,6 +29,20 @@ public class AudioController : MonoBehaviour
         get => GetMixerVolumeParameter(sfxVolume);
         set => SetMixerVolumeParameter(sfxVolume, value);
     }
+    public void SaveAudioSettings()
+    {
+        gameSaver.SaveSettings(new AudioSettingsData
+        {
+            masterVolume = MasterVolume,
+            musicVolume = MusicVolume,
+            sfxVolume = SfxVolume,
+        });
+    }
+    //
+    private void Start()
+    {
+        LoadAudioSettings();
+    }
     //
     private void SetMixerVolumeParameter(string key, float volumePercent)
     {
@@ -47,15 +56,6 @@ public class AudioController : MonoBehaviour
             return Mathf.InverseLerp(minVolumeDb,maxVolumeDb,value);
         }
         return defaultSliderDbValue;
-    }
-    public void SaveAudioSettings()
-    {
-        gameSaver.SaveSettings(new AudioSettingsData
-        {
-            masterVolume = MasterVolume,
-            musicVolume = MusicVolume,
-            sfxVolume = SfxVolume,
-        });
     }
     private void LoadAudioSettings()
     {

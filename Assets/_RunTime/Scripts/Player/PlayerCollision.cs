@@ -10,10 +10,8 @@ public class PlayerCollision : MonoBehaviour
 
     private void Awake()
     {
-        playerController = GetComponent<PlayerControl>();
-        animationController = GetComponent<PlayerAnimationController>();
+        Initialize();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         //Obstacle obstacle = other.GetComponent<Obstacle>();
@@ -30,5 +28,10 @@ public class PlayerCollision : MonoBehaviour
             gameMode.AddPickUp();
             picUp.OnPic();
         }
+    }
+    private void Initialize()
+    {
+        playerController = GetComponent<PlayerControl>();
+        animationController = GetComponent<PlayerAnimationController>();
     }
 }

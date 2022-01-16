@@ -18,21 +18,6 @@ public class SettingOverlay : MonoBehaviour
     [SerializeField] private string textBeforeDelete = "Delete Data?";
     [SerializeField] private string textAfterDelete = "Deleted!";
 
-    private void Awake()
-    {
-        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>();
-    }
-    private void OnEnable()
-    {
-        UpdateUi();
-        btnDeleteData.interactable = true;
-        btnTextLabel.text = textBeforeDelete;
-    }
-    private void OnDisable()
-    {
-        audioController.SaveAudioSettings();
-    }
-    //call backs
     public void OnMasterVolumeChange(float value)
     {
         audioController.MasterVolume = value;
@@ -45,7 +30,7 @@ public class SettingOverlay : MonoBehaviour
     {
         audioController.SfxVolume = value;
     }
-    //
+
     public void BtnDeleteData()
     {
         mainHUD.BtnMainHudSound();
@@ -58,6 +43,30 @@ public class SettingOverlay : MonoBehaviour
         mainHUD.BtnMainHudSound();
         mainHUD.OpenMenu(Menu.CLOSE, gameObject);
     }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+    private void OnEnable()
+    {
+        InitializeOnEnable();
+    }
+    private void OnDisable()
+    {
+        audioController.SaveAudioSettings();
+    }
+    private void Initialize()
+    {
+        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>(); 
+    }
+    private void InitializeOnEnable()
+    {
+        UpdateUi();
+        btnDeleteData.interactable = true;
+        btnTextLabel.text = textBeforeDelete;
+    }
+
     private void UpdateUi()
     {
         sliderMaster.value = audioController.MasterVolume;

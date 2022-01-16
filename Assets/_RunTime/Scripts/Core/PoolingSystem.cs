@@ -3,26 +3,13 @@ using UnityEngine;
 
 public class PoolingSystem : MonoBehaviour
 {
-    private static Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();    // get
     public static PoolingSystem Instance;
-    void Awake()
-    {
-        if (Instance != null)
-        {
-            GameObject.Destroy(Instance);
-            objectPool.Clear();
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
-    }
-    public static void ClearDictionary()
+    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();    // get
+    public void ClearDictionary()
     {
         objectPool.Clear();
     }
-    public static GameObject GetObject(GameObject gameObject)
+    public GameObject GetObject(GameObject gameObject)
     {
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
@@ -39,13 +26,7 @@ public class PoolingSystem : MonoBehaviour
             return CreateNewObject(gameObject);
 
     }
-    private static GameObject CreateNewObject(GameObject gameObject)
-    {
-        GameObject newGO = Instantiate(gameObject);
-        newGO.name = gameObject.name;
-        return newGO;
-    }
-    public static void ReturnGameObject(GameObject gameObject)
+    public void ReturnGameObject(GameObject gameObject)
     {
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
@@ -58,5 +39,28 @@ public class PoolingSystem : MonoBehaviour
             objectPool.Add(gameObject.name, newObjectQueue);
         }
         gameObject.SetActive(false);
+    }
+    private void Awake()
+    {
+        Initialize();
+    }
+    private void Initialize()
+    {
+        if (Instance != null)
+        {
+            GameObject.Destroy(Instance);
+            objectPool.Clear();
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+    private GameObject CreateNewObject(GameObject gameObject)
+    {
+        GameObject newGO = Instantiate(gameObject);
+        newGO.name = gameObject.name;
+        return newGO;
     }
 }

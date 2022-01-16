@@ -15,7 +15,6 @@ sealed public class PlayerControl : MonoBehaviour
     [SerializeField] private float rollDistanceZ = 5;
     [SerializeField] private Collider regularCollider;
     [SerializeField] private Collider rollCollider;
-
     //others
     Vector3 initialPosition;
     private float targetPositionX;
@@ -30,35 +29,6 @@ sealed public class PlayerControl : MonoBehaviour
     private float RightLaneX => initialPosition.x + laneDistanceX;
     private bool CanJump => !IsJumping && ForwardSpeed > 0;
     private bool CanRoll => !IsRolling && ForwardSpeed > 0;
-
-    void Awake()
-    {
-        initialPosition = transform.position;
-        StopRoll();
-        StopJump();
-    }
-    void Update()
-    {
-        ProcessMovements();
-    }
-    private void ProcessMovements()
-    {
-        Vector3 position = transform.position;
-        position.x = ProcessLaneMovement();
-        ProcessRoll();
-        position.y = ProcessJump();
-        position.z = ProcessForwardMovement();
-        transform.position = position;
-    }
-    private float ProcessLaneMovement()
-    {
-        return Mathf.Lerp(transform.position.x, targetPositionX, Time.deltaTime * horizontalSpeed);
-    }
-
-    private float ProcessForwardMovement()
-    {
-        return transform.position.z + ForwardSpeed * Time.deltaTime;
-    }
 
     public void PlayerInputsVector2(Vector2 axis)
     {
@@ -92,10 +62,51 @@ sealed public class PlayerControl : MonoBehaviour
         {
             StartRoll();
         }
-        Debug.Log($"Swipe Axis Touch:{direction}");
+        //Debug.Log($"Swipe Axis Touch:{direction}");
         targetPositionX = Mathf.Clamp(targetPositionX, LeftLaneX, RightLaneX);
     }
-     private void StartJump()
+    public void Die()
+    {
+        playerAudioController.PlayDieSound();
+        ForwardSpeed = 0;
+        horizontalSpeed = 0;
+        StopRoll();
+        StopJump();
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+    private void Update()
+    {
+        ProcessMovements();
+    }
+
+    private void Initialize()
+    {
+        initialPosition = transform.position;
+        StopRoll();
+        StopJump();
+    }
+    private void ProcessMovements()
+    {
+        Vector3 position = transform.position;
+        position.x = ProcessLaneMovement();
+        ProcessRoll();
+        position.y = ProcessJump();
+        position.z = ProcessForwardMovement();
+        transform.position = position;
+    }
+    private float ProcessLaneMovement()
+    {
+        return Mathf.Lerp(transform.position.x, targetPositionX, Time.deltaTime * horizontalSpeed);
+    }
+    private float ProcessForwardMovement()
+    {
+        return transform.position.z + ForwardSpeed * Time.deltaTime;
+    }
+    private void StartJump()
     {
         playerAudioController.PlayJumpSound();
         IsJumping = true;
@@ -106,7 +117,6 @@ sealed public class PlayerControl : MonoBehaviour
     {
         IsJumping = false;
     }
-
     private float ProcessJump()
     {
         float deltaY = 0;
@@ -137,7 +147,6 @@ sealed public class PlayerControl : MonoBehaviour
             }
         }
     }
-
     private void StartRoll()
     {
         playerAudioController.PlayRollSound();
@@ -147,20 +156,10 @@ sealed public class PlayerControl : MonoBehaviour
         rollCollider.enabled = true;
         StopJump();
     }
-
     private void StopRoll()
     {
         IsRolling = false;
         regularCollider.enabled = true;
         rollCollider.enabled = false;
-    }
-
-    public void Die()
-    {
-        playerAudioController.PlayDieSound();
-        ForwardSpeed = 0;
-        horizontalSpeed = 0;
-        StopRoll();
-        StopJump();
     }
 }

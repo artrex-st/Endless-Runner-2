@@ -16,20 +16,19 @@ public class MainOverlay : MonoBehaviour
     [SerializeField] private Button pauseBtn;
     private void Awake()
     {
-        Init();
+        Initialize();
     }
-    private void Init()
+    private void Start()
+    {
+        StartCoroutine(StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStart)));
+    }
+    private void Initialize()
     {
         mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>();
         mainHudSound = mainHudSound != null ? mainHudSound : GetComponentInParent<MainHudSound>();
         gameMode = gameMode != null ? gameMode : mainHUD.GameMode;
         pauseBtn = pauseBtn != null ? pauseBtn : GetComponentInChildren<Button>();
         pauseBtn.interactable = false;
-
-    }
-    private void Start()
-    {
-        StartCoroutine(StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStart)));
     }
     public void BtnPause()
     {

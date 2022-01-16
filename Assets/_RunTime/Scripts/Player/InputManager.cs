@@ -15,7 +15,7 @@ sealed public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        Initialize();
     }
     private void OnEnable()
     {
@@ -25,7 +25,7 @@ sealed public class InputManager : MonoBehaviour
     {
         inputControls.Disable();
     }
-    private void Init()
+    private void Initialize()
     {
         inputControls = new InputControls();
         mainCamera = Camera.main;

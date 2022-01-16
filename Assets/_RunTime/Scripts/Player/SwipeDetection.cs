@@ -16,9 +16,9 @@ sealed public class SwipeDetection : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        Initialize();
     }
-    private void Init()
+    private void Initialize()
     {
         inputManager = inputManager != null ? inputManager : GetComponentInParent<InputManager>();
         playerControl = playerControl != null ? playerControl : GetComponentInParent<PlayerControl>();
