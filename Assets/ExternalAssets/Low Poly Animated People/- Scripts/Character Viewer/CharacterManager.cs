@@ -279,11 +279,11 @@ public class CharacterManager : MonoBehaviour
 
     string pathToCurrentFolder;
 
-    [ContextMenu("Get Path")]
-    void GetPath()
-    {
-        pathToCurrentFolder = EditorExtensions.GetPath();
-    }
+    // [ContextMenu("Get Path")]
+    // void GetPath()
+    // {
+    //     pathToCurrentFolder = EditorExtensions.GetPath();
+    // }
 
 #endif
 }

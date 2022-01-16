@@ -14,12 +14,12 @@ public static class EditorExtensions {
         File.WriteAllBytes(path + "/" + name + ".png", bytes);
     }
 
-    [ContextMenu("Get Path")]
-    public static string GetPath()
-    {
-        Type projectWindowUtilType = typeof(ProjectWindowUtil);
-        MethodInfo getActiveFolderPath = projectWindowUtilType.GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
-        object obj = getActiveFolderPath.Invoke(null, new object[0]);
-        return obj.ToString();
-    }
+    // [ContextMenu("Get Path")]
+    // public static string GetPath()
+    // {
+    //     Type projectWindowUtilType = typeof(ProjectWindowUtil);
+    //     MethodInfo getActiveFolderPath = projectWindowUtilType.GetMethod("GetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
+    //     object obj = getActiveFolderPath.Invoke(null, new object[0]);
+    //     return obj.ToString();
+    // }
 }
