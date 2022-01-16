@@ -15,12 +15,7 @@ sealed public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        inputControls = new InputControls(); // new Inputsystem
-        mainCamera = Camera.main; // TODO
-        inputControls.PlayerInputs.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
-        inputControls.PlayerInputs.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
-        // axis Keys
-        inputControls.PlayerInputs.MoveControls.started += ctx => PlayerInputsVector2(ctx); // move axis
+        Init();
     }
     private void OnEnable()
     {
@@ -30,26 +25,25 @@ sealed public class InputManager : MonoBehaviour
     {
         inputControls.Disable();
     }
+    private void Init()
+    {
+        inputControls = new InputControls();
+        mainCamera = Camera.main;
+        inputControls.PlayerInputs.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
+        inputControls.PlayerInputs.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
+        inputControls.PlayerInputs.MoveControls.started += ctx => PlayerInputsVector2(ctx);
+    }
     private void StartTouchPrimary(InputAction.CallbackContext contex)
     {
-        if (OnStartTouch != null)
-        {
-            OnStartTouch(Utils.ScreenToWorld(mainCamera, inputControls.PlayerInputs.PrimaryPosition.ReadValue<Vector2>()), (float)contex.startTime);
-        }
+        OnStartTouch?.Invoke(Utils.ScreenToWorld(mainCamera, inputControls.PlayerInputs.PrimaryPosition.ReadValue<Vector2>()), (float)contex.startTime);
     }
     private void EndTouchPrimary(InputAction.CallbackContext contex)
     {
-        if (OnEndTouch != null)
-        {
-            OnEndTouch(Utils.ScreenToWorld(mainCamera, inputControls.PlayerInputs.PrimaryPosition.ReadValue<Vector2>()), (float)contex.time);
-        }
+        OnEndTouch?.Invoke(Utils.ScreenToWorld(mainCamera, inputControls.PlayerInputs.PrimaryPosition.ReadValue<Vector2>()), (float)contex.time);
     }
     private void PlayerInputsVector2(InputAction.CallbackContext contex)
     {
-        if (OnSwipeAxis != null)
-        {
-            OnSwipeAxis(contex.ReadValue<Vector2>());  
-        }
+        OnSwipeAxis?.Invoke(contex.ReadValue<Vector2>());  
     }
     // public Vector2 PrimaryPosition() // TRAIL
     // {
