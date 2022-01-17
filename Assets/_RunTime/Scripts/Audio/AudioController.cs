@@ -31,7 +31,7 @@ public class AudioController : MonoBehaviour
     }
     public void SaveAudioSettings()
     {
-        gameSaver.SaveSettings(new AudioSettingsData
+        gameSaver.SaveSettings(new SettingsData
         {
             masterVolume = MasterVolume,
             musicVolume = MusicVolume,

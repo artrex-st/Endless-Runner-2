@@ -18,12 +18,10 @@ public class PauseOverlay : MonoBehaviour
     }
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
-    private void Initialize()
+    private void _Initialize()
     {
-        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>();
-        gameMode = gameMode != null ? gameMode : mainHUD.GameMode;
 #if UNITY_WEBGL  && !UNITY_EDITOR
         btnQuit.SetActive(false);
 #endif  

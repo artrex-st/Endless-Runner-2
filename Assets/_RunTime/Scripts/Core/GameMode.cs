@@ -7,6 +7,7 @@ public class GameMode : MonoBehaviour
     [SerializeField] private PlayerControl player;
     [SerializeField] private PlayerAnimationController playerAnimationController;
     [SerializeField] private MusicController musicController;
+    [SerializeField] private MainHUD mainHUD;
     [SerializeField] private SaveGame saveGame;
     [Header("Multipliers")]
     [SerializeField] private float initialSpeed;
@@ -14,95 +15,25 @@ public class GameMode : MonoBehaviour
     [SerializeField] private float timeToMaxSpeed;
     [SerializeField] private float baseScoreMultiplier = 1;
     [Header("Scores")]
-    public SaveGameData dataLoaded;
-    private int cherryPicUpCount;
+    private GameData gameDataLoaded = new GameData();
+    private int picUpsCount;
     private float score;
     private float distanceCount;
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
-    public int CherryPicUpCount => cherryPicUpCount;
+    public int PicUpsCount => picUpsCount;
     //Player END
     //Game Mode
     [SerializeField, Range(0,9f)] float timerToStart;
     public float TimerToStart => timerToStart;
     private bool isDead = false;
-    public bool IsDead => isDead;
     [SerializeField, Range(0,10f)] private float multiplySpeed;
     //Game Mode End
     [SerializeField] private float reloadGameDelay = 3;
     private float startTime;
-
-    private void Awake()
-    {
-        player.enabled = false;
-        saveGame.LoadGame();
-    }
-    private void Update()
-    {
-        if (CanPlay())
-        {
-            DistanceCalc();
-            SpeedLevelCalc();
-        }
-        else
-        {
-            if(!player.isActiveAndEnabled)
-                player.enabled = playerAnimationController.EndStartAnimation();
-            startTime = Time.time;
-        }
-    }
-    private bool CanPlay()
-    {
-        return player.isActiveAndEnabled && !isDead;
-    }
-    private void SpeedLevelCalc()
-    {
-        float _percent = (Time.time - startTime) / timeToMaxSpeed;
-        player.ForwardSpeed = Mathf.Lerp(initialSpeed, maxSpeed, _percent);
-        ScoreCalc(_percent);
-    }
-    public void OnGameOver()
-    {
-        isDead = true;
-        musicController.PlayDeathTrackMusic();
-        if (saveGame.CurrentSave.highestScore < Score)
-            saveGame.CurrentSave.highestScore = Score;
-        saveGame.CurrentSave.totalCherry += CherryPicUpCount;
-        saveGame.CurrentSave.lastScore = Score;
-        saveGame.SavePlayerData(saveGame.CurrentSave);
-        StartCoroutine(ReloadGameCoroutine());
-    }
-    private void ScoreCalc(float _Multiply)
-    {
-        float _extraScore = 1 + _Multiply;
-        score += baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
-    }
-    private void DistanceCalc()
-    {
-        distanceCount += player.ForwardSpeed * Time.deltaTime;
-    }
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
-    }
-    public void ResumeGame()
-    {
-        Time.timeScale = 1f;
-    }
-    public void StartGame()
-    {
-        playerAnimationController.SetStartTriggerAnimation();
-        isDead = false;
-        musicController.PlayMainTrackMusic();
-    }
-    private IEnumerator ReloadGameCoroutine()
-    {
-        yield return new WaitForSeconds(reloadGameDelay);
-        GameManager.instance.ReloadScene((int)SceneIndexes.MAIN_GAME_SCREEN);
-    }
     public void AddPickUp()
     {
-        cherryPicUpCount++;
+        picUpsCount++;
     }
     public void QuitGame()
     {
@@ -114,8 +45,80 @@ public class GameMode : MonoBehaviour
         Application.Quit();
 #endif
     }
-    public SaveGameData GetLoadedData()
+    public void OnGameOver()
     {
-        return saveGame.CurrentSave;
+        isDead = true;
+        musicController.PlayDeathTrackMusic();
+        gameDataLoaded = saveGame.CurrentSave;
+        if (gameDataLoaded.highestScore < Score)
+        {
+            gameDataLoaded.highestScore = Score;
+        }
+        gameDataLoaded.totalPicUps += PicUpsCount;
+        gameDataLoaded.lastScore = Score;
+        saveGame.SavePlayerData(gameDataLoaded);
+        StartCoroutine(_ReloadGameCoroutine());
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+    public void StartGame()
+    {
+        StartCoroutine(StartGameCoroutine());
+    }
+    
+    private void Awake()
+    {
+        _Initialize();
+    }
+    private void Update()
+    {
+        if (_CanPlay())
+        {
+            _DistanceCalc();
+            _SpeedLevelCalc();
+        }
+    }
+    private void _Initialize()
+    {
+        player.enabled = false;
+        saveGame.LoadGame();
+    }
+    private bool _CanPlay()
+    {
+        return player.enabled && !isDead;
+    }
+    private void _SpeedLevelCalc()
+    {
+        float _percent = (Time.time - startTime) / timeToMaxSpeed;
+        player.ForwardSpeed = Mathf.Lerp(initialSpeed, maxSpeed, _percent);
+        _ScoreCalc(_percent);
+    }
+    private void _ScoreCalc(float _Multiply)
+    {
+        float _extraScore = 1 + _Multiply;
+        score += baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
+    }
+    private void _DistanceCalc()
+    {
+        distanceCount += player.ForwardSpeed * Time.deltaTime;
+    }
+    private IEnumerator _ReloadGameCoroutine()
+    {
+        yield return new WaitForSeconds(reloadGameDelay);
+        GameManager.instance.ReloadScene((int)SceneIndexes.MAIN_GAME_SCREEN);
+    }
+    private IEnumerator StartGameCoroutine()
+    {
+        yield return StartCoroutine(playerAnimationController.PlayStartGameAnimation());
+        musicController.PlayMainTrackMusic();
+        isDead = false;
+        player.enabled = true;
+        startTime = Time.time;
     }
 }

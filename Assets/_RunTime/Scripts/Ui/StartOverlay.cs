@@ -23,16 +23,14 @@ public class StartOverlay : MonoBehaviour
     }
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
     private void OnEnable()
     {
-        GetLoadedScoresTexts(gameMode);
+        _GetLoadedScoresTexts();
     }
-    private void Initialize()
+    private void _Initialize()
     {
-        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>();
-        gameMode = gameMode != null ? gameMode : mainHUD.GameMode;
 #if UNITY_WEBGL && !UNITY_EDITOR
         btnQuit.SetActive(false);
 #endif
@@ -40,10 +38,10 @@ public class StartOverlay : MonoBehaviour
         tutorialObject.SetActive(false);
 #endif  
     }
-    private void GetLoadedScoresTexts(GameMode gameMode)
+    public void _GetLoadedScoresTexts()
     {
-        highestScoreText.text = $"Highest Score! \n{gameMode.GetLoadedData().highestScore}";
-        lastScoreText.text = $"Last Score! \n{gameMode.GetLoadedData().lastScore}";
-        totalPicUpsText.text = $"{gameMode.GetLoadedData().totalCherry}";
+        highestScoreText.text = $"Highest Score! \n 99";
+        lastScoreText.text = $"Last Score! \n 99";
+        totalPicUpsText.text = $"99";
     }
 }

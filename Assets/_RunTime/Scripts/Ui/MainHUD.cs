@@ -27,7 +27,7 @@ public class MainHUD : MonoBehaviour
     {
         if (!IsInitialised)
         {
-            Initialize();
+            _Initialize();
         }
         switch (_Menu)
         {
@@ -54,15 +54,10 @@ public class MainHUD : MonoBehaviour
     }
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
-    private void Initialize()
+    private void _Initialize()
     {
-        mainUiOverlay = mainUiOverlay != null ? mainUiOverlay : GetComponentInChildren<MainOverlay>().gameObject;
-        pauseUiOverlay = pauseUiOverlay != null ? pauseUiOverlay : GetComponentInChildren<PauseOverlay>().gameObject;
-        startUiOverlay = startUiOverlay != null ? startUiOverlay : GetComponentInChildren<StartOverlay>().gameObject;
-        settingsOverlay = settingsOverlay != null ? settingsOverlay : GetComponentInChildren<SettingOverlay>().gameObject;
-
         IsInitialised = true;
         
         startUiOverlay.SetActive(true);

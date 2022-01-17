@@ -8,9 +8,9 @@ public class TitleOverlay : MonoBehaviour
     public Button playGame;
     private void Start()
     {
-        Initialize();
+        _Initialize();
     }
-    private void Initialize()
+    private void _Initialize()
     {
         playGame = GetComponentInChildren<Button>();
         playGame.onClick.AddListener(delegate { GameManager.instance.LoadGame(); });

@@ -14,7 +14,7 @@ public class PoolingSystem : MonoBehaviour
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
             if (objectList.Count == 0)
-                return CreateNewObject(gameObject);
+                return _CreateNewObject(gameObject);
             else
             {
                 GameObject _object = objectList.Dequeue();
@@ -23,7 +23,7 @@ public class PoolingSystem : MonoBehaviour
             }
         }
         else
-            return CreateNewObject(gameObject);
+            return _CreateNewObject(gameObject);
 
     }
     public void ReturnGameObject(GameObject gameObject)
@@ -42,9 +42,9 @@ public class PoolingSystem : MonoBehaviour
     }
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
-    private void Initialize()
+    private void _Initialize()
     {
         if (Instance != null)
         {
@@ -54,10 +54,9 @@ public class PoolingSystem : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
     }
-    private GameObject CreateNewObject(GameObject gameObject)
+    private GameObject _CreateNewObject(GameObject gameObject)
     {
         GameObject newGO = Instantiate(gameObject);
         newGO.name = gameObject.name;

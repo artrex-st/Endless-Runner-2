@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class SaveGameData
+public class GameData
 {
     public int highestScore;
     public int lastScore;
-    public int totalCherry;
+    public int totalPicUps;
 }
-public class AudioSettingsData
+public class SettingsData
 {
     public float masterVolume;
     public float musicVolume;
@@ -21,23 +21,19 @@ public class SaveGame : MonoBehaviour
     public const string keyMusicVolume = "musicVolume";
     public const string keyEfxVolume = "sfxVolume";
     // variaveis
-    public SaveGameData CurrentSave {get; private set;}
-    public AudioSettingsData AudioSettingsData {get; private set;}
+    public GameData CurrentSave {get; private set;}
+    public SettingsData AudioSettingsData {get; private set;}
     private bool IsLoaded => CurrentSave != null && AudioSettingsData != null;
-    private void Awake()
-    {
-        LoadGame();
-    }
     //save
-    public void SavePlayerData(SaveGameData saveData)
+    public void SavePlayerData(GameData saveData)
     {
         CurrentSave = saveData;
         PlayerPrefs.SetInt(keyScore, saveData.highestScore);
         PlayerPrefs.SetInt(keyLastScore, saveData.lastScore);
-        PlayerPrefs.SetInt(keyMaxCherry, saveData.totalCherry);
+        PlayerPrefs.SetInt(keyMaxCherry, saveData.totalPicUps);
         PlayerPrefs.Save();
     }
-    public void SaveSettings(AudioSettingsData saveAudioSettings)
+    public void SaveSettings(SettingsData saveAudioSettings)
     {
         AudioSettingsData = saveAudioSettings;
         PlayerPrefs.SetFloat(keyMasterVolume,AudioSettingsData.masterVolume);
@@ -52,24 +48,35 @@ public class SaveGame : MonoBehaviour
         {
             return;
         }
-        CurrentSave = new SaveGameData
+        _LoadScore();
+        _LoadSetting();
+    }
+    public void DeleteData()
+    {
+        SavePlayerData(new GameData());
+        PlayerPrefs.DeleteAll();
+        LoadGame();
+    }  
+    private void Awake()
+    {
+        LoadGame();
+    }
+    private void _LoadScore()
+    {
+        CurrentSave = new GameData
         {
             highestScore = PlayerPrefs.GetInt(keyScore, 0),
-            totalCherry = PlayerPrefs.GetInt(keyMaxCherry, 0),
+            totalPicUps = PlayerPrefs.GetInt(keyMaxCherry, 0),
             lastScore = PlayerPrefs.GetInt(keyLastScore, 0)
         };
-        AudioSettingsData = new AudioSettingsData
+    }
+    private void _LoadSetting()
+    {
+        AudioSettingsData = new SettingsData
         {
             masterVolume = PlayerPrefs.GetFloat(keyMasterVolume, 1),
             musicVolume = PlayerPrefs.GetFloat(keyMusicVolume, 1),
             sfxVolume = PlayerPrefs.GetFloat(keyEfxVolume, 1)
         };
     }
-    // DELETE ALL
-    public void DeleteData()
-    {
-        SavePlayerData(new SaveGameData());
-        PlayerPrefs.DeleteAll();
-        LoadGame();
-    }  
 }

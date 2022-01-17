@@ -30,7 +30,6 @@ public class SettingOverlay : MonoBehaviour
     {
         audioController.SfxVolume = value;
     }
-
     public void BtnDeleteData()
     {
         mainHUD.BtnMainHudSound();
@@ -43,31 +42,23 @@ public class SettingOverlay : MonoBehaviour
         mainHUD.BtnMainHudSound();
         mainHUD.OpenMenu(Menu.CLOSE, gameObject);
     }
-
-    private void Awake()
-    {
-        Initialize();
-    }
     private void OnEnable()
     {
-        InitializeOnEnable();
+        _InitializeOnEnable();
     }
     private void OnDisable()
     {
         audioController.SaveAudioSettings();
     }
-    private void Initialize()
+
+    private void _InitializeOnEnable()
     {
-        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>(); 
-    }
-    private void InitializeOnEnable()
-    {
-        UpdateUi();
+        _UpdateUi();
         btnDeleteData.interactable = true;
         btnTextLabel.text = textBeforeDelete;
     }
 
-    private void UpdateUi()
+    private void _UpdateUi()
     {
         sliderMaster.value = audioController.MasterVolume;
         sliderMusic.value = audioController.MusicVolume;

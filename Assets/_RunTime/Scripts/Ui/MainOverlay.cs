@@ -16,62 +16,56 @@ public class MainOverlay : MonoBehaviour
     [SerializeField] private Button pauseBtn;
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
-    private void Start()
+    private void LateUpdate()
     {
-        StartCoroutine(StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStart)));
+        scoreText.text = $"Score: {gameMode.Score}.";
+        distanceText.text = $"{gameMode.DistanceCount} M.";
+        cherryCountText.text = $"{gameMode.PicUpsCount}";
     }
-    private void Initialize()
-    {
-        mainHUD = mainHUD != null ? mainHUD : GetComponentInParent<MainHUD>();
-        mainHudSound = mainHudSound != null ? mainHudSound : GetComponentInParent<MainHudSound>();
-        gameMode = gameMode != null ? gameMode : mainHUD.GameMode;
-        pauseBtn = pauseBtn != null ? pauseBtn : GetComponentInChildren<Button>();
-        pauseBtn.interactable = false;
-    }
+    
     public void BtnPause()
     {
         mainHUD.BtnMainHudSound();
         mainHUD.OpenMenu(Menu.PAUSE, gameObject);
         gameMode.PauseGame();
     }
-    private void LateUpdate()
+    private void _Initialize()
     {
-        scoreText.text = $"Score: {gameMode.Score}.";
-        distanceText.text = $"{gameMode.DistanceCount} M.";
-        cherryCountText.text = $"{gameMode.CherryPicUpCount}";
+        pauseBtn.interactable = false;
+        StartCoroutine(_StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStart)));
     }
-    private IEnumerator StartGameCoroutine(int _countdownSeconds)
+    private IEnumerator _StartGameCoroutine(int countdownSeconds)
     {
         countDownText.gameObject.SetActive(false);
-        if (_countdownSeconds <= 0)
+        if (countdownSeconds <= 0)
         {
             yield break;
         }
-        //tempo desde que a gente comecou o jogo
-        float _timeToStart = Time.time + _countdownSeconds;
+        float _timeToStart = Time.time + countdownSeconds;
+        yield return null;
         countDownText.gameObject.SetActive(true);
-        int _lastRemainingTime = 0;
+        int _lastRemainingTime = countdownSeconds;
+        
         while (Time.time <= _timeToStart)
         {
             float remainingTime = _timeToStart - Time.time;
             int _remainingTimeInt = Mathf.FloorToInt(remainingTime);
             countDownText.text = $"{_remainingTimeInt + 1}";
             
-            if (_remainingTimeInt != _lastRemainingTime)
+            if (_lastRemainingTime != _remainingTimeInt)
             {
                 mainHudSound.PlayCountDownSound(_remainingTimeInt + 1);
-                _lastRemainingTime = _remainingTimeInt;
             }
 
+            _lastRemainingTime = _remainingTimeInt;
             float _percent = remainingTime - _remainingTimeInt;
             countDownText.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, _percent);
-            // isso que faz o update rodar mesmo sem terminar o IEnumerator
             yield return null;
         }
-        mainHudSound.PlayCountDownEndSound();
         countDownText.gameObject.SetActive(false);
+        mainHudSound.PlayCountDownEndSound();
         gameMode.StartGame();
         pauseBtn.interactable = true;
     }
