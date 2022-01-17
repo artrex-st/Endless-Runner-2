@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class GameData
+public class ScoreData
 {
-    public int highestScore;
-    public int lastScore;
-    public int totalPicUps;
+    public int HighestScore;
+    public int LastScore;
+    public int TotalPicUps;
 }
 public class SettingsData
 {
-    public float masterVolume;
-    public float musicVolume;
-    public float sfxVolume;
+    public float masterVolume = 0.5f;
+    public float musicVolume = 0.5f;
+    public float sfxVolume = 0.5f;
 }
 public class SaveGame : MonoBehaviour
 {
@@ -20,28 +20,26 @@ public class SaveGame : MonoBehaviour
     public const string keyMasterVolume = "masterVolume";
     public const string keyMusicVolume = "musicVolume";
     public const string keyEfxVolume = "sfxVolume";
+    private const string scoreDataFileName = "SaveScore";
+    private const string settingsDataFileName = "SaveSettings";
     // variaveis
-    public GameData CurrentSave {get; private set;}
-    public SettingsData AudioSettingsData {get; private set;}
-    private bool IsLoaded => CurrentSave != null && AudioSettingsData != null;
+    public ScoreData CurrentScoreData {get; private set;}
+    public SettingsData CurrentSettingsData {get; private set;}
+    private bool IsLoaded => CurrentScoreData != null && CurrentSettingsData != null;
     //save
-    public void SavePlayerData(GameData saveData)
+    public void SavePlayerData(ScoreData scoreData)
     {
-        CurrentSave = saveData;
-        PlayerPrefs.SetInt(keyScore, saveData.highestScore);
-        PlayerPrefs.SetInt(keyLastScore, saveData.lastScore);
-        PlayerPrefs.SetInt(keyMaxCherry, saveData.totalPicUps);
-        PlayerPrefs.Save();
+        CurrentScoreData = scoreData;
+        // json
+        string jsonString = JsonUtility.ToJson(CurrentScoreData);
+        SaveSystem.Save(jsonString,scoreDataFileName);
     }
-    public void SaveSettings(SettingsData saveAudioSettings)
+    public void SaveSettings(SettingsData settingsData)
     {
-        AudioSettingsData = saveAudioSettings;
-        PlayerPrefs.SetFloat(keyMasterVolume,AudioSettingsData.masterVolume);
-        PlayerPrefs.SetFloat(keyMusicVolume,AudioSettingsData.musicVolume);
-        PlayerPrefs.SetFloat(keyEfxVolume,AudioSettingsData.sfxVolume);
-        PlayerPrefs.Save();
+        CurrentSettingsData = settingsData;
+        string jsonString = JsonUtility.ToJson(CurrentSettingsData);
+        SaveSystem.Save(jsonString,settingsDataFileName);
     }
-    //load
     public void LoadGame()
     {
         if (IsLoaded)
@@ -53,30 +51,39 @@ public class SaveGame : MonoBehaviour
     }
     public void DeleteData()
     {
-        SavePlayerData(new GameData());
-        PlayerPrefs.DeleteAll();
+        SavePlayerData(new ScoreData());
         LoadGame();
     }  
     private void Awake()
+    {
+        _Initialize();
+    }
+    private void _Initialize()
     {
         LoadGame();
     }
     private void _LoadScore()
     {
-        CurrentSave = new GameData
+        string jsonString = SaveSystem.Load(scoreDataFileName);
+        if (jsonString != null)
         {
-            highestScore = PlayerPrefs.GetInt(keyScore, 0),
-            totalPicUps = PlayerPrefs.GetInt(keyMaxCherry, 0),
-            lastScore = PlayerPrefs.GetInt(keyLastScore, 0)
-        };
+            CurrentScoreData = JsonUtility.FromJson<ScoreData>(jsonString);
+        }
+        else
+        {
+            SavePlayerData(new ScoreData());
+        }
     }
     private void _LoadSetting()
     {
-        AudioSettingsData = new SettingsData
+        string jsonString = SaveSystem.Load(settingsDataFileName);
+        if (jsonString != null)
         {
-            masterVolume = PlayerPrefs.GetFloat(keyMasterVolume, 1),
-            musicVolume = PlayerPrefs.GetFloat(keyMusicVolume, 1),
-            sfxVolume = PlayerPrefs.GetFloat(keyEfxVolume, 1)
-        };
+            CurrentSettingsData = JsonUtility.FromJson<SettingsData>(jsonString);
+        }
+        else
+        {
+            CurrentSettingsData = new SettingsData();
+        }
     }
 }

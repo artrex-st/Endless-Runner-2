@@ -40,8 +40,8 @@ public class StartOverlay : MonoBehaviour
     }
     public void _GetLoadedScoresTexts()
     {
-        highestScoreText.text = $"Highest Score! \n 99";
-        lastScoreText.text = $"Last Score! \n 99";
-        totalPicUpsText.text = $"99";
+        highestScoreText.text = $"Highest Score! \n{gameMode.CurrentSave.HighestScore}";
+        lastScoreText.text = $"Last Score! \n{gameMode.CurrentSave.LastScore}";
+        totalPicUpsText.text = $"{gameMode.CurrentSave.TotalPicUps}";
     }
 }

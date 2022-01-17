@@ -41,7 +41,7 @@ public class AudioController : MonoBehaviour
     //
     private void Start()
     {
-        LoadAudioSettings();
+        _LoadAudioSettings();
     }
     //
     private void SetMixerVolumeParameter(string key, float volumePercent)
@@ -57,11 +57,11 @@ public class AudioController : MonoBehaviour
         }
         return defaultSliderDbValue;
     }
-    private void LoadAudioSettings()
+    private void _LoadAudioSettings()
     {
         gameSaver.LoadGame();
-        MasterVolume = gameSaver.AudioSettingsData.masterVolume;
-        MusicVolume = gameSaver.AudioSettingsData.musicVolume;
-        SfxVolume = gameSaver.AudioSettingsData.sfxVolume;
+        MasterVolume = gameSaver.CurrentSettingsData.masterVolume;
+        MusicVolume = gameSaver.CurrentSettingsData.musicVolume;
+        SfxVolume = gameSaver.CurrentSettingsData.sfxVolume;
     }
 }

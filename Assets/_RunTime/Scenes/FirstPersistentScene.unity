@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadScreen: {fileID: 1665114688}
-  loadBarObject: {fileID: 0}
-  loadBar: {fileID: 0}
-  loadBarText: {fileID: 0}
+  loadBarObject: {fileID: 291486495118386903}
+  loadBar: {fileID: 291486495118386904}
+  loadBarText: {fileID: 291486495118386902}
 --- !u!1 &1473323279
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,3 +293,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742b154e63d75c044a21b80227227204, type: 3}
+--- !u!114 &291486495118386902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1264327980461667302, guid: 742b154e63d75c044a21b80227227204, type: 3}
+  m_PrefabInstance: {fileID: 291486495118386901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &291486495118386903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8524909590884981588, guid: 742b154e63d75c044a21b80227227204, type: 3}
+  m_PrefabInstance: {fileID: 291486495118386901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &291486495118386904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1460312324881549779, guid: 742b154e63d75c044a21b80227227204, type: 3}
+  m_PrefabInstance: {fileID: 291486495118386901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291486495118386903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

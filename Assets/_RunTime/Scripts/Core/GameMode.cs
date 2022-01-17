@@ -14,8 +14,8 @@ public class GameMode : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float timeToMaxSpeed;
     [SerializeField] private float baseScoreMultiplier = 1;
+    public ScoreData CurrentSave => saveGame.CurrentScoreData;
     [Header("Scores")]
-    private GameData gameDataLoaded = new GameData();
     private int picUpsCount;
     private float score;
     private float distanceCount;
@@ -49,14 +49,12 @@ public class GameMode : MonoBehaviour
     {
         isDead = true;
         musicController.PlayDeathTrackMusic();
-        gameDataLoaded = saveGame.CurrentSave;
-        if (gameDataLoaded.highestScore < Score)
+        saveGame.SavePlayerData(new ScoreData
         {
-            gameDataLoaded.highestScore = Score;
-        }
-        gameDataLoaded.totalPicUps += PicUpsCount;
-        gameDataLoaded.lastScore = Score;
-        saveGame.SavePlayerData(gameDataLoaded);
+            HighestScore = Score > saveGame.CurrentScoreData.HighestScore ? Score : saveGame.CurrentScoreData.HighestScore,
+            LastScore = Score,
+            TotalPicUps = saveGame.CurrentScoreData.TotalPicUps + PicUpsCount
+        });
         StartCoroutine(_ReloadGameCoroutine());
     }
     public void PauseGame()

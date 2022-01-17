@@ -16,20 +16,6 @@ public class GameManager : MonoBehaviour
     private float totalSceneProgress;
     [SerializeField] private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
-    private void Awake()
-    {
-        instance = this;
-        SceneManager.LoadSceneAsync((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);
-        //loadBar.onValueChanged.AddListener(delegate {ValueChangeCheck(); });
-    }
-    private void Start()
-    {
-        loadScreen = loadScreen != null ? loadScreen : transform.Find("LoadScreen Menu").gameObject;
-        loadBar = loadBar != null ? loadBar : GetComponentInChildren<Slider>();
-        loadBarObject = loadBar.gameObject;
-        loadBarText = loadBar.GetComponentInChildren<TextMeshProUGUI>();
-        loadScreen.SetActive(false);
-    }
     public void LoadGame()
     {
         loadScreen.SetActive(true);
@@ -44,6 +30,18 @@ public class GameManager : MonoBehaviour
         scenesLoading.Add(SceneManager.UnloadSceneAsync(sceneIndex));
         scenesLoading.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
         StartCoroutine(GetSceneLoadProgress());
+    }
+    private void Awake()
+    {
+        _initialize();
+    }
+
+    private void _initialize()
+    {
+        instance = this;
+        SaveSystem.Initialize();
+        SceneManager.LoadSceneAsync((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);
+        loadScreen.SetActive(false);
     }
     private IEnumerator GetSceneLoadProgress()
     {
