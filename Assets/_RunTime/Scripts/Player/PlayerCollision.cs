@@ -14,8 +14,6 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Obstacle obstacle = other.GetComponent<Obstacle>();
-        //if (obstacle != null)
         if (other.TryGetComponent(out Obstacle obstacle))
         {
             playerController.Die();

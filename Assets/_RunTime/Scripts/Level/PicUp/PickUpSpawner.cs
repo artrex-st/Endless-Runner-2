@@ -1,20 +1,21 @@
 using UnityEngine;
 
-public class PickUpSpawner : MonoBehaviour //TODO: Object Pooling
+public class PickUpSpawner : MonoBehaviour
 {
     [SerializeField] private PicUp[] PicUpsPrefabOptions;
     [SerializeField, Range(0.01f, 10)] private float PicUpsDistanceZ = 1;
     [SerializeField] private Transform picUpStartSpawn;
     [SerializeField] private Transform picUpEndSpawn;
 
-    public void SpawnPicUps(Vector3[] _SkipPositions) // instantiate PicUps/Boots
+    public void SpawnPicUps(Vector3[] _SkipPositions)
     {
         Vector3 currentSpawnPosition = picUpStartSpawn.position;
         while (currentSpawnPosition.z < picUpEndSpawn.position.z)
         {
             if (!NeedSkipPosition(currentSpawnPosition, _SkipPositions))
             {
-                PicUp pickup = Instantiate(PicUpsPrefabOptions[0], currentSpawnPosition, Quaternion.identity, transform); //TODO: remove Hard Code, update to get randown PicUp
+                int randomPicUp = Random.Range(0, PicUpsPrefabOptions.Length);
+                PicUp pickup = Instantiate(PicUpsPrefabOptions[randomPicUp], currentSpawnPosition, Quaternion.identity, transform); 
             }
             currentSpawnPosition.z += PicUpsDistanceZ;
         }

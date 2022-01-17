@@ -7,7 +7,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        if (transform.childCount <= 0) // ToDo: Improve this with Object Pooling
+        if (transform.childCount <= 0)
         {
             Obstacle prefab = obstaclePrefabOptions[Random.Range(0, obstaclePrefabOptions.Length)];
             currentObstacle = Instantiate(prefab, transform);
@@ -16,7 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
             currentObstacle.SpawnDecorations();
         }
     }
-    private void OnDrawGizmos() // preview OBSTACLE
+    private void OnDrawGizmos()
     {
         Vector3 currentSpawnPosition = transform.position + Vector3.up;
         Gizmos.color = Color.yellow;

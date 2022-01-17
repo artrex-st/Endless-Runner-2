@@ -5,14 +5,9 @@ using UnityEngine.UI;
 
 public class TitleOverlay : MonoBehaviour
 {
-    public Button playGame;
-    private void Start()
+    [SerializeField] private Button playGame;
+    private void _GoToGame()
     {
-        _Initialize();
-    }
-    private void _Initialize()
-    {
-        playGame = GetComponentInChildren<Button>();
-        playGame.onClick.AddListener(delegate { GameManager.instance.LoadGame(); });
+        GameManager.instance.LoadGame();
     }
 }

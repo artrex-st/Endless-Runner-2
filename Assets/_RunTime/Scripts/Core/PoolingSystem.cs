@@ -14,7 +14,9 @@ public class PoolingSystem : MonoBehaviour
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
             if (objectList.Count == 0)
+            {
                 return _CreateNewObject(gameObject);
+            }
             else
             {
                 GameObject _object = objectList.Dequeue();
@@ -23,7 +25,9 @@ public class PoolingSystem : MonoBehaviour
             }
         }
         else
+        {
             return _CreateNewObject(gameObject);
+        }
 
     }
     public void ReturnGameObject(GameObject gameObject)

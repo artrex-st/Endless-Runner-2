@@ -4,7 +4,6 @@ public class RollAnimationState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AnimatorClipInfo[] clips = animator.GetNextAnimatorClipInfo(layerIndex);
-        //TODO: Assumindo que o PlayerController esta no objeto pai.
         PlayerControl player = animator.transform.parent.GetComponent<PlayerControl>();
         if (player != null && clips.Length > 0)
         {

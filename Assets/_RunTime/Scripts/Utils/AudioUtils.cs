@@ -19,7 +19,7 @@ public static class AudioUtils
     {
         if (_AudioSource.outputAudioMixerGroup == null)
         {
-            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup");
+            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup ({_AudioSource.name} don't have)");
         }
         else
         {
@@ -32,7 +32,7 @@ public static class AudioUtils
     {
         if (_AudioSource.outputAudioMixerGroup == null)
         {
-            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup");
+            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup ({_AudioSource.name} don't have)");
         }
         else
         {
@@ -45,7 +45,7 @@ public static class AudioUtils
     {
         if (_AudioSource.outputAudioMixerGroup == null)
         {
-            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup");
+            Debug.LogWarning($"Every AudioSource must have a AudioSourceMixerGroup ({_AudioSource.name} don't have)");
         }
         else
         {
