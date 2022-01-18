@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62278b955557b7c44b9c632fea2e1b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorationSpawners:
+  _decorationSpawners:
   - {fileID: 9010360676223952342}
 --- !u!65 &698723583393309539
 BoxCollider:
@@ -58,7 +58,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.7}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4851414692068908011
 GameObject:
