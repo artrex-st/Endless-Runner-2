@@ -31,7 +31,7 @@ sealed public class InputManager : MonoBehaviour
         mainCamera = Camera.main;
         inputControls.PlayerInputs.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
         inputControls.PlayerInputs.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
-        inputControls.PlayerInputs.MoveControls.started += ctx => PlayerInputsVector2(ctx);
+        inputControls.PlayerInputs.MoveControls.started += ctx => SwipeAxisVector2(ctx);
     }
     private void StartTouchPrimary(InputAction.CallbackContext contex)
     {
@@ -41,7 +41,7 @@ sealed public class InputManager : MonoBehaviour
     {
         OnEndTouch?.Invoke(Utils.ScreenToWorld(mainCamera, inputControls.PlayerInputs.PrimaryPosition.ReadValue<Vector2>()), (float)contex.time);
     }
-    private void PlayerInputsVector2(InputAction.CallbackContext contex)
+    private void SwipeAxisVector2(InputAction.CallbackContext contex)
     {
         OnSwipeAxis?.Invoke(contex.ReadValue<Vector2>());  
     }

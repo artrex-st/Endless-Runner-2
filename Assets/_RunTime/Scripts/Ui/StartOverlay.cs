@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class StartOverlay : MonoBehaviour
 {
+    public delegate ScoreData ScoreDataHandler();
+    public event ScoreDataHandler OnCalledScoreData;
     [SerializeField] private MainHUD mainHUD;
-    [SerializeField] private GameMode gameMode;
     [Header("Start UiOverlay Elements")]
-    [SerializeField] private TextMeshProUGUI highestScoreText;
-    [SerializeField] private TextMeshProUGUI lastScoreText;
-    [SerializeField] private TextMeshProUGUI totalPicUpsText;
-    [SerializeField] private GameObject btnQuit; 
-    [SerializeField] private GameObject tutorialObject; 
+    [SerializeField] private TextMeshProUGUI highestScoreText, lastScoreText, totalPicUpsText;
+    [SerializeField] private GameObject btnQuit, tutorialObject;
+    private ScoreData currentScoreData = new ScoreData();
     public void BtnRun()
     {
         mainHUD.BtnMainHudSound();
@@ -40,8 +39,9 @@ public class StartOverlay : MonoBehaviour
     }
     public void _GetLoadedScoresTexts()
     {
-        highestScoreText.text = $"Highest Score! \n{gameMode.CurrentSave.HighestScore}";
-        lastScoreText.text = $"Last Score! \n{gameMode.CurrentSave.LastScore}";
-        totalPicUpsText.text = $"{gameMode.CurrentSave.TotalPicUps}";
+        currentScoreData = OnCalledScoreData?.Invoke();
+        highestScoreText.text = $"Highest Score! \n{currentScoreData.HighestScore}";
+        lastScoreText.text = $"Last Score! \n{currentScoreData.LastScore}";
+        totalPicUpsText.text = $"{currentScoreData.TotalPicUps}";
     }
 }

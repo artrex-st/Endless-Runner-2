@@ -1,35 +1,15 @@
 using UnityEngine;
-
-[RequireComponent(typeof(PlayerControl))]
-[RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] private GameMode gameMode;
-    private PlayerControl playerController;
-    private PlayerAnimationController animationController;
-
-    private void Awake()
-    {
-        Initialize();
-    }
+    public delegate void TriggerHitHandler(Collider other);
+    public event TriggerHitHandler OnPlayerColliderHited;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Obstacle obstacle))
-        {
-            playerController.Die();
-            animationController.Die();
-            gameMode.OnGameOver();
-            obstacle.PlayCollisionFeedBack(other);
-        }
-        if (other.TryGetComponent(out PicUp picUp))
-        {
-            gameMode.AddPickUp();
-            picUp.OnPic();
-        }
+        _InvokeEvent(other);
     }
-    private void Initialize()
+    private void _InvokeEvent(Collider other)
     {
-        playerController = GetComponent<PlayerControl>();
-        animationController = GetComponent<PlayerAnimationController>();
+        OnPlayerColliderHited?.Invoke(other);
     }
 }

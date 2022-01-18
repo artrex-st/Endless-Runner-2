@@ -3,6 +3,7 @@ using UnityEngine;
 sealed public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private PlayerAudioController playerAudioController;
+    [SerializeField] private PlayerAnimationController playerAnimationController;
     [SerializeField] private float horizontalSpeed = 15;
     [SerializeField] private float laneDistanceX = 4;
 
@@ -35,11 +36,11 @@ sealed public class PlayerControl : MonoBehaviour
         targetPositionX = Mathf.Clamp(targetPositionX + (axis.x * laneDistanceX), LeftLaneX, RightLaneX);
         if (axis.y > 0 && CanJump)
         {
-            StartJump();
+            _StartJump();
         }
         if (axis.y < 0 && CanRoll)
         {
-            StartRoll();
+            _StartRoll();
         }
     }
     public void SwipeDirection(Vector2 direction, float directionThreshold)
@@ -56,68 +57,70 @@ sealed public class PlayerControl : MonoBehaviour
         // Y
         if (Vector2.Dot(Vector2.up, direction) > directionThreshold && CanJump)
         {
-            StartJump();
+            _StartJump();
         }
         if (Vector2.Dot(Vector2.down, direction) > directionThreshold && CanRoll)
         {
-            StartRoll();
+            _StartRoll();
         }
         //Debug.Log($"Swipe Axis Touch:{direction}");
         targetPositionX = Mathf.Clamp(targetPositionX, LeftLaneX, RightLaneX);
     }
-    public void Die()
+    public void Die() //WORKING
     {
         playerAudioController.PlayDieSound();
+        playerAnimationController.Die();
+
         ForwardSpeed = 0;
         horizontalSpeed = 0;
-        StopRoll();
-        StopJump();
+        _StopRoll();
+        _StopJump();
     }
 
     private void Awake()
     {
-        Initialize();
+        _Initialize();
     }
     private void Update()
     {
-        ProcessMovements();
+        _ProcessMovements();
     }
 
-    private void Initialize()
+    private void _Initialize()
     {
         initialPosition = transform.position;
-        StopRoll();
-        StopJump();
+        _StopRoll();
+        _StopJump();
     }
-    private void ProcessMovements()
+    private void _ProcessMovements()
     {
         Vector3 position = transform.position;
-        position.x = ProcessLaneMovement();
-        ProcessRoll();
-        position.y = ProcessJump();
-        position.z = ProcessForwardMovement();
+        position.x = _ProcessLaneMovement();
+        _ProcessRoll();
+        position.y = _ProcessJump();
+        position.z = _ProcessForwardMovement();
         transform.position = position;
     }
-    private float ProcessLaneMovement()
+    private float _ProcessLaneMovement()
     {
         return Mathf.Lerp(transform.position.x, targetPositionX, Time.deltaTime * horizontalSpeed);
     }
-    private float ProcessForwardMovement()
+    private float _ProcessForwardMovement()
     {
         return transform.position.z + ForwardSpeed * Time.deltaTime;
     }
-    private void StartJump()
+    private void _StartJump()
     {
         playerAudioController.PlayJumpSound();
         IsJumping = true;
         jumpStartZ = transform.position.z;
-        StopRoll();
+        _StopRoll();
     }
-    private void StopJump()
+    private void _StopJump()
     {
         IsJumping = false;
     }
-    private float ProcessJump()
+    private float _ProcessJump()
     {
         float deltaY = 0;
         if (IsJumping)
@@ -126,7 +129,7 @@ sealed public class PlayerControl : MonoBehaviour
             float jumpPercent = jumpCurrentProgress / jumpDistanceZ;
             if (jumpPercent >= 1)
             {
-                StopJump();
+                _StopJump();
             }
             else
             {
@@ -136,27 +139,27 @@ sealed public class PlayerControl : MonoBehaviour
         float targetPositionY = initialPosition.y + deltaY;
         return Mathf.Lerp(transform.position.y, targetPositionY, Time.deltaTime * jumpLerpSpeed);
     }
-    private void ProcessRoll()
+    private void _ProcessRoll()
     {
         if (IsRolling)
         {
             float percent = (transform.position.z - rollStartZ) / rollDistanceZ;
             if (percent >= 1)
             {
-                StopRoll();
+                _StopRoll();
             }
         }
     }
-    private void StartRoll()
+    private void _StartRoll()
     {
         playerAudioController.PlayRollSound();
         rollStartZ = transform.position.z;
         IsRolling = true;
         regularCollider.enabled = false;
         rollCollider.enabled = true;
-        StopJump();
+        _StopJump();
     }
-    private void StopRoll()
+    private void _StopRoll()
     {
         IsRolling = false;
         regularCollider.enabled = true;

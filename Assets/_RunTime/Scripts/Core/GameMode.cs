@@ -30,6 +30,7 @@ public class GameMode : MonoBehaviour
     [SerializeField, Range(0,10f)] private float multiplySpeed;
     //Game Mode End
     [SerializeField] private float reloadGameDelay = 3;
+ 
     private float startTime;
     public void AddPickUp()
     {
@@ -69,7 +70,25 @@ public class GameMode : MonoBehaviour
     {
         StartCoroutine(StartGameCoroutine());
     }
-    
+    public void OnColision(Collider other)
+    {
+        if (other.TryGetComponent(out Obstacle obstacle))
+        {
+            OnGameOver();
+            player.Die();
+            obstacle.PlayCollisionFeedBack(other);
+        }
+        if (other.TryGetComponent(out PicUp picUp))
+        {
+            AddPickUp();
+            picUp.OnPic();
+        }
+    }
+    public ScoreData OnCalledScoreData()
+    {
+        Debug.Log("Event! Load");
+        return saveGame.CurrentScoreData;
+    }
     private void Awake()
     {
         _Initialize();
@@ -82,6 +101,7 @@ public class GameMode : MonoBehaviour
             _SpeedLevelCalc();
         }
     }
+
     private void _Initialize()
     {
         player.enabled = false;
@@ -91,6 +111,7 @@ public class GameMode : MonoBehaviour
     {
         return player.enabled && !isDead;
     }
+
     private void _SpeedLevelCalc()
     {
         float _percent = (Time.time - startTime) / timeToMaxSpeed;
@@ -106,6 +127,7 @@ public class GameMode : MonoBehaviour
     {
         distanceCount += player.ForwardSpeed * Time.deltaTime;
     }
+
     private IEnumerator _ReloadGameCoroutine()
     {
         yield return new WaitForSeconds(reloadGameDelay);

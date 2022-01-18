@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PauseOverlay : MonoBehaviour
 {
-    private MainHUD mainHUD;
-    private GameMode gameMode;
+    [SerializeField] private MainHUD mainHUD;
+    [SerializeField] private GameMode gameMode;
     [SerializeField] private GameObject btnQuit;
     public void BtnResume()
     {

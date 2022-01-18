@@ -8,15 +8,12 @@ public class SettingOverlay : MonoBehaviour
     [SerializeField] private SaveGame saveGame;
     [SerializeField] private AudioController audioController;
     [Header("Settings UiOverlay Elements")]
-    [SerializeField] private Slider sliderMaster;
-    [SerializeField] private Slider sliderMusic;
-    [SerializeField] private Slider sliderSFX;
+    [SerializeField] private Slider sliderMaster, sliderMusic, sliderSFX;
     
     [Header("Delete Button")]
     [SerializeField] private Button btnDeleteData;
     [SerializeField] private TextMeshProUGUI btnTextLabel;
-    [SerializeField] private string textBeforeDelete = "Delete Data?";
-    [SerializeField] private string textAfterDelete = "Deleted!";
+    [SerializeField] private string textBeforeDelete = "Delete Data?", textAfterDelete = "Deleted!";
 
     public void OnMasterVolumeChange(float value)
     {
