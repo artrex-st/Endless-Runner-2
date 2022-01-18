@@ -9,7 +9,11 @@ public class TitleOverlay : MonoBehaviour
 #if UNITY_EDITOR
         if (GameManager.instance == null)
         {
-            Debug.LogWarning($"To load the game there must be a GameManager instance of the {SceneIndexes.MANAGER}");
+            Debug.LogWarning($"To load the game there must be a GameManager instance of the  Scene index:{(int)SceneIndexes.MANAGER}");
+        }
+        else
+        {
+            GameManager.instance.LoadGame();
         }
 #else 
         GameManager.instance.LoadGame();

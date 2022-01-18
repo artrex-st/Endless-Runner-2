@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160c3184d7909664d87a3b122e6af08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonGoToGame: {fileID: 7713210829994057888}
+  _buttonGoToGame: {fileID: 7713210829994057888}
 --- !u!222 &5659400072024262073
 CanvasRenderer:
   m_ObjectHideFlags: 0

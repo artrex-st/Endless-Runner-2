@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8865626633245265921}
   - component: {fileID: 8865626633245265982}
   m_Layer: 0
-  m_Name: PicUpsSpawner Center
+  m_Name: PicUpsSpawner_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7459e7d64de52ad42ad9c2aeabb6e9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PicUpsPrefabOptions: []
+  PicUpsPrefabOptions:
+  - {fileID: 4124807599040551045, guid: 693f5b035880d714ba6da9306adfd690, type: 3}
   PicUpsDistanceZ: 1.4
   picUpStartSpawn: {fileID: 8865626631984104218}
   picUpEndSpawn: {fileID: 8865626632896652772}

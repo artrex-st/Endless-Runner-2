@@ -125,7 +125,11 @@ public class GameMode : MonoBehaviour
 #if UNITY_EDITOR
         if (GameManager.instance == null)
         {
-            Debug.LogWarning($"To reload the game there must be a GameManager instance of the {SceneIndexes.MANAGER}");
+            Debug.LogWarning($"To reload the game there must be a GameManager instance of the Scene index:{(int)SceneIndexes.MANAGER}");
+        }
+        else
+        {
+            GameManager.instance.ReloadScene((int)SceneIndexes.MAIN_GAME_SCREEN);
         }
 #else 
         GameManager.instance.ReloadScene((int)SceneIndexes.MAIN_GAME_SCREEN);
