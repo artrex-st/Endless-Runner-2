@@ -424,13 +424,7 @@ MonoBehaviour:
   musicController: {fileID: 850383}
   mainHUD: {fileID: 8650209554121593482}
   saveGame: {fileID: 47490871}
-  initialSpeed: 5
-  maxSpeed: 20
-  timeToMaxSpeed: 300
-  baseScoreMultiplier: 1.5
-  timerToStart: 1.7
-  multiplySpeed: 2
-  reloadGameDelay: 3
+  gameModeConfig: {fileID: 11400000, guid: cac5225b68ac7364f84ffb0d6698122d, type: 2}
 --- !u!114 &47490871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,7 +1042,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626358315}
-  m_LocalRotation: {x: 0.17246115, y: -0.000000021041409, z: 0.0000000036840253, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246114, y: 0.000000015076488, z: -0.0000000026396594, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1229,7 +1223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143259080}
-  m_LocalRotation: {x: 0.17246115, y: -0.000000021041409, z: 0.0000000036840253, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246114, y: 0.000000015076488, z: -0.0000000026396594, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

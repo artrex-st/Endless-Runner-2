@@ -34,7 +34,7 @@ public class MainOverlay : MonoBehaviour
     private void _Initialize()
     {
         pauseBtn.interactable = false;
-        StartCoroutine(_StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStart)));
+        StartCoroutine(_StartGameCoroutine(Mathf.RoundToInt(gameMode._TimerToStartRun)));
     }
     private IEnumerator _StartGameCoroutine(int countdownSeconds)
     {

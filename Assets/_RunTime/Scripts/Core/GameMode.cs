@@ -3,31 +3,27 @@ using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
-    //Player
-    [SerializeField] private PlayerControl player;
-    [SerializeField] private PlayerAnimationController playerAnimationController;
-    [SerializeField] private MusicController musicController;
-    [SerializeField] private MainHUD mainHUD;
-    [SerializeField] private SaveGame saveGame;
-    [Header("Multipliers")]
-    [SerializeField] private float initialSpeed, maxSpeed, timeToMaxSpeed, baseScoreMultiplier = 1;
-    public ScoreData CurrentSave => saveGame.CurrentScoreData;
-    [Header("Scores")]
-    private int picUpsCount;
-    private float score, distanceCount;
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
     public int PicUpsCount => picUpsCount;
-    //Player END
-    //Game Mode
-    [SerializeField, Range(0,9f)] float timerToStart;
-    public float TimerToStart => timerToStart;
-    private bool isDead = false;
-    [SerializeField, Range(0,10f)] private float multiplySpeed;
-    //Game Mode End
-    [SerializeField] private float reloadGameDelay = 3;
- 
+    public float _TimerToStartRun => gameModeConfig.timerToStartRun;
+    public ScoreData CurrentSave => saveGame.CurrentScoreData;
+    [SerializeField] private PlayerControl player;
+    [SerializeField] private PlayerAnimationController playerAnimationController;
+    [SerializeField] private MusicController musicController;
+    [SerializeField] private SaveGame saveGame;
+    [SerializeField, Header("Game Configurations")] private GameModeConfig gameModeConfig;
+    private int picUpsCount;
+    private float score, distanceCount;
     private float startTime;
+    private bool isDead = false;
+    private float _InitialSpeed => gameModeConfig.initialSpeed;
+    private float _MaximumSpeed => gameModeConfig.maximumSpeed;
+    private float _TimeToMaximumSpeed => gameModeConfig.timeToMaximumSpeed;
+    private float _BaseScoreMultiplier => gameModeConfig.baseScoreMultiplier;
+    private float _ReloadGameDelay => gameModeConfig.reloadGameDelay;
+    private float _ScoreValueSpeed => gameModeConfig.scoreValueSpeed;
+
     public void AddPickUp()
     {
         picUpsCount++;
@@ -48,9 +44,9 @@ public class GameMode : MonoBehaviour
         musicController.PlayDeathTrackMusic();
         saveGame.SavePlayerData(new ScoreData
         {
-            HighestScore = Score > saveGame.CurrentScoreData.HighestScore ? Score : saveGame.CurrentScoreData.HighestScore,
+            HighestScore = Score > CurrentSave.HighestScore ? Score : CurrentSave.HighestScore,
             LastScore = Score,
-            TotalPicUps = saveGame.CurrentScoreData.TotalPicUps + PicUpsCount
+            TotalPicUps = CurrentSave.TotalPicUps + PicUpsCount
         });
         StartCoroutine(_ReloadGameCoroutine());
     }
@@ -82,8 +78,9 @@ public class GameMode : MonoBehaviour
     }
     public ScoreData OnCalledScoreData()
     {
-        return saveGame.CurrentScoreData;
+        return CurrentSave;
     }
+
     private void Awake()
     {
         _Initialize();
@@ -92,7 +89,6 @@ public class GameMode : MonoBehaviour
     {
         if (_CanPlay())
         {
-            
             _SpeedLevelCalc();
         }
     }
@@ -109,24 +105,23 @@ public class GameMode : MonoBehaviour
 
     private void _SpeedLevelCalc()
     {
-        float percent = (Time.time - startTime) / timeToMaxSpeed;
-        player.ForwardSpeed = Mathf.Lerp(initialSpeed, maxSpeed, percent);
+        float percent = (Time.time - startTime) / _TimeToMaximumSpeed;
+        player.ForwardSpeed = Mathf.Lerp(_InitialSpeed, _MaximumSpeed, percent);
         _DistanceCalc();
         _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {
-        float _extraScore = 1 + _Multiply;
-        score += baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
+        float _extraScore = _ScoreValueSpeed + _Multiply;
+        score += _BaseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
     }
     private void _DistanceCalc()
     {
         distanceCount += player.ForwardSpeed * Time.deltaTime;
     }
-
     private IEnumerator _ReloadGameCoroutine()
     {
-        yield return new WaitForSeconds(reloadGameDelay);
+        yield return new WaitForSeconds(_ReloadGameDelay);
 #if UNITY_EDITOR
         if (GameManager.instance == null)
         {
