@@ -10,15 +10,11 @@ public class GameMode : MonoBehaviour
     [SerializeField] private MainHUD mainHUD;
     [SerializeField] private SaveGame saveGame;
     [Header("Multipliers")]
-    [SerializeField] private float initialSpeed;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float timeToMaxSpeed;
-    [SerializeField] private float baseScoreMultiplier = 1;
+    [SerializeField] private float initialSpeed, maxSpeed, timeToMaxSpeed, baseScoreMultiplier = 1;
     public ScoreData CurrentSave => saveGame.CurrentScoreData;
     [Header("Scores")]
     private int picUpsCount;
-    private float score;
-    private float distanceCount;
+    private float score, distanceCount;
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
     public int PicUpsCount => picUpsCount;
@@ -86,7 +82,6 @@ public class GameMode : MonoBehaviour
     }
     public ScoreData OnCalledScoreData()
     {
-        Debug.Log("Event! Load");
         return saveGame.CurrentScoreData;
     }
     private void Awake()
@@ -97,7 +92,7 @@ public class GameMode : MonoBehaviour
     {
         if (_CanPlay())
         {
-            _DistanceCalc();
+            
             _SpeedLevelCalc();
         }
     }
@@ -114,9 +109,10 @@ public class GameMode : MonoBehaviour
 
     private void _SpeedLevelCalc()
     {
-        float _percent = (Time.time - startTime) / timeToMaxSpeed;
-        player.ForwardSpeed = Mathf.Lerp(initialSpeed, maxSpeed, _percent);
-        _ScoreCalc(_percent);
+        float percent = (Time.time - startTime) / timeToMaxSpeed;
+        player.ForwardSpeed = Mathf.Lerp(initialSpeed, maxSpeed, percent);
+        _DistanceCalc();
+        _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {

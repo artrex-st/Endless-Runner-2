@@ -4,29 +4,31 @@ public class PickUpSpawner : MonoBehaviour
 {
     [SerializeField] private PicUp[] PicUpsPrefabOptions;
     [SerializeField, Range(0.01f, 10)] private float PicUpsDistanceZ = 1;
-    [SerializeField] private Transform picUpStartSpawn;
-    [SerializeField] private Transform picUpEndSpawn;
+    [SerializeField] private Transform picUpStartSpawn, picUpEndSpawn;
 
-    public void SpawnPicUps(Vector3[] _SkipPositions)
+    public void SpawnPicUps(Vector3[] skipPositions)
     {
         Vector3 currentSpawnPosition = picUpStartSpawn.position;
         while (currentSpawnPosition.z < picUpEndSpawn.position.z)
         {
-            if (!NeedSkipPosition(currentSpawnPosition, _SkipPositions))
+            if (!NeedSkipPosition(currentSpawnPosition, skipPositions))
             {
                 int randomPicUp = Random.Range(0, PicUpsPrefabOptions.Length);
-                PicUp pickup = Instantiate(PicUpsPrefabOptions[randomPicUp], currentSpawnPosition, Quaternion.identity, transform); 
+                GameObject pickup = PoolingSystem.Instance.GetObject(PicUpsPrefabOptions[randomPicUp].gameObject); 
+                pickup.transform.position = currentSpawnPosition;
+                pickup.transform.rotation = Quaternion.identity;
+                pickup.transform.parent = transform;
             }
             currentSpawnPosition.z += PicUpsDistanceZ;
         }
     }
-    public bool NeedSkipPosition(Vector3 _CurrentSpawnPosition, Vector3[] _SkipsPositions) // check obstacle spot
+    public bool NeedSkipPosition(Vector3 currentSpawnPosition, Vector3[] skipsPositions) // check obstacle spot
     {
-        foreach (var skipPosition in _SkipsPositions)
+        foreach (var skipPosition in skipsPositions)
         {
             float skipStart = skipPosition.z - (PicUpsDistanceZ * 0.5f);
             float skipEnd = skipPosition.z + (PicUpsDistanceZ * 0.5f);
-            if (_CurrentSpawnPosition.z >= skipStart && _CurrentSpawnPosition.z <= skipEnd)
+            if (currentSpawnPosition.z >= skipStart && currentSpawnPosition.z <= skipEnd)
             {
                 return true;
             }

@@ -11,6 +11,6 @@ public class PicUp : MonoBehaviour
     {
         AudioUtils.PlayAudioCue(AudioSource,picUpSound);
         visual.SetActive(false);
-        Destroy(gameObject,picUpSound.length); //TODO: Object Pooling
+        PoolingSystem.Instance.ReturnGameObject(gameObject);
     } 
 }

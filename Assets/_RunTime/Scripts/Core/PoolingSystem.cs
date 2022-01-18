@@ -5,10 +5,13 @@ public class PoolingSystem : MonoBehaviour
 {
     public static PoolingSystem Instance;
     private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();    // get
-    public void ClearDictionary()
+    private Dictionary<string, Queue<TrackSegment>> trackPool = new Dictionary<string, Queue<TrackSegment>>();    // get
+    public void ClearPollDictionarys()
     {
         objectPool.Clear();
+        trackPool.Clear();
     }
+    
     public GameObject GetObject(GameObject gameObject)
     {
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
@@ -30,6 +33,28 @@ public class PoolingSystem : MonoBehaviour
         }
 
     }
+    public TrackSegment GetTrackObject(TrackSegment trackObject)
+    {
+        if (trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> objectList))
+        {
+            if (objectList.Count == 0)
+            {
+                return _CreateNewTrackObject(trackObject);
+            }
+            else
+            {
+                TrackSegment _object = objectList.Dequeue();
+                _object.gameObject.SetActive(true);
+                return _object;
+            }
+        }
+        else
+        {
+            return _CreateNewTrackObject(trackObject);
+        }
+
+    }
+
     public void ReturnGameObject(GameObject gameObject)
     {
         if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
@@ -43,6 +68,20 @@ public class PoolingSystem : MonoBehaviour
             objectPool.Add(gameObject.name, newObjectQueue);
         }
         gameObject.SetActive(false);
+    }
+    public void ReturnTrackObject(TrackSegment trackObject)
+    {
+        if (trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> trackList))
+        {
+            trackList.Enqueue(trackObject);
+        }
+        else
+        {
+            Queue<TrackSegment> newTrackQueue = new Queue<TrackSegment>();
+            newTrackQueue.Enqueue(trackObject);
+            trackPool.Add(trackObject.name, newTrackQueue);
+        }
+        trackObject.gameObject.SetActive(false);
     }
     private void Awake()
     {
@@ -65,5 +104,12 @@ public class PoolingSystem : MonoBehaviour
         GameObject newGO = Instantiate(gameObject);
         newGO.name = gameObject.name;
         return newGO;
+    }
+
+    private TrackSegment _CreateNewTrackObject(TrackSegment trackObject)
+    {
+        TrackSegment newTrack = Instantiate(trackObject);
+        newTrack.name = trackObject.name;
+        return newTrack;
     }
 }

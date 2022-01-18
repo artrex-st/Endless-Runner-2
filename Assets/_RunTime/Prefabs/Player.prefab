@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAudioController: {fileID: 100446971058603245}
+  playerAnimationController: {fileID: 3474445450010808103}
   horizontalSpeed: 15
   laneDistanceX: 1
   jumpDistanceZ: 5
@@ -225,7 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cafa9f8b1931f42b8b3001c8aef61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 2516248920471482434}
+  playerControl: {fileID: 3474445450010808107}
 --- !u!114 &3474445450010808101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a38537020a2d043a0f619da3402cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMode: {fileID: 0}
 --- !u!1 &3474445450050991533
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,5 +487,10 @@ PrefabInstance:
 --- !u!4 &2516248920481292194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8348369084140624848, guid: 6edb87e4d70520146b05c06ba205c5c1, type: 3}
+  m_PrefabInstance: {fileID: 5850420544099402866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2516248920471482434 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8348369084149724208, guid: 6edb87e4d70520146b05c06ba205c5c1, type: 3}
   m_PrefabInstance: {fileID: 5850420544099402866}
   m_PrefabAsset: {fileID: 0}

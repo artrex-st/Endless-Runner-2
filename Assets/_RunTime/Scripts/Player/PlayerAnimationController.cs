@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    private PlayerControl player;
-    public Animator PlayerAnimator => animator == null ? animator = GetComponent<Animator>() : animator;
-
+    [SerializeField] private PlayerControl playerControl;
     public void Die()
     {
         animator.SetTrigger(PlayerAnimationConstants.DieTrigger);
@@ -25,22 +23,13 @@ public class PlayerAnimationController : MonoBehaviour
             yield return null;
         }
     }
-    private void Awake()
-    {
-        _Initialize();
-    }
     private void Update()
     {
         _SetBoolAnimations();
     }
-    private void _Initialize()
-    {
-        player = GetComponent<PlayerControl>();
-        animator = animator != null ? animator : GetComponentInChildren<Animator>();
-    }
     private void _SetBoolAnimations()
     {
-        animator.SetBool(PlayerAnimationConstants.IsJumping, player.IsJumping);
-        animator.SetBool(PlayerAnimationConstants.IsRolling, player.IsRolling);
+        animator.SetBool(PlayerAnimationConstants.IsJumping, playerControl.IsJumping);
+        animator.SetBool(PlayerAnimationConstants.IsRolling, playerControl.IsRolling);
     }
 }

@@ -37,7 +37,7 @@ public class EndlessTrackGenerator : MonoBehaviour
 
     private void Initialize()
     {
-        PoolingSystem.Instance.ClearDictionary();
+        PoolingSystem.Instance.ClearPollDictionarys();
         TrackSegment previousTrack = SpawnTrackSegment(firstTrackPrefab, null);
         SpawnTracks(initialTrackCount);
     }
@@ -57,7 +57,7 @@ public class EndlessTrackGenerator : MonoBehaviour
         //Despawn tracks behind player
         for (int i = 0; i < playerTrackIndex; i++)
         {
-            PoolingSystem.Instance.ReturnGameObject(currentSegments[i].gameObject);
+            PoolingSystem.Instance.ReturnTrackObject(currentSegments[i]);
         }
         currentSegments.RemoveRange(0, playerTrackIndex);
     }
@@ -99,9 +99,8 @@ public class EndlessTrackGenerator : MonoBehaviour
     }
     private TrackSegment SpawnTrackSegment(TrackSegment track, TrackSegment previousTrack)
     {
-        GameObject trackInstanceObj = PoolingSystem.Instance.GetObject(track.gameObject);    // TODO: OPTIMIZE THIS!!!!
-        trackInstanceObj.transform.parent = this.transform;                         // TODO: OPTIMIZE THIS!!!!
-        TrackSegment trackInstance = trackInstanceObj.GetComponent<TrackSegment>(); // TODO: OPTIMIZE THIS!!!!
+        TrackSegment trackInstance = PoolingSystem.Instance.GetTrackObject(track);
+        trackInstance.transform.parent = this.transform;
 
         if (previousTrack != null)
         {
