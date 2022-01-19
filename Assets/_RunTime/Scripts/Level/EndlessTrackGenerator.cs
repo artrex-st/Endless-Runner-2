@@ -4,17 +4,7 @@ using UnityEngine;
 public class EndlessTrackGenerator : MonoBehaviour
 {
     [SerializeField] private PlayerControl _playerControl;
-    [SerializeField] private TrackSegment _firstTrackPrefab;
-    [SerializeField] private TrackSegment[] _easyTrackPrefabs, _hardTrackPrefabs, _rewardTrackPrefabs;
-
-    [Header("Endless Generation Parameters")]
-    [SerializeField] private int _initialTrackCount = 5, _minTracksInFrontOfPlayer = 3;
-    [SerializeField] private float _minDistanceToConsiderInsideTrack = 3;
-    
-    [Header("Level Difficulty Parameters")]
-    [SerializeField, Range(0, 1)] private float _hardTrackChance = 0.2f;
-    [SerializeField] private int _minTracksBeforeReward = 10, _maxTracksBeforeReward = 20, _minRewardTrackCount = 1, _maxRewardTrackCount = 3;
-
+    [SerializeField] private TrackGeneratorConfig trackGeneratorConfig;
     private List<TrackSegment> _currentSegments = new List<TrackSegment>();
     private bool _isSpawningRewardTracks = false;
     private int _rewardTracksLeftToSpawn = 0, _trackSpawnedAfterLastReward = 0;
@@ -30,8 +20,8 @@ public class EndlessTrackGenerator : MonoBehaviour
     private void _Initialize()
     {
         PoolingSystem.Instance.ClearPollDictionarys();
-        TrackSegment previousTrack = _SpawnTrackSegment(_firstTrackPrefab, null);
-        _SpawnTracks(_initialTrackCount);
+        TrackSegment previousTrack = _SpawnTrackSegment(trackGeneratorConfig.firstTrackPrefab, null);
+        _SpawnTracks(trackGeneratorConfig.initialTrackCount);
     }
     private void _UpdateTracks()
     {
@@ -43,9 +33,9 @@ public class EndlessTrackGenerator : MonoBehaviour
         }
         int tracksInFrontOfPlayer = _currentSegments.Count - (playerTrackIndex + 1);
         
-        if (tracksInFrontOfPlayer < _minTracksInFrontOfPlayer)
+        if (tracksInFrontOfPlayer < trackGeneratorConfig.minTracksInFrontOfPlayer)
         {
-            _SpawnTracks(_minTracksInFrontOfPlayer - tracksInFrontOfPlayer);
+            _SpawnTracks(trackGeneratorConfig.minTracksInFrontOfPlayer - tracksInFrontOfPlayer);
         }
         
         for (int i = 0; i < playerTrackIndex; i++)
@@ -61,7 +51,7 @@ public class EndlessTrackGenerator : MonoBehaviour
         {
             var track = _currentSegments[i];
             
-            if (_playerControl.transform.position.z >= track.StartPoint.position.z + _minDistanceToConsiderInsideTrack &&
+            if (_playerControl.transform.position.z >= track.StartPoint.position.z + trackGeneratorConfig.minDistanceToConsiderInsideTrack &&
                 _playerControl.transform.position.z <= track.EndPoint.position.z)
             {
                 return i;
@@ -85,11 +75,11 @@ public class EndlessTrackGenerator : MonoBehaviour
         
         if (_isSpawningRewardTracks)
         {
-            trackList = _rewardTrackPrefabs;
+            trackList = trackGeneratorConfig.rewardTrackPrefabs;
         }
         else
         {
-            trackList = Random.value <= _hardTrackChance ? _hardTrackPrefabs : _easyTrackPrefabs; //TODO: MEDIUM CHANCE
+            trackList = Random.value <= trackGeneratorConfig.hardTrackChance ? trackGeneratorConfig.hardTrackPrefabs : trackGeneratorConfig.easyTrackPrefabs; //TODO: MEDIUM CHANCE
         }
         return trackList[Random.Range(0, trackList.Length)];
     }
@@ -130,12 +120,12 @@ public class EndlessTrackGenerator : MonoBehaviour
         else
         {
             _trackSpawnedAfterLastReward++;
-            int requiredTracksBeforeReward = Random.Range(_minTracksBeforeReward, _maxTracksBeforeReward + 1);
+            int requiredTracksBeforeReward = Random.Range(trackGeneratorConfig.minTracksBeforeReward, trackGeneratorConfig.maxTracksBeforeReward + 1);
             
             if (_trackSpawnedAfterLastReward >= requiredTracksBeforeReward)
             {
                 _isSpawningRewardTracks = true;
-                _rewardTracksLeftToSpawn = Random.Range(_minRewardTrackCount, _maxRewardTrackCount + 1);
+                _rewardTracksLeftToSpawn = Random.Range(trackGeneratorConfig.minRewardTrackCount, trackGeneratorConfig.maxRewardTrackCount + 1);
             }
         }
     }

@@ -5,6 +5,12 @@ public class DecorationSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _decorationOptions;
     public GameObject CurrentDecoration {get; private set;}
 
+    public DecorationSpawner(GameObject[] decorationOptions, GameObject currentDecoration)
+    {
+        _decorationOptions = decorationOptions;
+        CurrentDecoration = currentDecoration;
+    }
+    
     public void SpawnDecorations()
     {
         if (_decorationOptions.Length >= 0)

@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: pickupSpawnChance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
+      propertyPath: _pickupSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4979722674669422811, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
       propertyPath: m_Name
       value: Track_Average_Reward

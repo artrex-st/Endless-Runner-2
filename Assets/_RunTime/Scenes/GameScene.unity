@@ -422,7 +422,6 @@ MonoBehaviour:
   player: {fileID: 1898464439}
   playerAnimationController: {fileID: 1898464436}
   musicController: {fileID: 850383}
-  mainHUD: {fileID: 8650209554121593482}
   saveGame: {fileID: 47490871}
   gameModeConfig: {fileID: 11400000, guid: cac5225b68ac7364f84ffb0d6698122d, type: 2}
 --- !u!114 &47490871
@@ -1289,6 +1288,10 @@ PrefabInstance:
     - target: {fileID: 3107339226322295860, guid: 01fee89baf8b798469ae3323b667a844, type: 3}
       propertyPath: m_Name
       value: TrackGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107339226322295860, guid: 01fee89baf8b798469ae3323b667a844, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01fee89baf8b798469ae3323b667a844, type: 3}

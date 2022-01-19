@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5314c6713f16b1d42bab103640c8eedb, type: 3}
-  m_Name: Base_GameModeConfiguration
+  m_Name: Base_GameModeConfig
   m_EditorClassIdentifier: 
   initialSpeed: 5
   maximumSpeed: 20

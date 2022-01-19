@@ -260,7 +260,15 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+      propertyPath: _pickupSpawnChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
       propertyPath: obstacleSpawners.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+      propertyPath: _obstacleSpawners.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
@@ -273,6 +281,18 @@ PrefabInstance:
       objectReference: {fileID: 5904919269666582217}
     - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
       propertyPath: obstacleSpawners.Array.data[2]
+      value: 
+      objectReference: {fileID: 5490021860703741318}
+    - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+      propertyPath: _obstacleSpawners.Array.data[0]
+      value: 
+      objectReference: {fileID: 4664850457979333366}
+    - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+      propertyPath: _obstacleSpawners.Array.data[1]
+      value: 
+      objectReference: {fileID: 5904919269666582217}
+    - target: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+      propertyPath: _obstacleSpawners.Array.data[2]
       value: 
       objectReference: {fileID: 5490021860703741318}
     - target: {fileID: 4979722674669422811, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}

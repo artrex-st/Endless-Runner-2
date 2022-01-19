@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Runtime/Scripts/Player/InputControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/_RunTime/Scripts/Player/InputControls.inputactions'
 
 using System;
 using System.Collections;
@@ -147,7 +147,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e17b0d05-7f63-4d20-a823-bd925a304fae"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(pressPoint=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",

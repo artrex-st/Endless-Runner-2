@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObstacleSpawner_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1053368743996868369, guid: 423bfe7f661113443b3d00dc945cce98, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2750801266352057494, guid: 423bfe7f661113443b3d00dc945cce98, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -128,6 +132,10 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
+      propertyPath: _pickupSpawnChance
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
       propertyPath: picUpSpawners.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -144,6 +152,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1968728321233123280}
     - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
+      propertyPath: _obstacleSpawners.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
       propertyPath: obstacleSpawners.Array.data[0]
       value: 
       objectReference: {fileID: 2503494998637618656}
@@ -151,6 +163,10 @@ PrefabInstance:
       propertyPath: obstacleSpawners.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4979722674669422809, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
+      propertyPath: _obstacleSpawners.Array.data[0]
+      value: 
+      objectReference: {fileID: 2503494998637618656}
     - target: {fileID: 4979722674669422811, guid: 70565504ec33c8040a2ec376851d1667, type: 3}
       propertyPath: m_Name
       value: Track_Average_Easy

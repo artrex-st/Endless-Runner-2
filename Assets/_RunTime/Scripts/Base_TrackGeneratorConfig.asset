@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6c3c7c92b403458361a16ca7413ed, type: 3}
+  m_Name: Base_TrackGeneratorConfig
+  m_EditorClassIdentifier: 
+  firstTrackPrefab: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+  easyTrackPrefabs:
+  - {fileID: 4183906461760804556, guid: 5fac02eabbdef084f8d28dc4fa917063, type: 3}
+  - {fileID: 1968728320564997403, guid: da01e516233b0534e91b92af0d8b145e, type: 3}
+  mediumTrackPrefabs: []
+  hardTrackPrefabs:
+  - {fileID: 4183906461760804556, guid: 0e500ddbafbbe3f4fb1317a9126b284b, type: 3}
+  rewardTrackPrefabs:
+  - {fileID: 7367299741430115723, guid: 1092d910462ef594aa5324f1362f2ab7, type: 3}
+  initialTrackCount: 5
+  minTracksInFrontOfPlayer: 3
+  minDistanceToConsiderInsideTrack: 3
+  mediumTrackChance: 0.5
+  hardTrackChance: 0.2
+  minTracksBeforeReward: 10
+  maxTracksBeforeReward: 20
+  minRewardTrackCount: 1
+  maxRewardTrackCount: 3

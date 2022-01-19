@@ -48,15 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba0be3300ca50e4fba2a77ff65752b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 4979722675324437248}
-  endPoint: {fileID: 4979722675822920561}
-  obstacleSpawners: []
-  decorationSpawner: {fileID: 6705869596395043987}
-  picUpSpawners:
+  _startPoint: {fileID: 4979722675324437248}
+  _endPoint: {fileID: 4979722675822920561}
+  _obstacleSpawners: []
+  _decorationSpawner: {fileID: 6705869596395043987}
+  _picUpSpawners:
   - {fileID: 7243283678171893147}
   - {fileID: 4979722675338334738}
   - {fileID: 8829640796405378443}
-  pickupSpawnChance: 0
+  _pickupSpawnChance: 0
 --- !u!1 &4979722675324437251
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerControl: {fileID: 0}
-  _firstTrackPrefab: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
+  trackGeneratorConfig: {fileID: 11400000, guid: 01ad4c5eeec01354890c016eb2178082, type: 2}
   _easyTrackPrefabs:
   - {fileID: 1968728320564997403, guid: da01e516233b0534e91b92af0d8b145e, type: 3}
   - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
