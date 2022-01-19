@@ -8,7 +8,7 @@ public class GameModeConfig : ScriptableObject
     [Header("Multipliers")]
     public float initialSpeed, maximumSpeed, timeToMaximumSpeed, baseScoreMultiplier = 1, reloadGameDelay = 3;
     [Range(0,9f)] public float timerToStartRun;
-    [Range(1,100f)] public float scoreValueSpeed;
+    [Range(1,100f)] public float scoreByDistanceValue;
     // 
     // private float _InitialSpeed => initialSpeed;
     // private float _MaximumSpeed => maximumSpeed;

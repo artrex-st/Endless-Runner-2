@@ -47,9 +47,10 @@ MonoBehaviour:
   _firstTrackPrefab: {fileID: 4979722674669422809, guid: 038a08184b178f0459ea04dae7fe3d56, type: 3}
   _easyTrackPrefabs:
   - {fileID: 1968728320564997403, guid: da01e516233b0534e91b92af0d8b145e, type: 3}
+  - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
   - {fileID: 4183906461760804556, guid: 5fac02eabbdef084f8d28dc4fa917063, type: 3}
   _hardTrackPrefabs:
-  - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
+  - {fileID: 4183906461760804556, guid: 0e500ddbafbbe3f4fb1317a9126b284b, type: 3}
   _rewardTrackPrefabs:
   - {fileID: 7367299741430115723, guid: 1092d910462ef594aa5324f1362f2ab7, type: 3}
   _initialTrackCount: 5

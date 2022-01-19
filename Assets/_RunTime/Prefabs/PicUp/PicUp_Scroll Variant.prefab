@@ -141,10 +141,23 @@ PrefabInstance:
       propertyPath: picUpSound
       value: 
       objectReference: {fileID: 8300000, guid: b4291e06bb4913f4abb64f4fc6add2df, type: 3}
+    - target: {fileID: 8468976419283625324, guid: a5d6a5c1e3ea7c94795dd70847c8946d, type: 3}
+      propertyPath: _picUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b4291e06bb4913f4abb64f4fc6add2df, type: 3}
+    - target: {fileID: 8468976419283625324, guid: a5d6a5c1e3ea7c94795dd70847c8946d, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 1484714001302936318}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5d6a5c1e3ea7c94795dd70847c8946d, type: 3}
 --- !u!4 &6933362595393570120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3207085259422283937, guid: a5d6a5c1e3ea7c94795dd70847c8946d, type: 3}
+  m_PrefabInstance: {fileID: 5528621021448093161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1484714001302936318 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6351016666773481239, guid: a5d6a5c1e3ea7c94795dd70847c8946d, type: 3}
   m_PrefabInstance: {fileID: 5528621021448093161}
   m_PrefabAsset: {fileID: 0}

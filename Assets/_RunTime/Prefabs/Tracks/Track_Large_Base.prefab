@@ -91,51 +91,6 @@ MonoBehaviour:
   - {fileID: 4979722675338334738}
   - {fileID: 8829640796405378443}
   pickupSpawnChance: 0
---- !u!1 &4979722674761345654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4979722674761345655}
-  - component: {fileID: 4979722674761345652}
-  m_Layer: 0
-  m_Name: DecorationSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4979722674761345655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979722674761345654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4979722674669422808}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4979722674761345652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979722674761345654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d31857365f347409107a0c2c9bfdda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decorationOptions:
-  - {fileID: 7797366474576681347, guid: 9711d11ec04f23b4e97efab6d31241d2, type: 3}
 --- !u!1 &4979722675324437251
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +506,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4037245989903332, guid: 6f65b76c628f14a8cb695d3fb4b9285a, type: 3}
   m_PrefabInstance: {fileID: 312726381591441519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &373856445505336711
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4979722674669422808}
+    m_Modifications:
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623986354903998449, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+      propertyPath: m_Name
+      value: TrackLarge_DecorationSpawner_Base
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+--- !u!4 &4979722674761345655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4623986354903998448, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+  m_PrefabInstance: {fileID: 373856445505336711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4979722674761345652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4623986354903998451, guid: 880e7216de7a38e4c9df00bd704313f5, type: 3}
+  m_PrefabInstance: {fileID: 373856445505336711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d31857365f347409107a0c2c9bfdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &561771770539868757
 PrefabInstance:
   m_ObjectHideFlags: 0

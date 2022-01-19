@@ -22,7 +22,7 @@ public class GameMode : MonoBehaviour
     private float _TimeToMaximumSpeed => gameModeConfig.timeToMaximumSpeed;
     private float _BaseScoreMultiplier => gameModeConfig.baseScoreMultiplier;
     private float _ReloadGameDelay => gameModeConfig.reloadGameDelay;
-    private float _ScoreValueSpeed => gameModeConfig.scoreValueSpeed;
+    private float _ScoreByDistanceValue => gameModeConfig.scoreByDistanceValue;
 
     public void AddPickUp()
     {
@@ -112,7 +112,7 @@ public class GameMode : MonoBehaviour
     }
     private void _ScoreCalc(float _Multiply)
     {
-        float _extraScore = _ScoreValueSpeed + _Multiply;
+        float _extraScore = _ScoreByDistanceValue + _Multiply;
         score += _BaseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
     }
     private void _DistanceCalc()

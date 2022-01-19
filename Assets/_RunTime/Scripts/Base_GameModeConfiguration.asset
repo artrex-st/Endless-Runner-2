@@ -18,4 +18,4 @@ MonoBehaviour:
   baseScoreMultiplier: 1.5
   reloadGameDelay: 3
   timerToStartRun: 2
-  multiplySpeed: 2
+  scoreByDistanceValue: 1
