@@ -6,8 +6,7 @@ public sealed class GameMode : MonoBehaviour
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
     public int PicUpsCount => picUpsCount;
-    public float TimerToStartRun => gameModeConfig.timerToStartRun;
-    public ScoreData CurrentSave => saveGame.CurrentScoreData;
+    private ScoreData _CurrentSave => saveGame.CurrentScoreData;
     [SerializeField] private PlayerControl player;
     [SerializeField] private PlayerAnimationController playerAnimationController;
     [SerializeField] private MusicController musicController;
@@ -46,12 +45,14 @@ public sealed class GameMode : MonoBehaviour
     {
         isDead = true;
         musicController.PlayDeathTrackMusic();
+        
         saveGame.SavePlayerData(new ScoreData
         {
-            HighestScore = Score > CurrentSave.HighestScore ? Score : CurrentSave.HighestScore,
+            HighestScore = Score > _CurrentSave.HighestScore ? Score : _CurrentSave.HighestScore,
             LastScore = Score,
-            TotalPicUps = CurrentSave.TotalPicUps + PicUpsCount
+            TotalPicUps = _CurrentSave.TotalPicUps + PicUpsCount
         });
+
         StartCoroutine(_ReloadGameCoroutine());
     }
     public void OnPauseGame()
@@ -62,9 +63,21 @@ public sealed class GameMode : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
-    public void StartGame()
+    public void OnStartedRun()
     {
         StartCoroutine(StartGameCoroutine());
+    }
+    public OverlayStatus OnOverlayStatusCalled()
+    {
+        OverlayStatus overlayStatus = new OverlayStatus
+        {
+            timerToStartRun = gameModeConfig.timerToStartRun,
+            score = Score,
+            distanceCount = DistanceCount,
+            picUpsCount = PicUpsCount
+        };
+
+        return overlayStatus;
     }
     public void OnColision(Collider other)
     {
@@ -74,6 +87,7 @@ public sealed class GameMode : MonoBehaviour
             player.Die();
             obstacle.PlayCollisionFeedBack(other);
         }
+
         if (other.TryGetComponent(out PicUp picUp))
         {
             AddPickUp();
@@ -82,7 +96,7 @@ public sealed class GameMode : MonoBehaviour
     }
     public ScoreData OnCalledScoreData()
     {
-        return CurrentSave;
+        return _CurrentSave;
     }
 
     private void Awake()
@@ -111,17 +125,14 @@ public sealed class GameMode : MonoBehaviour
     {
         float percent = (Time.time - startTime) / gameModeConfig.timeToMaximumSpeed;
         player.ForwardSpeed = Mathf.Lerp(gameModeConfig.initialSpeed, gameModeConfig.maximumSpeed, percent);
-        _DistanceCalc();
+        distanceCount = player.transform.position.z;
+        
         _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {
         float _extraScore = gameModeConfig.scoreByDistanceValue + _Multiply;
         score += gameModeConfig.baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
-    }
-    private void _DistanceCalc()
-    {
-        distanceCount += player.ForwardSpeed * Time.deltaTime;
     }
     private IEnumerator _ReloadGameCoroutine()
     {

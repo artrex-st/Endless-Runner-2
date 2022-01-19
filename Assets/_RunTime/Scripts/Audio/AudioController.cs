@@ -47,7 +47,9 @@ public class AudioController : MonoBehaviour
     private void SetMixerVolumeParameter(string key, float volumePercent)
     {
         float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent) <= minVolumeDb ? mutedDbValue : Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
+        //volume = Mathf.Log10(volumePercent) * 20;
         mixerAudio.SetFloat(key, volume);
+        
     }
     private float GetMixerVolumeParameter(string key)
     {

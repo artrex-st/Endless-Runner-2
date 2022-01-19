@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _picUpsPrefabOptions:
-  - {fileID: 4124807599040551045, guid: 693f5b035880d714ba6da9306adfd690, type: 3}
+  - {fileID: 4871959028808889370, guid: 5a1e251c467c00a4bbb3d400203a1c9f, type: 3}
   _picUpsDistanceZ: 2
   _picUpStartSpawn: {fileID: 8865626631984104218}
   _picUpEndSpawn: {fileID: 8865626632896652772}

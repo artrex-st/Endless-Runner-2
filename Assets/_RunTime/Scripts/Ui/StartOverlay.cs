@@ -38,7 +38,7 @@ public sealed class StartOverlay : MonoBehaviour
     }
     private void OnEnable()
     {
-        _GetLoadedScoresTexts();
+        _GetScoreDataTexts();
     }
     private void _Initialize()
     {
@@ -49,7 +49,7 @@ public sealed class StartOverlay : MonoBehaviour
         _tutorialObject.SetActive(false);
 #endif  
     }
-    public void _GetLoadedScoresTexts()
+    public void _GetScoreDataTexts()
     {
         currentScoreData = OnCalledScoreData?.Invoke();
         _highestScoreText.text = $"Highest Score! \n{currentScoreData.HighestScore}";

@@ -7,13 +7,12 @@ using UnityEngine;
 public class TrackGeneratorConfig : ScriptableObject
 {
     public TrackSegment firstTrackPrefab;
-    public TrackSegment[] easyTrackPrefabs, mediumTrackPrefabs, hardTrackPrefabs, rewardTrackPrefabs;
+    public TrackSegment[] easyTrackPrefabs, hardTrackPrefabs, rewardTrackPrefabs;
     [Header("Endless Generation Parameters")]
     public int initialTrackCount = 5, minTracksInFrontOfPlayer = 3;
     public float minDistanceToConsiderInsideTrack = 3;
     
     [Header("Level Difficulty Parameters")]
-    [Range(0, 1)] public float mediumTrackChance = 0.5f;
     [Range(0, 1)] public float hardTrackChance = 0.2f;
     public int minTracksBeforeReward = 10, maxTracksBeforeReward = 20, minRewardTrackCount = 1, maxRewardTrackCount = 3;
     

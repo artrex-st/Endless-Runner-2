@@ -1,11 +1,15 @@
 using TMPro;
 using UnityEngine;
-
+public class OverlayStatus
+{
+    public int picUpsCount = 0;
+    public float score = 0, distanceCount = 0, timerToStartRun = 0;
+}
 public sealed class MainHUD : MonoBehaviour
 {
     public delegate void MainMenuEventHandler();
     public event MainMenuEventHandler OnPauseGame, OnResumeGame, OnClickedQuitGame;
-
+    
     [SerializeField] private MusicController _musicController;
     [SerializeField] private MainHudSound _mainHudSound;
     [Header("Overlays")]
@@ -65,6 +69,7 @@ public sealed class MainHUD : MonoBehaviour
         lastMenu = callingMenu;
         callingMenu.SetActive(false);
     }
+    
     private void Awake()
     {
         _Initialize();
@@ -74,5 +79,6 @@ public sealed class MainHUD : MonoBehaviour
         IsInitialised = true;
         _startUiOverlay.SetActive(true);
         _musicController.PlayStartMenuMusic();
+        
     }
 }

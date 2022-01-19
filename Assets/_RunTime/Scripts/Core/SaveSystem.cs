@@ -20,7 +20,7 @@ public static class SaveSystem
     public static void Save(string saveString, string fileName)
     {
         File.WriteAllText(SAVE_FOLDER + fileName +".json", saveString);
-        Debug.Log($"Salvando em: {SAVE_FOLDER}/Teste.json");
+        Debug.Log($"Save in: {SAVE_FOLDER}/Teste.json");
     }
     public static string Load(string fileName)
     {

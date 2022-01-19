@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class PicUp : MonoBehaviour
 {
+    [SerializeField] private GameObject _visual;
     [SerializeField] private AudioClip _picUpSound;
     [Header("Components")]
     [SerializeField] private AudioSource _audioSource;
@@ -9,6 +11,19 @@ public class PicUp : MonoBehaviour
     public void OnPic()
     {
         AudioUtils.PlayAudioCue(_AudioSource,_picUpSound);
-        PoolingSystem.Instance.ReturnGameObject(gameObject);
+        _visual.SetActive(false);
+        StartCoroutine(DisablePicUp());
     } 
+    private IEnumerator DisablePicUp()
+    {
+        while (_audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        PoolingSystem.Instance.ReturnGameObject(gameObject);
+    }
+    private void OnDisable()
+    {
+        _visual.SetActive(true);
+    }
 }
