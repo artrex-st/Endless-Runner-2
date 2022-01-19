@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainOverlay : MonoBehaviour
+public sealed class MainOverlay : MonoBehaviour
 {
     [SerializeField] private MainHUD mainHUD;
     [SerializeField] private GameMode gameMode;
@@ -29,16 +29,16 @@ public class MainOverlay : MonoBehaviour
     {
         mainHUD.BtnMainHudSound();
         mainHUD.OpenMenu(Menu.PAUSE, gameObject);
-        gameMode.PauseGame();
     }
     private void _Initialize()
     {
         pauseBtn.interactable = false;
-        StartCoroutine(_StartGameCoroutine(Mathf.RoundToInt(gameMode._TimerToStartRun)));
+        StartCoroutine(_StartGameCoroutine(Mathf.RoundToInt(gameMode.TimerToStartRun)));
     }
     private IEnumerator _StartGameCoroutine(int countdownSeconds)
     {
         countDownText.gameObject.SetActive(false);
+       
         if (countdownSeconds <= 0)
         {
             yield break;

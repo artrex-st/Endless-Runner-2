@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class PauseOverlay : MonoBehaviour
 {
-    [SerializeField] private MainHUD mainHUD;
-    [SerializeField] private GameMode gameMode;
-    [SerializeField] private GameObject btnQuit;
+    [SerializeField] private MainHUD _mainHUD;
+    [SerializeField] private GameObject _btnQuit;
+
+    public PauseOverlay(MainHUD mainHUD, GameObject btnQuit)
+    {
+        _mainHUD = mainHUD;
+        _btnQuit = btnQuit;
+        _Initialize();
+    }
+
     public void BtnResume()
     {
-        mainHUD.BtnMainHudSound();
-        mainHUD.OpenMenu(Menu.MAIN, gameObject);
-        gameMode.ResumeGame();
+        _mainHUD.BtnMainHudSound();
+        _mainHUD.OpenMenu(Menu.MAIN, gameObject);
     }
     public void BtnSettings()
     {
-        mainHUD.BtnMainHudSound();
-        mainHUD.OpenMenu(Menu.SETTINGS, gameObject);
+        _mainHUD.BtnMainHudSound();
+        _mainHUD.OpenMenu(Menu.SETTINGS, gameObject);
     }
     private void Awake()
     {

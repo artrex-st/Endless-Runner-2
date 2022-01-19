@@ -1306,12 +1306,60 @@ PrefabInstance:
       propertyPath: gameMode
       value: 
       objectReference: {fileID: 47490870}
+    - target: {fileID: 494770841, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494770841, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494770841, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494770841, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 494770841, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 989906089, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1108012973, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: gameMode
       value: 
       objectReference: {fileID: 47490870}
     - target: {fileID: 1108012973, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: musicController
+      value: 
+      objectReference: {fileID: 850383}
+    - target: {fileID: 1108012973, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: _musicController
       value: 
       objectReference: {fileID: 850383}
     - target: {fileID: 1247772691, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
@@ -1352,7 +1400,7 @@ PrefabInstance:
       objectReference: {fileID: 8650209554121593482}
     - target: {fileID: 807577831994225293, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: ButtonQuitGame
       objectReference: {fileID: 0}
     - target: {fileID: 807577831994225293, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1362,9 +1410,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -4.999893
       objectReference: {fileID: 0}
+    - target: {fileID: 3481232277630937755, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonQuitGame
+      objectReference: {fileID: 0}
     - target: {fileID: 3770899108392516159, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -4.999893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407971265805857551, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.999939
       objectReference: {fileID: 0}
     - target: {fileID: 4556701039579322717, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1391,6 +1447,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4658381952645702607, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678245915031802818, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1423,7 +1483,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 47490871}
     - target: {fileID: 4823630601687225357, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: _saveGame
+      value: 
+      objectReference: {fileID: 47490871}
+    - target: {fileID: 4823630601687225357, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: audioController
+      value: 
+      objectReference: {fileID: 850382}
+    - target: {fileID: 4823630601687225357, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: _audioController
       value: 
       objectReference: {fileID: 850382}
     - target: {fileID: 4823630602175150085, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
@@ -1720,6 +1788,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8206887151476137685, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236744823159189599, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8256806259921163224, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}

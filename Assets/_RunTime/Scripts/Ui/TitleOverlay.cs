@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleOverlay : MonoBehaviour
+public sealed class TitleOverlay : MonoBehaviour
 {
     [SerializeField] private Button _buttonGoToGame;
+
+    public TitleOverlay(Button buttonGoToGame)
+    {
+        _buttonGoToGame = buttonGoToGame;
+    }
     public void ButtonGoToGame()
     {
 #if UNITY_EDITOR
@@ -18,9 +23,5 @@ public class TitleOverlay : MonoBehaviour
 #else 
         GameManager.instance.LoadGame();
 #endif
-    }
-    public void Initialize(Button buttonGoToGame)
-    {
-        _buttonGoToGame = buttonGoToGame;
     }
 }

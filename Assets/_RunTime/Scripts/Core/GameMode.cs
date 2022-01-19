@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameMode : MonoBehaviour
+public sealed class GameMode : MonoBehaviour
 {
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
     public int PicUpsCount => picUpsCount;
-    public float _TimerToStartRun => gameModeConfig.timerToStartRun;
+    public float TimerToStartRun => gameModeConfig.timerToStartRun;
     public ScoreData CurrentSave => saveGame.CurrentScoreData;
     [SerializeField] private PlayerControl player;
     [SerializeField] private PlayerAnimationController playerAnimationController;
@@ -17,23 +17,27 @@ public class GameMode : MonoBehaviour
     private float score, distanceCount;
     private float startTime;
     private bool isDead = false;
-    private float _InitialSpeed => gameModeConfig.initialSpeed;
-    private float _MaximumSpeed => gameModeConfig.maximumSpeed;
-    private float _TimeToMaximumSpeed => gameModeConfig.timeToMaximumSpeed;
-    private float _BaseScoreMultiplier => gameModeConfig.baseScoreMultiplier;
-    private float _ReloadGameDelay => gameModeConfig.reloadGameDelay;
-    private float _ScoreByDistanceValue => gameModeConfig.scoreByDistanceValue;
+
+    public GameMode(PlayerControl player, PlayerAnimationController playerAnimationController, MusicController musicController, SaveGame saveGame, GameModeConfig gameModeConfig)
+    {
+        this.player = player;
+        this.playerAnimationController = playerAnimationController;
+        this.musicController = musicController;
+        this.saveGame = saveGame;
+        this.gameModeConfig = gameModeConfig;
+        _Initialize();
+    }
 
     public void AddPickUp()
     {
         picUpsCount++;
     }
-    public void QuitGame()
+    public void OnClickedQuitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_WEBGL
-        Debug.Log("'WebGL Player' não pode ser fechado"); //para evitar
+        Debug.Log("'WebGL Player' cannot be closed");
 #else
         Application.Quit();
 #endif
@@ -50,11 +54,11 @@ public class GameMode : MonoBehaviour
         });
         StartCoroutine(_ReloadGameCoroutine());
     }
-    public void PauseGame()
+    public void OnPauseGame()
     {
         Time.timeScale = 0f;
     }
-    public void ResumeGame()
+    public void OnResumeGame()
     {
         Time.timeScale = 1f;
     }
@@ -105,15 +109,15 @@ public class GameMode : MonoBehaviour
 
     private void _SpeedLevelCalc()
     {
-        float percent = (Time.time - startTime) / _TimeToMaximumSpeed;
-        player.ForwardSpeed = Mathf.Lerp(_InitialSpeed, _MaximumSpeed, percent);
+        float percent = (Time.time - startTime) / gameModeConfig.timeToMaximumSpeed;
+        player.ForwardSpeed = Mathf.Lerp(gameModeConfig.initialSpeed, gameModeConfig.maximumSpeed, percent);
         _DistanceCalc();
         _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {
-        float _extraScore = _ScoreByDistanceValue + _Multiply;
-        score += _BaseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
+        float _extraScore = gameModeConfig.scoreByDistanceValue + _Multiply;
+        score += gameModeConfig.baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
     }
     private void _DistanceCalc()
     {
@@ -121,7 +125,8 @@ public class GameMode : MonoBehaviour
     }
     private IEnumerator _ReloadGameCoroutine()
     {
-        yield return new WaitForSeconds(_ReloadGameDelay);
+        yield return new WaitForSeconds(gameModeConfig.reloadGameDelay);
+
 #if UNITY_EDITOR
         if (GameManager.instance == null)
         {

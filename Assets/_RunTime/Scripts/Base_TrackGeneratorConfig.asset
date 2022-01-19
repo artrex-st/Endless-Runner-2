@@ -16,7 +16,8 @@ MonoBehaviour:
   easyTrackPrefabs:
   - {fileID: 4183906461760804556, guid: 5fac02eabbdef084f8d28dc4fa917063, type: 3}
   - {fileID: 1968728320564997403, guid: da01e516233b0534e91b92af0d8b145e, type: 3}
-  mediumTrackPrefabs: []
+  mediumTrackPrefabs:
+  - {fileID: 7390908358062893755, guid: 383ec878fe2738b409253e7ee7ab26f7, type: 3}
   hardTrackPrefabs:
   - {fileID: 4183906461760804556, guid: 0e500ddbafbbe3f4fb1317a9126b284b, type: 3}
   rewardTrackPrefabs:
