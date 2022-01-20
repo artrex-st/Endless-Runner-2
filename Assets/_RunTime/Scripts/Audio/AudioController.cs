@@ -10,7 +10,7 @@ public class AudioController : MonoBehaviour
     private const string musicVolume = "Music";
     private const string sfxVolume = "SFX";
     //volume range
-    private const int minVolumeDb = -40;
+    private const int minVolumeDb = -50;
     private const int maxVolumeDb = 0;
     private const float defaultSliderDbValue = 0.85f;
     private const float mutedDbValue = -80f;
@@ -46,10 +46,9 @@ public class AudioController : MonoBehaviour
     //
     private void SetMixerVolumeParameter(string key, float volumePercent)
     {
-        float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent) <= minVolumeDb ? mutedDbValue : Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
-        //volume = Mathf.Log10(volumePercent) * 20;
+        float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
+        volume = volume <= minVolumeDb ? mutedDbValue : volume;
         mixerAudio.SetFloat(key, volume);
-        
     }
     private float GetMixerVolumeParameter(string key)
     {

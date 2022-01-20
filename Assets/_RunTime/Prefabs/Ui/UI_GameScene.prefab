@@ -1113,7 +1113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainHUD: {fileID: 1108012973}
-  _gameMode: {fileID: 0}
   _mainHudSound: {fileID: 1108012972}
   _scoreText: {fileID: 2909236613031728061}
   _distanceText: {fileID: 5751191302727508010}
@@ -8148,7 +8147,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 7326486382905837178}
   m_HandleRect: {fileID: 8830701046916857271}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.75
@@ -8479,7 +8478,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 5278091260534676882}
   m_HandleRect: {fileID: 9026559448349484657}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.75
@@ -8902,7 +8901,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 7981683922876704024}
   m_HandleRect: {fileID: 8206887151476137685}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.75
