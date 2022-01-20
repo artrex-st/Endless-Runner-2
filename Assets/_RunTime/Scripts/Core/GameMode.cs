@@ -9,17 +9,16 @@ public sealed class GameMode : MonoBehaviour
     public event ScoreSaveHandler OnSavedScoreData;
     public delegate IEnumerator PlayerAnimationHandler();
     public event PlayerAnimationHandler OnStartedGameAnimation;
-    
-    public int Score => Mathf.RoundToInt(score);
-    public int DistanceCount => Mathf.RoundToInt(distanceCount);
-    public int PicUpsCount => picUpsCount;
+
+    public int Score => Mathf.RoundToInt(_score);
+    public int DistanceCount => Mathf.RoundToInt(_distanceCount);
+    public int PicUpsCount => _picUpsCount;
     [SerializeField] private PlayerControl _player;
     [SerializeField] private MusicController _musicController;
     [SerializeField, Header("Game Configurations")] private GameModeConfig _gameModeConfig;
-    private int picUpsCount;
-    private float score, distanceCount;
-    private float startTime;
-    private bool isDead = false;
+    private int _picUpsCount;
+    private float _score, _distanceCount, _startTime;
+    private bool _isDead = false;
     private ScoreData _currentScore = new ScoreData();
 
     public GameMode(PlayerControl player , MusicController musicController, GameModeConfig gameModeConfig)
@@ -32,7 +31,7 @@ public sealed class GameMode : MonoBehaviour
 
     public void AddPickUp()
     {
-        picUpsCount++;
+        _picUpsCount++;
     }
     public void OnClickedQuitGame()
     {
@@ -46,8 +45,9 @@ public sealed class GameMode : MonoBehaviour
     }
     public void OnGameOver()
     {
-        isDead = true;
+        _isDead = true;
         _musicController.PlayDeathTrackMusic();
+        
         _currentScore = OnLoadingScoreData?.Invoke();
         OnSavedScoreData?.Invoke(new ScoreData
         {
@@ -115,21 +115,21 @@ public sealed class GameMode : MonoBehaviour
     }
     private bool _CanPlay()
     {
-        return _player.enabled && !isDead;
+        return _player.enabled && !_isDead;
     }
 
     private void _SpeedLevelCalc()
     {
-        float percent = (Time.time - startTime) / _gameModeConfig.timeToMaximumSpeed;
+        float percent = (Time.time - _startTime) / _gameModeConfig.timeToMaximumSpeed;
         _player.ForwardSpeed = Mathf.Lerp(_gameModeConfig.initialSpeed, _gameModeConfig.maximumSpeed, percent);
-        distanceCount = _player.transform.position.z;
+        _distanceCount = _player.transform.position.z;
         
         _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {
         float _extraScore = _gameModeConfig.scoreByDistanceValue + _Multiply;
-        score += _gameModeConfig.baseScoreMultiplier * _player.ForwardSpeed * Time.deltaTime * _extraScore;
+        _score += _gameModeConfig.baseScoreMultiplier * _player.ForwardSpeed * Time.deltaTime * _extraScore;
     }
     private IEnumerator _ReloadGameCoroutine()
     {
@@ -152,8 +152,8 @@ public sealed class GameMode : MonoBehaviour
     {
         yield return StartCoroutine(OnStartedGameAnimation?.Invoke());
         _musicController.PlayMainTrackMusic();
-        isDead = false;
+        _isDead = false;
         _player.enabled = true;
-        startTime = Time.time;
+        _startTime = Time.time;
     }
 }

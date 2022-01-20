@@ -7,6 +7,14 @@ public class PicUp : MonoBehaviour
     [SerializeField] private AudioClip _picUpSound;
     [Header("Components")]
     [SerializeField] private AudioSource _audioSource;
+
+    public PicUp(GameObject visual, AudioClip picUpSound, AudioSource audioSource)
+    {
+        _visual = visual;
+        _picUpSound = picUpSound;
+        _audioSource = audioSource;
+    }
+
     private AudioSource _AudioSource => _audioSource == null ? _audioSource = GetComponent<AudioSource>() : _audioSource;
     public void OnPic()
     {
@@ -25,5 +33,6 @@ public class PicUp : MonoBehaviour
     private void OnDisable()
     {
         _visual.SetActive(true);
+        PoolingSystem.Instance.ReturnGameObject(gameObject);
     }
 }

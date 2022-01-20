@@ -9,7 +9,8 @@ public class SettingsData
 {
     public float masterVolume = 0.5f, musicVolume = 0.5f, sfxVolume = 0.5f;
 }
-public class SaveGame : MonoBehaviour
+
+public sealed class SaveGame : MonoBehaviour
 {
     public const string keyScore = "Score", 
                         keyLastScore = "LastScore", 

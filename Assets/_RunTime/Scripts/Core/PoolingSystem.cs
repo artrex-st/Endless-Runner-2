@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolingSystem : MonoBehaviour
+public sealed class PoolingSystem : MonoBehaviour
 {
     public static PoolingSystem Instance;
-    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();    // get
-    private Dictionary<string, Queue<TrackSegment>> trackPool = new Dictionary<string, Queue<TrackSegment>>();    // get
+    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
+    private Dictionary<string, Queue<TrackSegment>> trackPool = new Dictionary<string, Queue<TrackSegment>>();
     public void ClearPollDictionarys()
     {
         objectPool.Clear();

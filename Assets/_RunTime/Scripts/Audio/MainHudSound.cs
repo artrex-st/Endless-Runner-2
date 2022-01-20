@@ -1,6 +1,6 @@
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public class MainHudSound : MonoBehaviour
+public sealed class MainHudSound : MonoBehaviour
 {
     [SerializeField] private AudioClip _btnPressSound, _countDownEndSound;
     [SerializeField] private AudioClip[] _countDownSound;

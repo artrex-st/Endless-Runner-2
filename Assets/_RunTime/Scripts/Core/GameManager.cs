@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public sealed class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject loadScreen;
