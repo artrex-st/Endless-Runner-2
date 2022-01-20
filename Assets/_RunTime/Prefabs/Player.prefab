@@ -174,16 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2be2b3ba24aa42478fb585e0be019d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAudioController: {fileID: 100446971058603245}
-  playerAnimationController: {fileID: 3474445450010808103}
-  horizontalSpeed: 15
-  laneDistanceX: 1
-  jumpDistanceZ: 5
-  jumpHeightY: 2
-  jumpLerpSpeed: 10
-  rollDistanceZ: 5
-  regularCollider: {fileID: 3474445450050991531}
-  rollCollider: {fileID: 3474445448226114696}
+  _playerAudioController: {fileID: 100446971058603245}
+  _regularCollider: {fileID: 3474445450050991531}
+  _rollCollider: {fileID: 3474445448226114696}
+  _playerConfig: {fileID: 11400000, guid: 4ad654c34dcf28f4cbea20995feea741, type: 2}
 --- !u!114 &3474445450010808102
 MonoBehaviour:
   m_ObjectHideFlags: 0

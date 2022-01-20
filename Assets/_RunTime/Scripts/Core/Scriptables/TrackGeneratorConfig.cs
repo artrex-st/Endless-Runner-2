@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New TrackGenerator Configuration", menuName = "TrackGenerator Configuration")]
-
+[CreateAssetMenu(fileName = "New TrackGenerator Configuration", menuName = "Config/TrackGenerator")]
 public class TrackGeneratorConfig : ScriptableObject
 {
     public TrackSegment firstTrackPrefab;
@@ -15,18 +14,17 @@ public class TrackGeneratorConfig : ScriptableObject
     [Header("Level Difficulty Parameters")]
     [Range(0, 1)] public float hardTrackChance = 0.2f;
     public int minTracksBeforeReward = 10, maxTracksBeforeReward = 20, minRewardTrackCount = 1, maxRewardTrackCount = 3;
-    
-    // private TrackSegment _FirstTrackPrefab => firstTrackPrefab;
-    // private TrackSegment[] _EasyTrackPrefabs => easyTrackPrefabs;
-    // private TrackSegment[] _MediumTrackPrefabs => mediumTrackPrefabs;
-    // private TrackSegment[] _HardTrackPrefabs => hardTrackPrefabs;
-    // private TrackSegment[] _RewardTrackPrefabs => rewardTrackPrefabs;
-    // private int _InitialTrackCount => initialTrackCount;
-    // private int _MinTracksInFrontOfPlayer => minTracksInFrontOfPlayer;
-    // private int _MinTracksBeforeReward => minTracksBeforeReward;
-    // private int _MaxTracksBeforeReward => maxTracksBeforeReward;
-    // private int _MinRewardTrackCount => minRewardTrackCount;
-    // private int _MaxRewardTrackCount => maxRewardTrackCount;
-    // private float _MinDistanceToConsiderInsideTrack => minDistanceToConsiderInsideTrack;
-    // private float _HardTrackChance => hardTrackChance;
+
+    public TrackGeneratorConfig(TrackSegment firstTrackPrefab, TrackSegment[] easyTrackPrefabs, TrackSegment[] hardTrackPrefabs, TrackSegment[] rewardTrackPrefabs, int initialTrackCount, int minTracksInFrontOfPlayer, float minDistanceToConsiderInsideTrack, float hardTrackChance, int minTracksBeforeReward)
+    {
+        this.firstTrackPrefab = firstTrackPrefab;
+        this.easyTrackPrefabs = easyTrackPrefabs;
+        this.hardTrackPrefabs = hardTrackPrefabs;
+        this.rewardTrackPrefabs = rewardTrackPrefabs;
+        this.initialTrackCount = initialTrackCount;
+        this.minTracksInFrontOfPlayer = minTracksInFrontOfPlayer;
+        this.minDistanceToConsiderInsideTrack = minDistanceToConsiderInsideTrack;
+        this.hardTrackChance = hardTrackChance;
+        this.minTracksBeforeReward = minTracksBeforeReward;
+    }
 }
