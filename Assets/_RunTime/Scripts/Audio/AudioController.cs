@@ -3,35 +3,37 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    [SerializeField] private SaveGame gameSaver;
-    [SerializeField] private AudioMixer mixerAudio;
+    [SerializeField] private SaveGame _gameSaver;
+    [SerializeField] private AudioMixer _mixerAudio;
     //constants
-    private const string masterVolume = "Master";
-    private const string musicVolume = "Music";
-    private const string sfxVolume = "SFX";
-    //volume range
-    private const int minVolumeDb = -50;
-    private const int maxVolumeDb = 0;
-    private const float defaultSliderDbValue = 0.85f;
-    private const float mutedDbValue = -80f;
+    private const string masterVolume = "Master", musicVolume = "Music", sfxVolume = "SFX";
+    private const float minVolumeDb = -50, maxVolumeDb = 0, defaultSliderDbValue = 0.85f, mutedDbValue = -80f;
+
+    public AudioController(SaveGame gameSaver, AudioMixer mixerAudio)
+    {
+        _gameSaver = gameSaver;
+        _mixerAudio = mixerAudio;
+        _LoadAudioSettings();
+    }
+
     public float MasterVolume
     {
-        get => GetMixerVolumeParameter(masterVolume);
-        set => SetMixerVolumeParameter(masterVolume, value);
+        get => _GetMixerVolumeParameter(masterVolume);
+        set => _SetMixerVolumeParameter(masterVolume, value);
     }
     public float MusicVolume
     {
-        get => GetMixerVolumeParameter(musicVolume);
-        set => SetMixerVolumeParameter(musicVolume, value);
+        get => _GetMixerVolumeParameter(musicVolume);
+        set => _SetMixerVolumeParameter(musicVolume, value);
     }
     public float SfxVolume
     {
-        get => GetMixerVolumeParameter(sfxVolume);
-        set => SetMixerVolumeParameter(sfxVolume, value);
+        get => _GetMixerVolumeParameter(sfxVolume);
+        set => _SetMixerVolumeParameter(sfxVolume, value);
     }
     public void SaveAudioSettings()
     {
-        gameSaver.SaveSettings(new SettingsData
+        _gameSaver.SaveSettings(new SettingsData
         {
             masterVolume = MasterVolume,
             musicVolume = MusicVolume,
@@ -44,15 +46,15 @@ public class AudioController : MonoBehaviour
         _LoadAudioSettings();
     }
     //
-    private void SetMixerVolumeParameter(string key, float volumePercent)
+    private void _SetMixerVolumeParameter(string key, float volumePercent)
     {
         float volume = Mathf.Lerp(minVolumeDb, maxVolumeDb, volumePercent);
         volume = volume <= minVolumeDb ? mutedDbValue : volume;
-        mixerAudio.SetFloat(key, volume);
+        _mixerAudio.SetFloat(key, volume);
     }
-    private float GetMixerVolumeParameter(string key)
+    private float _GetMixerVolumeParameter(string key)
     {
-        if (mixerAudio.GetFloat(key, out var value))
+        if (_mixerAudio.GetFloat(key, out var value))
         {
             return Mathf.InverseLerp(minVolumeDb,maxVolumeDb,value);
         }
@@ -60,9 +62,9 @@ public class AudioController : MonoBehaviour
     }
     private void _LoadAudioSettings()
     {
-        gameSaver.LoadGame();
-        MasterVolume = gameSaver.CurrentSettingsData.masterVolume;
-        MusicVolume = gameSaver.CurrentSettingsData.musicVolume;
-        SfxVolume = gameSaver.CurrentSettingsData.sfxVolume;
+        _gameSaver.LoadGame();
+        MasterVolume = _gameSaver.CurrentSettingsData.masterVolume;
+        MusicVolume = _gameSaver.CurrentSettingsData.musicVolume;
+        SfxVolume = _gameSaver.CurrentSettingsData.sfxVolume;
     }
 }
