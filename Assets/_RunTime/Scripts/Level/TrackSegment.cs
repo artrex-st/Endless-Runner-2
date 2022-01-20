@@ -52,6 +52,6 @@ public class TrackSegment : MonoBehaviour
     }
     public void TrackSpawnDecorations()
     {
-        DecorationSpawner.SpawnDecorations();
+        DecorationSpawner.gameObject.SetActive(true);
     }
 }

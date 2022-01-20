@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
     {
         foreach (var decorationSpawner in _decorationSpawners)
         {
-            decorationSpawner.SpawnDecorations();
+            decorationSpawner.gameObject.SetActive(true);
             ObstacleDecoration obstacleDecoration = decorationSpawner.CurrentDecoration.GetComponent<ObstacleDecoration>();
             if (obstacleDecoration != null)
             {

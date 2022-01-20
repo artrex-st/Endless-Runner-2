@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864999140887822841, guid: 940e2dcd5f21cf64587b631577bee4f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3864999140887822841, guid: 940e2dcd5f21cf64587b631577bee4f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -199,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 3993550304025950263, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_Name
       value: Obstacle_OneLane_Jump_LeftRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288684623626146114, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_RootOrder

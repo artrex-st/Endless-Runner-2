@@ -16,7 +16,8 @@ public class DecorationSpawner : MonoBehaviour
         if (_decorationOptions.Length >= 0)
         {
             GameObject prefab = _decorationOptions[Random.Range(0, _decorationOptions.Length)];
-            CurrentDecoration = Instantiate(prefab, transform);
+            CurrentDecoration = PoolingSystem.Instance.GetObject(prefab);
+            CurrentDecoration.transform.parent = transform;
             CurrentDecoration.transform.localPosition = Vector3.zero;
             CurrentDecoration.transform.rotation = Quaternion.identity;
         }
@@ -24,5 +25,17 @@ public class DecorationSpawner : MonoBehaviour
         {
             Debug.LogWarning($"decorationOptions Array in {gameObject.name} is Empty");
         }
+    }
+    private void OnEnable()
+    {
+        SpawnDecorations();
+    }
+    private void OnDisable()
+    {
+        _InitializeOnDisable();
+    }
+    private void _InitializeOnDisable()
+    {
+        PoolingSystem.Instance.ReturnGameObject(CurrentDecoration);
     }
 }
