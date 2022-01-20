@@ -94,11 +94,7 @@ public sealed class GameMode : MonoBehaviour
             picUp.OnPic();
         }
     }
-    public ScoreData OnCalledScoreData()
-    {
-        return _CurrentSave;
-    }
-
+    
     private void Awake()
     {
         _Initialize();

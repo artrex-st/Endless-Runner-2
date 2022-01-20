@@ -47,7 +47,17 @@ public class SaveGame : MonoBehaviour
     {
         SavePlayerData(new ScoreData());
         LoadGame();
-    }  
+    }
+    public void OnDeletedData()
+    {
+        SavePlayerData(new ScoreData());
+        LoadGame();
+    }
+    public ScoreData OnCalledScoreData()
+    {
+        return CurrentScoreData;
+    }
+
     private void Awake()
     {
         _Initialize();

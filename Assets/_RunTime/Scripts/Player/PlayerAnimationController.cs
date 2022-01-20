@@ -4,32 +4,34 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerControl))]
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private PlayerControl playerControl;
-    public void Die()
+    [SerializeField] private Animator _animator;
+
+    public PlayerAnimationController(Animator animator)
     {
-        animator.SetTrigger(PlayerAnimationConstants.DieTrigger);
+        _animator = animator;
+    }
+
+    public void OnStartedTriggerAnimation(string animationString)
+    {
+        _animator.SetTrigger(animationString);
+    }
+    public void OnStartedBoolAnimation(string animationString, bool isStarted)
+    {
+        _animator.SetBool(animationString, isStarted);
     }
     public IEnumerator PlayStartGameAnimation()
     {
-        animator.SetTrigger(PlayerAnimationConstants.StartGameTrigger);
-        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationConstants.StartRun))
+        _animator.SetTrigger(PlayerAnimationConstants.StartGameTrigger);
+       
+        while (!_animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationConstants.StartRun))
         {
             yield return null;
         }
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationConstants.StartRun)
-            && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        
+        while (_animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationConstants.StartRun)
+            && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
             yield return null;
         }
-    }
-    private void Update()
-    {
-        _SetBoolAnimations();
-    }
-    private void _SetBoolAnimations()
-    {
-        animator.SetBool(PlayerAnimationConstants.IsJumping, playerControl.IsJumping);
-        animator.SetBool(PlayerAnimationConstants.IsRolling, playerControl.IsRolling);
     }
 }

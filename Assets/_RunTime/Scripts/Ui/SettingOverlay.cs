@@ -45,6 +45,10 @@ public sealed class SettingOverlay : MonoBehaviour
     }
     private void OnDisable()
     {
+        _SaveSettingsOnDisable();
+    }
+    private void _SaveSettingsOnDisable()
+    {
         _audioController.SaveAudioSettings();
     }
 

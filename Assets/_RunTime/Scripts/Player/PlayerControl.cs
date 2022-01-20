@@ -2,6 +2,11 @@ using UnityEngine;
 
 sealed public class PlayerControl : MonoBehaviour
 {
+    public delegate void AnimationSetingBool(string animation, bool isEnabled);
+    public event AnimationSetingBool OnStartedBoolAnimation;
+    public delegate void AnimationSetingTrigger(string animation);
+    public event AnimationSetingTrigger OnStartedTriggerAnimation;
+
     [SerializeField] private PlayerAudioController playerAudioController;
     [SerializeField] private PlayerAnimationController playerAnimationController;
     [SerializeField] private float horizontalSpeed = 15;
@@ -66,10 +71,10 @@ sealed public class PlayerControl : MonoBehaviour
         //Debug.Log($"Swipe Axis Touch:{direction}");
         targetPositionX = Mathf.Clamp(targetPositionX, LeftLaneX, RightLaneX);
     }
-    public void Die() //WORKING
+    public void Die()
     {
+        OnStartedTriggerAnimation?.Invoke(PlayerAnimationConstants.DieTrigger);
         playerAudioController.PlayDieSound();
-        playerAnimationController.Die();
 
         ForwardSpeed = 0;
         horizontalSpeed = 0;
@@ -111,14 +116,17 @@ sealed public class PlayerControl : MonoBehaviour
     }
     private void _StartJump()
     {
-        playerAudioController.PlayJumpSound();
         IsJumping = true;
+        OnStartedBoolAnimation?.Invoke(PlayerAnimationConstants.IsJumping,IsJumping);
+        
+        playerAudioController.PlayJumpSound();
         jumpStartZ = transform.position.z;
         _StopRoll();
     }
     private void _StopJump()
     {
         IsJumping = false;
+        OnStartedBoolAnimation?.Invoke(PlayerAnimationConstants.IsJumping,IsJumping);
     }
     private float _ProcessJump()
     {
@@ -152,9 +160,11 @@ sealed public class PlayerControl : MonoBehaviour
     }
     private void _StartRoll()
     {
+        IsRolling = true;
+        OnStartedBoolAnimation?.Invoke(PlayerAnimationConstants.IsRolling,IsRolling);
+
         playerAudioController.PlayRollSound();
         rollStartZ = transform.position.z;
-        IsRolling = true;
         regularCollider.enabled = false;
         rollCollider.enabled = true;
         _StopJump();
@@ -162,6 +172,8 @@ sealed public class PlayerControl : MonoBehaviour
     private void _StopRoll()
     {
         IsRolling = false;
+        OnStartedBoolAnimation?.Invoke(PlayerAnimationConstants.IsRolling,IsRolling);
+
         regularCollider.enabled = true;
         rollCollider.enabled = false;
     }

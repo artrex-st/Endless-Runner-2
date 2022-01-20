@@ -848,8 +848,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5717f07906bf7c147a98e47bfd19e70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnPressSound: {fileID: 8300000, guid: fba2ef92df20e764dafde12cfbe47ce8, type: 3}
-  countDownSound:
+  _btnPressSound: {fileID: 8300000, guid: fba2ef92df20e764dafde12cfbe47ce8, type: 3}
+  _countDownEndSound: {fileID: 8300000, guid: 85069e5bc3c3b044c94d1edeee01d3cc, type: 3}
+  _countDownSound:
   - {fileID: 8300000, guid: 044d7595a4d0280449fea3a73888fddf, type: 3}
   - {fileID: 8300000, guid: 7b06649a96295aa40a8c1666a770d99d, type: 3}
   - {fileID: 8300000, guid: f05f5540d1542bf4baa47bbf5ce93d1a, type: 3}
@@ -861,7 +862,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3bca8baeffdd25e42a4c33aca73491bf, type: 3}
   - {fileID: 8300000, guid: 7cdef9ce717ee4c489de9ad41b2b7404, type: 3}
   - {fileID: 8300000, guid: db76da87dd5542a48842ea8018330c89, type: 3}
-  countDownEndSound: {fileID: 8300000, guid: 85069e5bc3c3b044c94d1edeee01d3cc, type: 3}
+  _audioSource: {fileID: 1108012971}
 --- !u!1 &1247772690
 GameObject:
   m_ObjectHideFlags: 0
