@@ -28,7 +28,7 @@ public class SaveGame : MonoBehaviour
         string jsonString = JsonUtility.ToJson(CurrentScoreData);
         SaveSystem.Save(jsonString,scoreDataFileName);
     }
-    public void SaveSettings(SettingsData settingsData)
+    public void OnSavedSettingsData(SettingsData settingsData)
     {
         CurrentSettingsData = settingsData;
         string jsonString = JsonUtility.ToJson(CurrentSettingsData);
@@ -43,21 +43,19 @@ public class SaveGame : MonoBehaviour
         _LoadScore();
         _LoadSetting();
     }
-    public void DeleteData()
-    {
-        SavePlayerData(new ScoreData());
-        LoadGame();
-    }
     public void OnDeletedData()
     {
         SavePlayerData(new ScoreData());
         LoadGame();
     }
-    public ScoreData OnCalledScoreData()
+    public ScoreData OnLoadingScoreData()
     {
         return CurrentScoreData;
     }
-
+    public SettingsData OnLoadingSettingsData()
+    {
+        return CurrentSettingsData;
+    }
     private void Awake()
     {
         _Initialize();

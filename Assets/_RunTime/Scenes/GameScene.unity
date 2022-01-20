@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca9a7b709b980945a48e10a18e3661c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameSaver: {fileID: 47490871}
   _mixerAudio: {fileID: 24100000, guid: 8ac8304ed35665446af4c598f326c98b, type: 2}
 --- !u!114 &850383
 MonoBehaviour:
@@ -513,14 +512,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65ecd3c9bedb0540b8cd2a5ec3568a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMode: {fileID: 47490870}
-  saveGame: {fileID: 47490871}
-  playerCollision: {fileID: 873831420}
-  mainHUD: {fileID: 8650209554121593482}
-  mainOverlay: {fileID: 575392726}
-  startOverlay: {fileID: 1908289952}
-  playerAnimationController: {fileID: 1898464436}
-  playerControl: {fileID: 1898464439}
+  _gameMode: {fileID: 47490870}
+  _saveGame: {fileID: 47490871}
+  _playerControl: {fileID: 1898464439}
+  _playerCollision: {fileID: 873831420}
+  _playerAnimationController: {fileID: 1898464436}
+  _audioController: {fileID: 850382}
+  _mainHUD: {fileID: 8650209554121593482}
+  _mainOverlay: {fileID: 575392726}
+  _startOverlay: {fileID: 1908289952}
+  _settingOverlay: {fileID: 621260983}
 --- !u!114 &575392726 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1862695599, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
@@ -530,6 +531,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48b4b600e4e7e844cb4bd43e4c21e897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &621260983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4823630601687225357, guid: 07d8aa4b1472f574cadc0989e7f86559, type: 3}
+  m_PrefabInstance: {fileID: 8650209554121593480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b410205a0a21c784f962cb16e106e51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &630445851
@@ -1138,7 +1150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626358315}
-  m_LocalRotation: {x: 0.17246114, y: -0.00000001507649, z: 0.00000000263966, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246115, y: 0.000000021041407, z: -0.000000003684025, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1319,7 +1331,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143259080}
-  m_LocalRotation: {x: 0.17246114, y: -0.00000001507649, z: 0.00000000263966, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246115, y: 0.000000021041407, z: -0.000000003684025, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

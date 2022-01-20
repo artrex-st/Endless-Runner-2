@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4000010571907084}
   - component: {fileID: 33000010432700278}
   - component: {fileID: 23000010058066976}
-  - component: {fileID: 65000010360495840}
   m_Layer: 0
   m_Name: flag-medieval_big
   m_TagString: Untagged
@@ -56,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,16 +80,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &65000010360495840
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000011605502392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1912687, y: 0.49524593, z: 0.15193695}
-  m_Center: {x: 0, y: -0.24762249, z: -0.032440186}
+  m_AdditionalVertexStreams: {fileID: 0}

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4000010224608346}
   - component: {fileID: 33000012195220908}
   - component: {fileID: 23000012756685694}
-  - component: {fileID: 136000014239200866}
   m_Layer: 0
   m_Name: torche
   m_TagString: Untagged
@@ -56,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,17 +80,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &136000014239200866
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000011378534322}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.06285807
-  m_Height: 2.1826646
-  m_Direction: 1
-  m_Center: {x: 0.000000007450581, y: 1.0915419, z: 0.0003401786}
+  m_AdditionalVertexStreams: {fileID: 0}

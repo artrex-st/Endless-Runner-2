@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4623986354903998448}
   - component: {fileID: 4623986354903998451}
   m_Layer: 0
-  m_Name: Track_DecorationSpawner_Base
+  m_Name: TrackAverage_DecorationSpawner_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _decorationOptions:
-  - {fileID: 5579167463804897788, guid: 338543c18dfa3294297e2c495c014d8a, type: 3}
+  - {fileID: 9207179253256147378, guid: b098c0e8e23a76748852c5f462beefc6, type: 3}

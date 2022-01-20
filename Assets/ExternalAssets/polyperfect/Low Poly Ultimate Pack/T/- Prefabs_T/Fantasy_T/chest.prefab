@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4000010446650038}
   - component: {fileID: 33000014149442318}
   - component: {fileID: 23000013515142100}
-  - component: {fileID: 64000012298949828}
   m_Layer: 0
   m_Name: chest-top
   m_TagString: Untagged
@@ -56,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,20 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64000012298949828
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010801536028}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 2cc4e4603d9d1458c8ef1368add7c81e, type: 3}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000013768157686
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +124,6 @@ GameObject:
   - component: {fileID: 4218395602807448}
   - component: {fileID: 33675002652306792}
   - component: {fileID: 23086548254159754}
-  - component: {fileID: 64103759255408970}
   m_Layer: 0
   m_Name: chest-base
   m_TagString: Untagged
@@ -182,6 +168,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -206,17 +193,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64103759255408970
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317991654099352}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 2cc4e4603d9d1458c8ef1368add7c81e, type: 3}
+  m_AdditionalVertexStreams: {fileID: 0}

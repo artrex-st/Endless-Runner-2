@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public sealed class SettingOverlay : MonoBehaviour
 {
+    public delegate void DeletedDataHandler();
+    public event DeletedDataHandler OnDeletedData;
     [SerializeField] private MainHUD _mainHUD;
-    [SerializeField] private SaveGame _saveGame;
     [SerializeField] private AudioController _audioController;
     [Header("Settings UiOverlay Elements")]
     [SerializeField] private Slider _sliderMaster, _sliderMusic, _sliderSFX;
@@ -32,7 +33,7 @@ public sealed class SettingOverlay : MonoBehaviour
         _mainHUD.BtnMainHudSound();
         _btnDeleteData.interactable = false;
         _btnTextLabel.text = _textAfterDelete;
-        _saveGame.DeleteData();
+        OnDeletedData?.Invoke();
     }
     public void BtnCloseSettings()
     {
