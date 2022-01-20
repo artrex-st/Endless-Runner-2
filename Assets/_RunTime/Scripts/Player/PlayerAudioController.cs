@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class PlayerAudioController : MonoBehaviour
+public sealed class PlayerAudioController : MonoBehaviour
 {
     [Header("Sounds Effects")]
     [SerializeField] private AudioClip jumpSound;

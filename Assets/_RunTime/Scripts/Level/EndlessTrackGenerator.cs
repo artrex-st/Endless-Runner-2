@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndlessTrackGenerator : MonoBehaviour
+public sealed class EndlessTrackGenerator : MonoBehaviour
 {
     [SerializeField] private PlayerControl _playerControl;
     [SerializeField] private TrackGeneratorConfig trackGeneratorConfig;

@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
         {
             decorationSpawner.gameObject.SetActive(true);
             ObstacleDecoration obstacleDecoration = decorationSpawner.CurrentDecoration.GetComponent<ObstacleDecoration>();
+            
             if (obstacleDecoration != null)
             {
                 _obstacleDecorations.Add(obstacleDecoration);
@@ -20,6 +21,7 @@ public class Obstacle : MonoBehaviour
     public void PlayCollisionFeedBack(Collider _collider)
     {
         ObstacleDecoration decoration = _FindDecorationForCollider(_collider);
+        
         if (decoration != null)
         {
             decoration.PlayCollisionFeedBack();
@@ -30,12 +32,14 @@ public class Obstacle : MonoBehaviour
     {
         float minDistX = Mathf.Infinity;
         ObstacleDecoration minDistDecoration = null;
+        
         foreach (ObstacleDecoration decoration in _obstacleDecorations)
         {
             float decorationPosX = decoration.transform.position.x;
             float colliderPosX = _collider.bounds.center.x;
 
             float distX = Mathf.Abs(decorationPosX - colliderPosX);
+            
             if (distX < minDistX)
             {
                 minDistX = distX;

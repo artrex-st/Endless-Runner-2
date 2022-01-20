@@ -4,17 +4,17 @@ using UnityEngine;
 public sealed class PoolingSystem : MonoBehaviour
 {
     public static PoolingSystem Instance;
-    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
-    private Dictionary<string, Queue<TrackSegment>> trackPool = new Dictionary<string, Queue<TrackSegment>>();
+    private Dictionary<string, Queue<GameObject>> _objectPool = new Dictionary<string, Queue<GameObject>>();
+    private Dictionary<string, Queue<TrackSegment>> _trackPool = new Dictionary<string, Queue<TrackSegment>>();
     public void ClearPollDictionarys()
     {
-        objectPool.Clear();
-        trackPool.Clear();
+        _objectPool.Clear();
+        _trackPool.Clear();
     }
     
     public GameObject GetObject(GameObject gameObject)
     {
-        if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
+        if (_objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
             if (objectList.Count == 0)
             {
@@ -35,7 +35,7 @@ public sealed class PoolingSystem : MonoBehaviour
     }
     public TrackSegment GetTrackObject(TrackSegment trackObject)
     {
-        if (trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> objectList))
+        if (_trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> objectList))
         {
             if (objectList.Count == 0)
             {
@@ -57,7 +57,7 @@ public sealed class PoolingSystem : MonoBehaviour
 
     public void ReturnGameObject(GameObject gameObject)
     {
-        if (objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
+        if (_objectPool.TryGetValue(gameObject.name, out Queue<GameObject> objectList))
         {
             objectList.Enqueue(gameObject);
         }
@@ -65,13 +65,13 @@ public sealed class PoolingSystem : MonoBehaviour
         {
             Queue<GameObject> newObjectQueue = new Queue<GameObject>();
             newObjectQueue.Enqueue(gameObject);
-            objectPool.Add(gameObject.name, newObjectQueue);
+            _objectPool.Add(gameObject.name, newObjectQueue);
         }
         gameObject.SetActive(false);
     }
     public void ReturnTrackObject(TrackSegment trackObject)
     {
-        if (trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> trackList))
+        if (_trackPool.TryGetValue(trackObject.name, out Queue<TrackSegment> trackList))
         {
             trackList.Enqueue(trackObject);
         }
@@ -79,7 +79,7 @@ public sealed class PoolingSystem : MonoBehaviour
         {
             Queue<TrackSegment> newTrackQueue = new Queue<TrackSegment>();
             newTrackQueue.Enqueue(trackObject);
-            trackPool.Add(trackObject.name, newTrackQueue);
+            _trackPool.Add(trackObject.name, newTrackQueue);
         }
         trackObject.gameObject.SetActive(false);
     }
@@ -92,7 +92,7 @@ public sealed class PoolingSystem : MonoBehaviour
         if (Instance != null)
         {
             GameObject.Destroy(Instance);
-            objectPool.Clear();
+            _objectPool.Clear();
         }
         else
         {

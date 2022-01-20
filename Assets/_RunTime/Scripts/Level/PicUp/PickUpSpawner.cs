@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickUpSpawner : MonoBehaviour
+public sealed class PickUpSpawner : MonoBehaviour
 {
     [SerializeField] private PicUp[] _picUpsPrefabOptions;
     [SerializeField, Range(0.01f, 10)] private float _picUpsDistanceZ = 1;

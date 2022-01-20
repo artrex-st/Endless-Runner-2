@@ -7,7 +7,15 @@ public sealed class MusicController : MonoBehaviour
     private AudioSource _audioSource;
     private AudioSource _AudioSource => _audioSource == null ? _audioSource = GetComponent<AudioSource>() : _audioSource;
     private const float defaultDelay = 0.1f;
-    
+
+    public MusicController(AudioClip startMenuMusic, AudioClip mainTrackMusic, AudioClip deathTrackMusic, AudioSource audioSource)
+    {
+        _startMenuMusic = startMenuMusic;
+        _mainTrackMusic = mainTrackMusic;
+        _deathTrackMusic = deathTrackMusic;
+        _audioSource = audioSource;
+    }
+
     public void PlayStartMenuMusic()
     {
         PlayMusic(_startMenuMusic, defaultDelay);

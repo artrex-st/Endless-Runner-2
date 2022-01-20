@@ -68,6 +68,7 @@ public sealed class SaveGame : MonoBehaviour
     private void _LoadScore()
     {
         string jsonString = SaveSystem.Load(scoreDataFileName);
+        
         if (jsonString != null)
         {
             CurrentScoreData = JsonUtility.FromJson<ScoreData>(jsonString);
@@ -80,6 +81,7 @@ public sealed class SaveGame : MonoBehaviour
     private void _LoadSetting()
     {
         string jsonString = SaveSystem.Load(settingsDataFileName);
+        
         if (jsonString != null)
         {
             CurrentSettingsData = JsonUtility.FromJson<SettingsData>(jsonString);

@@ -11,6 +11,7 @@ public class ObstacleDecoration : MonoBehaviour
     public void PlayCollisionFeedBack()
     {
         AudioUtils.PlayAudioCue(AudioSource, collisionSound);
+        
         if (collisionAnimation != null)
         {
             collisionAnimation.Play();

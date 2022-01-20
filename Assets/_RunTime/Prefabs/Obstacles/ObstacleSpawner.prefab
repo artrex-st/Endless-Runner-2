@@ -43,17 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648d5eb65be1de441b93579cf6fceaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabOptions:
-  - {fileID: 8547480164750755085, guid: dbf64544871e90344ae4b266958156a0, type: 3}
+  _obstaclePrefabOptions:
   - {fileID: 8547480164750755085, guid: 6eadf41ebab44a74d8a73af55ce8e72c, type: 3}
   - {fileID: 8547480164750755085, guid: 23eed7635ff6fe54d9170d895ee94b67, type: 3}
   - {fileID: 8547480164750755085, guid: a95fed6e0709bef439f39ae829010cef, type: 3}
   - {fileID: 8547480164750755085, guid: 8e4116d03f3a2d144b8622de4a2704c7, type: 3}
   - {fileID: 8547480164750755085, guid: c766d7ac331290d47ac584a3097b7f5b, type: 3}
+  - {fileID: 8547480164750755085, guid: dbf64544871e90344ae4b266958156a0, type: 3}
   - {fileID: 243900090090899048, guid: 9625306f101c8df4a93448783a2503a3, type: 3}
-  - {fileID: 243900090090899048, guid: f9f12771a8451f2429e4d60038c6d4e7, type: 3}
-  - {fileID: 243900090090899048, guid: 082aab68e81c2c64d88c969bfa0600de, type: 3}
-  - {fileID: 243900090090899048, guid: bcd5032902de7364b9778b4783fd18cf, type: 3}
-  - {fileID: 8547480164750755085, guid: 637423ded34b1d847b9345db4f38ead9, type: 3}
   - {fileID: 8547480164750755085, guid: 3e455900409cf1b43a16bf742854cdb8, type: 3}
   - {fileID: 8547480164750755085, guid: 13c5f1af17ffcbe458dee55a2b1c35e7, type: 3}
+  - {fileID: 243900090090899048, guid: f9f12771a8451f2429e4d60038c6d4e7, type: 3}
+  - {fileID: 8547480164750755085, guid: 637423ded34b1d847b9345db4f38ead9, type: 3}
+  - {fileID: 243900090090899048, guid: 082aab68e81c2c64d88c969bfa0600de, type: 3}
+  - {fileID: 243900090090899048, guid: bcd5032902de7364b9778b4783fd18cf, type: 3}

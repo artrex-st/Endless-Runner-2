@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerControl))]
-public class PlayerAnimationController : MonoBehaviour
+public sealed class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 

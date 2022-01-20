@@ -8,27 +8,26 @@ using UnityEngine.UI;
 public sealed class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] private GameObject loadScreen;
-    [SerializeField] private GameObject loadBarObject;
-    [SerializeField] private Slider loadBar;
-    [SerializeField] private TextMeshProUGUI loadBarText;
+    [SerializeField] private GameObject _loadScreen, _loadBarObject;
+    [SerializeField] private Slider _loadBar;
+    [SerializeField] private TextMeshProUGUI _loadBarText;
     
-    private float totalSceneProgress;
-    [SerializeField] private List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
+    private float _totalSceneProgress;
+    [SerializeField] private List<AsyncOperation> _scenesLoading = new List<AsyncOperation>();
 
     public void LoadGame()
     {
-        loadScreen.SetActive(true);
-        scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
-        scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_GAME_SCREEN, LoadSceneMode.Additive));
+        _loadScreen.SetActive(true);
+        _scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
+        _scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.MAIN_GAME_SCREEN, LoadSceneMode.Additive));
 
         StartCoroutine(GetSceneLoadProgress());
     }
     public void ReloadScene(int sceneIndex)
     {
-        loadScreen.SetActive(true);
-        scenesLoading.Add(SceneManager.UnloadSceneAsync(sceneIndex));
-        scenesLoading.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
+        _loadScreen.SetActive(true);
+        _scenesLoading.Add(SceneManager.UnloadSceneAsync(sceneIndex));
+        _scenesLoading.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
         StartCoroutine(GetSceneLoadProgress());
     }
     private void Awake()
@@ -41,26 +40,26 @@ public sealed class GameManager : MonoBehaviour
         instance = this;
         SaveSystem.Initialize();
         SceneManager.LoadSceneAsync((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);
-        loadScreen.SetActive(false);
+        _loadScreen.SetActive(false);
     }
     private IEnumerator GetSceneLoadProgress()
     {
-        for (int i = 0; i < scenesLoading.Count; i++)
+        for (int i = 0; i < _scenesLoading.Count; i++)
         {
-            while (!scenesLoading[i].isDone)
+            while (!_scenesLoading[i].isDone)
             {
-                totalSceneProgress = 0;
-                foreach (AsyncOperation operation in scenesLoading)
+                _totalSceneProgress = 0;
+                foreach (AsyncOperation operation in _scenesLoading)
                 {
-                    totalSceneProgress += operation.progress;
+                    _totalSceneProgress += operation.progress;
                 }
-                loadBar.value = totalSceneProgress;
-                totalSceneProgress = (totalSceneProgress / scenesLoading.Count) * 100f;
-                loadBarText.text = $"Loading ... {Mathf.RoundToInt(totalSceneProgress)}%";
+                _loadBar.value = _totalSceneProgress;
+                _totalSceneProgress = (_totalSceneProgress / _scenesLoading.Count) * 100f;
+                _loadBarText.text = $"Loading ... {Mathf.RoundToInt(_totalSceneProgress)}%";
                 yield return null;
             }
         }
-        scenesLoading.Clear();
-        loadScreen.SetActive(false);
+        _scenesLoading.Clear();
+        _loadScreen.SetActive(false);
     }
 }

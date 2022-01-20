@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacle_OneLane_Dodge_Center
       objectReference: {fileID: 0}
+    - target: {fileID: 5288684623626146114, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6191735216165238043, guid: 9dbe8e8a22d8d4b4aab07557037dac63, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

@@ -40,6 +40,7 @@ public class TrackSegment : MonoBehaviour
         if (_picUpSpawners.Length > 0 && Random.value <= _pickupSpawnChance)
         {
             Vector3[] skipPositions = new Vector3[_obstacleSpawners.Length];
+            
             for (int i = 0; i < skipPositions.Length; i++)
             {
                 skipPositions[i] = ObstacleSpawners[i].transform.position;

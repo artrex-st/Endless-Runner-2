@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DecorationSpawner : MonoBehaviour
+public sealed class DecorationSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _decorationOptions;
     public GameObject CurrentDecoration {get; private set;}

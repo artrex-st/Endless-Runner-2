@@ -1,6 +1,6 @@
 using UnityEngine;
 
-sealed public class SwipeDetection : MonoBehaviour
+public sealed class SwipeDetection : MonoBehaviour
 {
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private PlayerControl _playerControl;
