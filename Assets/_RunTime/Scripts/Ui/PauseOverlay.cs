@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PauseOverlay : MonoBehaviour
+public sealed class PauseOverlay : MonoBehaviour
 {
     [SerializeField] private MainHUD _mainHUD;
     [SerializeField] private GameObject _btnQuit;

@@ -2,63 +2,73 @@ using UnityEngine;
 
 sealed public class SwipeDetection : MonoBehaviour
 {
-    [SerializeField] private InputManager inputManager;
-    [SerializeField] private PlayerControl playerControl;
-    [SerializeField] private float minimumDistance = 0.2f;
-    [SerializeField] private float maximumTime = 1f;
-    [SerializeField, Range(0,1)] private float directionThreshold = 0.9f;
-    private Vector2 startPosition;
-    private Vector2 endPosition;
-    private float startTime;
-    private float endTime;
-    private Vector2 axisDirection;
-    public Vector2 AxisDirection => axisDirection;
+    [SerializeField] private InputManager _inputManager;
+    [SerializeField] private PlayerControl _playerControl;
+    [SerializeField] private float _minimumDistance = 0.2f, _maximumTime = 1f;
+    [SerializeField, Range(0,1)] private float _directionThreshold = 0.7f;
+    private Vector2 _startPosition, _endPosition, _axisDirection;
+    private float _startTime, _endTime;
 
-    private void Start()
+    public SwipeDetection(InputManager inputManager, PlayerControl playerControl, float minimumDistance, float maximumTime, float directionThreshold, Vector2 startPosition, Vector2 endPosition, Vector2 axisDirection, float startTime, float endTime)
     {
-        Initialize();
+        _inputManager = inputManager;
+        _playerControl = playerControl;
+        _minimumDistance = minimumDistance;
+        _maximumTime = maximumTime;
+        _directionThreshold = directionThreshold;
+        _startPosition = startPosition;
+        _endPosition = endPosition;
+        _axisDirection = axisDirection;
+        _startTime = startTime;
+        _endTime = endTime;
     }
-    private void Initialize()
-    {
-        inputManager = inputManager != null ? inputManager : GetComponentInParent<InputManager>();
-        playerControl = playerControl != null ? playerControl : GetComponentInParent<PlayerControl>();
-    }
+
+    public Vector2 AxisDirection => _axisDirection;
+
     private void OnEnable()
     {
-        inputManager.OnStartTouch += SwipeStart;
-        inputManager.OnEndTouch += SwipeEnd;
-        inputManager.OnSwipeAxis += SwipeAxis;
+        _InitializeEneble();
     }
     private void OnDisable()
     {
-        inputManager.OnStartTouch -= SwipeStart;
-        inputManager.OnEndTouch -= SwipeEnd;
-        inputManager.OnSwipeAxis -= SwipeAxis;
+        _InitializeDisable();
     }
-    private void SwipeStart(Vector2 position, float time)
+    private void _InitializeEneble()
     {
-        startPosition = position;
-        startTime = time;
+        _inputManager.OnStartTouch += _SwipeStart;
+        _inputManager.OnEndTouch += _SwipeEnd;
+        _inputManager.OnSwipeAxis += _SwipeAxis;
     }
-    private void SwipeEnd(Vector2 position, float time)
+    private void _InitializeDisable()
     {
-        endPosition = position;
-        endTime = time;
-        DetectSwipe();
+        _inputManager.OnStartTouch -= _SwipeStart;
+        _inputManager.OnEndTouch -= _SwipeEnd;
+        _inputManager.OnSwipeAxis -= _SwipeAxis;
     }
-    private void DetectSwipe()
+    private void _SwipeStart(Vector2 position, float time)
     {
-        if (Vector3.Distance(startPosition, endPosition) >= minimumDistance 
-            && (endTime - startTime) <= maximumTime
-            && playerControl.isActiveAndEnabled)
+        _startPosition = position;
+        _startTime = time;
+    }
+    private void _SwipeEnd(Vector2 position, float time)
+    {
+        _endPosition = position;
+        _endTime = time;
+        _DetectSwipe();
+    }
+    private void _DetectSwipe()
+    {
+        if (Vector3.Distance(_startPosition, _endPosition) >= _minimumDistance 
+            && (_endTime - _startTime) <= _maximumTime
+            && _playerControl.isActiveAndEnabled)
         {
-            Vector3 direction = endPosition - startPosition;
+            Vector3 direction = _endPosition - _startPosition;
             Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
-            playerControl.SwipeDirection(direction2D, directionThreshold);
+            _playerControl.SwipeDirection(direction2D, _directionThreshold);
         }
     }
-    private void SwipeAxis(Vector2 axis)
+    private void _SwipeAxis(Vector2 axis)
     {
-        playerControl.PlayerInputsVector2(axis);
+        _playerControl.PlayerInputsVector2(axis);
     }
 }

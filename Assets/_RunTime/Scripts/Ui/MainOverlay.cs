@@ -17,6 +17,19 @@ public sealed class MainOverlay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText, _distanceText, _countDownText, _picUpCountText;
     [SerializeField] private Button _pauseBtn;
     private OverlayStatus _overlay = new OverlayStatus();
+
+    public MainOverlay(MainHUD mainHUD, MainHudSound mainHudSound, TextMeshProUGUI scoreText, TextMeshProUGUI distanceText, TextMeshProUGUI countDownText, TextMeshProUGUI picUpCountText, Button pauseBtn)
+    {
+        _mainHUD = mainHUD;
+        _mainHudSound = mainHudSound;
+        _scoreText = scoreText;
+        _distanceText = distanceText;
+        _countDownText = countDownText;
+        _picUpCountText = picUpCountText;
+        _pauseBtn = pauseBtn;
+        _Initialize();
+    }
+
     private void Awake()
     {
         _Initialize();

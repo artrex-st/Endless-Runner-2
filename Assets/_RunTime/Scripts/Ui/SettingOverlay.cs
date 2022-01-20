@@ -16,6 +16,20 @@ public sealed class SettingOverlay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _btnTextLabel;
     [SerializeField] private string _textBeforeDelete = "Delete Data?", _textAfterDelete = "Deleted!";
 
+    public SettingOverlay(MainHUD mainHUD, AudioController audioController, Slider sliderMaster, Slider sliderMusic, Slider sliderSFX, Button btnDeleteData, TextMeshProUGUI btnTextLabel, string textBeforeDelete, string textAfterDelete)
+    {
+        _mainHUD = mainHUD;
+        _audioController = audioController;
+        _sliderMaster = sliderMaster;
+        _sliderMusic = sliderMusic;
+        _sliderSFX = sliderSFX;
+        _btnDeleteData = btnDeleteData;
+        _btnTextLabel = btnTextLabel;
+        _textBeforeDelete = textBeforeDelete;
+        _textAfterDelete = textAfterDelete;
+         _InitializeOnEnable();
+    }
+
     public void OnMasterVolumeChange(float value)
     {
         _audioController.MasterVolume = value;
