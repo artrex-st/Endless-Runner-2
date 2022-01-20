@@ -16,6 +16,7 @@ public sealed class PlayerControl : MonoBehaviour
     public bool IsRolling { get; private set; }
     public float JumpDuration => _playerConfig.jumpDistanceZ / ForwardSpeed;
     public float RollDuration => _playerConfig.rollDistanceZ / ForwardSpeed;
+    private float _HorizontalSpeed;
     private Vector3 _initialPosition;
     private float _targetPositionX, _rollStartZ, _jumpStartZ;
 
@@ -78,7 +79,7 @@ public sealed class PlayerControl : MonoBehaviour
         _playerAudioController.PlayDieSound();
 
         ForwardSpeed = 0;
-        _playerConfig.horizontalSpeed = 0;
+        _HorizontalSpeed = 0;
         _StopRoll();
         _StopJump();
     }
@@ -95,6 +96,7 @@ public sealed class PlayerControl : MonoBehaviour
     private void _Initialize()
     {
         _initialPosition = transform.position;
+        _HorizontalSpeed = _playerConfig.horizontalSpeed;
         _StopRoll();
         _StopJump();
     }
@@ -109,7 +111,7 @@ public sealed class PlayerControl : MonoBehaviour
     }
     private float _ProcessLaneMovement()
     {
-        return Mathf.Lerp(transform.position.x, _targetPositionX, Time.deltaTime * _playerConfig.horizontalSpeed);
+        return Mathf.Lerp(transform.position.x, _targetPositionX, Time.deltaTime * _HorizontalSpeed);
     }
     private float _ProcessForwardMovement()
     {

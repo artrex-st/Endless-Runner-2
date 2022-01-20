@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Base_PlayerControl
   m_EditorClassIdentifier: 
   horizontalSpeed: 15
-  laneDistanceX: 4
+  laneDistanceX: 1.5
   jumpDistanceZ: 5
   jumpHeightY: 2
   jumpLerpSpeed: 10

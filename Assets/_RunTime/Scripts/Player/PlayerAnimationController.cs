@@ -19,7 +19,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _animator.SetBool(animationString, isStarted);
     }
-    public IEnumerator PlayStartGameAnimation()
+    public IEnumerator OnStartedGameAnimation()
     {
         _animator.SetTrigger(PlayerAnimationConstants.StartGameTrigger);
        

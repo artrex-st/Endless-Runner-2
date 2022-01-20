@@ -22,7 +22,7 @@ public class SaveGame : MonoBehaviour
     public ScoreData CurrentScoreData {get; private set;}
     public SettingsData CurrentSettingsData {get; private set;}
     private bool IsLoaded => CurrentScoreData != null && CurrentSettingsData != null;
-    public void SavePlayerData(ScoreData scoreData)
+    public void OnSavedScoreData(ScoreData scoreData)
     {
         CurrentScoreData = scoreData;
         string jsonString = JsonUtility.ToJson(CurrentScoreData);
@@ -45,7 +45,7 @@ public class SaveGame : MonoBehaviour
     }
     public void OnDeletedData()
     {
-        SavePlayerData(new ScoreData());
+        OnSavedScoreData(new ScoreData());
         LoadGame();
     }
     public ScoreData OnLoadingScoreData()
@@ -73,7 +73,7 @@ public class SaveGame : MonoBehaviour
         }
         else
         {
-            SavePlayerData(new ScoreData());
+            OnSavedScoreData(new ScoreData());
         }
     }
     private void _LoadSetting()

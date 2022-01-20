@@ -418,11 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c86df3b9291c274ca4647c769962708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1898464439}
-  playerAnimationController: {fileID: 1898464436}
-  musicController: {fileID: 850383}
-  saveGame: {fileID: 47490871}
-  gameModeConfig: {fileID: 11400000, guid: cac5225b68ac7364f84ffb0d6698122d, type: 2}
+  _player: {fileID: 1898464439}
+  _musicController: {fileID: 850383}
+  _gameModeConfig: {fileID: 11400000, guid: cac5225b68ac7364f84ffb0d6698122d, type: 2}
 --- !u!114 &47490871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626358315}
-  m_LocalRotation: {x: 0.17246114, y: -0.00000001507649, z: 0.00000000263966, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246115, y: 0.000000021041407, z: -0.000000003684025, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1335,7 +1333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143259080}
-  m_LocalRotation: {x: 0.17246114, y: -0.00000001507649, z: 0.00000000263966, w: 0.98501635}
+  m_LocalRotation: {x: 0.17246115, y: 0.000000021041407, z: -0.000000003684025, w: 0.98501635}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

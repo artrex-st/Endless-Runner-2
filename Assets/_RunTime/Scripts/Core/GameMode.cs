@@ -3,27 +3,30 @@ using UnityEngine;
 
 public sealed class GameMode : MonoBehaviour
 {
+    public delegate ScoreData ScoreLoadHandler();
+    public event ScoreLoadHandler OnLoadingScoreData;
+    public delegate void ScoreSaveHandler(ScoreData scoreData);
+    public event ScoreSaveHandler OnSavedScoreData;
+    public delegate IEnumerator PlayerAnimationHandler();
+    public event PlayerAnimationHandler OnStartedGameAnimation;
+    
     public int Score => Mathf.RoundToInt(score);
     public int DistanceCount => Mathf.RoundToInt(distanceCount);
     public int PicUpsCount => picUpsCount;
-    private ScoreData _CurrentSave => saveGame.CurrentScoreData;
-    [SerializeField] private PlayerControl player;
-    [SerializeField] private PlayerAnimationController playerAnimationController;
-    [SerializeField] private MusicController musicController;
-    [SerializeField] private SaveGame saveGame;
-    [SerializeField, Header("Game Configurations")] private GameModeConfig gameModeConfig;
+    [SerializeField] private PlayerControl _player;
+    [SerializeField] private MusicController _musicController;
+    [SerializeField, Header("Game Configurations")] private GameModeConfig _gameModeConfig;
     private int picUpsCount;
     private float score, distanceCount;
     private float startTime;
     private bool isDead = false;
+    private ScoreData _currentScore = new ScoreData();
 
-    public GameMode(PlayerControl player, PlayerAnimationController playerAnimationController, MusicController musicController, SaveGame saveGame, GameModeConfig gameModeConfig)
+    public GameMode(PlayerControl player , MusicController musicController, GameModeConfig gameModeConfig)
     {
-        this.player = player;
-        this.playerAnimationController = playerAnimationController;
-        this.musicController = musicController;
-        this.saveGame = saveGame;
-        this.gameModeConfig = gameModeConfig;
+        _player = player;
+        _musicController = musicController;
+        _gameModeConfig = gameModeConfig;
         _Initialize();
     }
 
@@ -44,13 +47,13 @@ public sealed class GameMode : MonoBehaviour
     public void OnGameOver()
     {
         isDead = true;
-        musicController.PlayDeathTrackMusic();
-        
-        saveGame.SavePlayerData(new ScoreData
+        _musicController.PlayDeathTrackMusic();
+        _currentScore = OnLoadingScoreData?.Invoke();
+        OnSavedScoreData?.Invoke(new ScoreData
         {
-            HighestScore = Score > _CurrentSave.HighestScore ? Score : _CurrentSave.HighestScore,
+            HighestScore = Score > _currentScore.HighestScore ? Score : _currentScore.HighestScore,
             LastScore = Score,
-            TotalPicUps = _CurrentSave.TotalPicUps + PicUpsCount
+            TotalPicUps = _currentScore.TotalPicUps + PicUpsCount
         });
 
         StartCoroutine(_ReloadGameCoroutine());
@@ -71,7 +74,7 @@ public sealed class GameMode : MonoBehaviour
     {
         OverlayStatus overlayStatus = new OverlayStatus
         {
-            timerToStartRun = gameModeConfig.timerToStartRun,
+            timerToStartRun = _gameModeConfig.timerToStartRun,
             score = Score,
             distanceCount = DistanceCount,
             picUpsCount = PicUpsCount
@@ -84,7 +87,7 @@ public sealed class GameMode : MonoBehaviour
         if (other.TryGetComponent(out Obstacle obstacle))
         {
             OnGameOver();
-            player.Die();
+            _player.Die();
             obstacle.PlayCollisionFeedBack(other);
         }
 
@@ -106,33 +109,31 @@ public sealed class GameMode : MonoBehaviour
             _SpeedLevelCalc();
         }
     }
-
     private void _Initialize()
     {
-        player.enabled = false;
-        saveGame.LoadGame();
+        _player.enabled = false;
     }
     private bool _CanPlay()
     {
-        return player.enabled && !isDead;
+        return _player.enabled && !isDead;
     }
 
     private void _SpeedLevelCalc()
     {
-        float percent = (Time.time - startTime) / gameModeConfig.timeToMaximumSpeed;
-        player.ForwardSpeed = Mathf.Lerp(gameModeConfig.initialSpeed, gameModeConfig.maximumSpeed, percent);
-        distanceCount = player.transform.position.z;
+        float percent = (Time.time - startTime) / _gameModeConfig.timeToMaximumSpeed;
+        _player.ForwardSpeed = Mathf.Lerp(_gameModeConfig.initialSpeed, _gameModeConfig.maximumSpeed, percent);
+        distanceCount = _player.transform.position.z;
         
         _ScoreCalc(percent);
     }
     private void _ScoreCalc(float _Multiply)
     {
-        float _extraScore = gameModeConfig.scoreByDistanceValue + _Multiply;
-        score += gameModeConfig.baseScoreMultiplier * player.ForwardSpeed * Time.deltaTime * _extraScore;
+        float _extraScore = _gameModeConfig.scoreByDistanceValue + _Multiply;
+        score += _gameModeConfig.baseScoreMultiplier * _player.ForwardSpeed * Time.deltaTime * _extraScore;
     }
     private IEnumerator _ReloadGameCoroutine()
     {
-        yield return new WaitForSeconds(gameModeConfig.reloadGameDelay);
+        yield return new WaitForSeconds(_gameModeConfig.reloadGameDelay);
 
 #if UNITY_EDITOR
         if (GameManager.instance == null)
@@ -149,10 +150,10 @@ public sealed class GameMode : MonoBehaviour
     }
     private IEnumerator StartGameCoroutine()
     {
-        yield return StartCoroutine(playerAnimationController.PlayStartGameAnimation());
-        musicController.PlayMainTrackMusic();
+        yield return StartCoroutine(OnStartedGameAnimation?.Invoke());
+        _musicController.PlayMainTrackMusic();
         isDead = false;
-        player.enabled = true;
+        _player.enabled = true;
         startTime = Time.time;
     }
 }

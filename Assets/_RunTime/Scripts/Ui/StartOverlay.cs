@@ -3,8 +3,8 @@ using UnityEngine;
 
 public sealed class StartOverlay : MonoBehaviour
 {
-    public delegate ScoreData ScoreDataHandler();
-    public event ScoreDataHandler OnCalledScoreData;
+    public delegate ScoreData ScoreLoadHandler();
+    public event ScoreLoadHandler OnLoadingScoreData;
     [SerializeField] private MainHUD _mainHUD;
     [Header("Start UiOverlay Elements")]
     [SerializeField] private TextMeshProUGUI _highestScoreText, _lastScoreText, _totalPicUpsText;
@@ -51,7 +51,7 @@ public sealed class StartOverlay : MonoBehaviour
     }
     public void _GetScoreDataTexts()
     {
-        currentScoreData = OnCalledScoreData?.Invoke();
+        currentScoreData = OnLoadingScoreData?.Invoke();
         _highestScoreText.text = $"Highest Score! \n{currentScoreData.HighestScore}";
         _lastScoreText.text = $"Last Score! \n{currentScoreData.LastScore}";
         _totalPicUpsText.text = $"{currentScoreData.TotalPicUps}";
