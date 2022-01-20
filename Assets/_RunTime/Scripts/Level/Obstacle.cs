@@ -44,4 +44,12 @@ public class Obstacle : MonoBehaviour
         }
         return minDistDecoration;
     }
+    private void OnDisable()
+    {
+        _InitializeOnDizable();
+    }
+    private void _InitializeOnDizable()
+    {
+        PoolingSystem.Instance.ReturnGameObject(gameObject);
+    }
 }
