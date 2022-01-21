@@ -21,8 +21,9 @@ MonoBehaviour:
   - {fileID: 4183906461760804556, guid: 0e500ddbafbbe3f4fb1317a9126b284b, type: 3}
   rewardTrackPrefabs:
   - {fileID: 7367299741430115723, guid: 1092d910462ef594aa5324f1362f2ab7, type: 3}
-  initialTrackCount: 7
-  minTracksInFrontOfPlayer: 7
+  - {fileID: 4183906461760804556, guid: 6ee791ced088a0244b061f55992b4300, type: 3}
+  initialTrackCount: 5
+  minTracksInFrontOfPlayer: 5
   minDistanceToConsiderInsideTrack: 3
   hardTrackChance: 0.2
   minTracksBeforeReward: 10
