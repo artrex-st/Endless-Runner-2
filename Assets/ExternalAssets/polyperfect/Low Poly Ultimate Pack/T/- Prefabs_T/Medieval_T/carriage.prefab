@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 4000011765593882}
   - component: {fileID: 33000012020094256}
   - component: {fileID: 23000014167725360}
-  - component: {fileID: 64177674506309646}
   m_Layer: 0
   m_Name: carriage-wheels
   m_TagString: Untagged
@@ -88,6 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -112,20 +112,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64177674506309646
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000013662212468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 6e7b4aa3e99eb4e81ab49713bf2286ef, type: 3}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1547757372922220
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +124,6 @@ GameObject:
   - component: {fileID: 4742387553727640}
   - component: {fileID: 33715008327785272}
   - component: {fileID: 23769946177354590}
-  - component: {fileID: 64166547578389952}
   m_Layer: 0
   m_Name: carriage-base
   m_TagString: Untagged
@@ -182,6 +168,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -206,17 +193,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64166547578389952
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547757372922220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 6e7b4aa3e99eb4e81ab49713bf2286ef, type: 3}
+  m_AdditionalVertexStreams: {fileID: 0}
