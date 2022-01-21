@@ -22,7 +22,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""name"": ""MoveControls"",
                     ""type"": ""Value"",
                     ""id"": ""ccc80a20-6828-4934-812c-5529b4b86a78"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -147,7 +147,7 @@ public class @InputControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e17b0d05-7f63-4d20-a823-bd925a304fae"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""Press(pressPoint=0.2)"",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",
