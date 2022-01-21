@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e6967dcec699f45a0ac3b474fc8731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  _mainCamera: {fileID: 0}
 --- !u!114 &3474445450010808105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   _playerControl: {fileID: 3474445450010808107}
   _minimumDistance: 0.1
   _maximumTime: 1
-  _directionThreshold: 0.7
+  _directionThreshold: 0.9
 --- !u!114 &3474445450010808103
 MonoBehaviour:
   m_ObjectHideFlags: 0
