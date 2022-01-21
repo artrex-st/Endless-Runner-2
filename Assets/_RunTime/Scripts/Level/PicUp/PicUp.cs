@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PicUp : MonoBehaviour
+public class PicUp : MonoBehaviour, IPicUps
 {
     [SerializeField] private GameObject _visual;
     [SerializeField] private AudioClip _picUpSound;

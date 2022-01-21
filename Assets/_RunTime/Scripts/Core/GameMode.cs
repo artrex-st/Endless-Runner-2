@@ -91,7 +91,7 @@ public sealed class GameMode : MonoBehaviour
             obstacle.PlayCollisionFeedBack(other);
         }
 
-        if (other.TryGetComponent(out PicUp picUp))
+        if (other.TryGetComponent(out IPicUps picUp))
         {
             AddPickUp();
             picUp.OnPic();
