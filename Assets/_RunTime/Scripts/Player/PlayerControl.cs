@@ -83,22 +83,46 @@ public sealed class PlayerControl : MonoBehaviour
         _StopRoll();
         _StopJump();
     }
-
+    public float OnAnimationRollModifier()
+    {
+        return RollDuration;
+    }
+    public float OnAnimationJumpModifier()
+    {
+        return JumpDuration;
+    }
     private void Awake()
     {
         _Initialize();
+    }
+    private void OnEnable()
+    {
+        _InitializeOnEnable();
     }
     private void Update()
     {
         _ProcessMovements();
     }
-
+    private void OnDisable()
+    {
+        _InitializeOnDisable();
+    }
     private void _Initialize()
     {
         _initialPosition = transform.position;
         _HorizontalSpeed = _playerConfig.horizontalSpeed;
         _StopRoll();
         _StopJump();
+    }
+    private void _InitializeOnEnable()
+    {
+        RollAnimationState.OnAnimationRollModifier += OnAnimationRollModifier;
+        JumpAnimationState.OnAnimationJumpModifier += OnAnimationJumpModifier;
+    }
+    private void _InitializeOnDisable()
+    {
+        RollAnimationState.OnAnimationRollModifier -= OnAnimationRollModifier;
+        JumpAnimationState.OnAnimationJumpModifier -= OnAnimationJumpModifier;
     }
     private void _ProcessMovements()
     {

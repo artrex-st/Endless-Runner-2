@@ -34,4 +34,15 @@ public sealed class PlayerAnimationController : MonoBehaviour
             yield return null;
         }
     }
+    public void OnAnimationModifier()
+    {
+        AnimatorClipInfo[] clips = _animator.GetNextAnimatorClipInfo(0);
+        PlayerControl player = _animator.transform.parent.GetComponent<PlayerControl>();
+        if (player != null && clips.Length > 0)
+        {
+            AnimatorClipInfo clipInfo = clips[0];
+            float multiplier = clipInfo.clip.length / player.RollDuration;
+            _animator.SetFloat(PlayerAnimationConstants.RollSpeedMultiplier, multiplier);
+        }
+    }
 }
